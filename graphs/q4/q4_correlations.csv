@@ -1,0 +1,5 @@
+sample,x,y,n,pearson_r,pearson_p,spearman_r,spearman_p,abs_pearson_r
+high_st_states,literacy_gap_pct,dropout_secondary_pct,18,0.5099,0.0306,0.4335,0.0723,0.5099
+high_st_states,st_literacy_rate_pct,dropout_secondary_pct,18,-0.5051,0.0325,-0.4917,0.0382,0.5051
+high_st_states,literacy_gap_pct,st_bpl_mean_pct,9,0.3275,0.3896,0.4268,0.252,0.3275
+high_st_states,st_literacy_rate_pct,st_bpl_mean_pct,9,-0.0652,0.8676,-0.1172,0.764,0.0652

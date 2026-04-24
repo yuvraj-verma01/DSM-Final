@@ -1,0 +1,7 @@
+sample,x,y,n,pearson_r,pearson_p,spearman_r,spearman_p,abs_pearson_r
+high_st_states,ger_classes_i_viii_clean,st_bpl_mean_pct,9,0.7172,0.0296,0.4667,0.2054,0.7172
+high_st_states,gpi_secondary_clean,st_bpl_mean_pct,9,0.5993,0.0881,0.5809,0.1009,0.5993
+high_st_states,dropout_secondary_pct,st_bpl_mean_pct,9,0.5266,0.1453,0.55,0.125,0.5266
+high_st_states,ger_classes_ix_x_girls_clean,dropout_upper_primary_pct,18,-0.5197,0.0271,-0.3573,0.1456,0.5197
+high_st_states,ger_classes_ix_x_clean,dropout_upper_primary_pct,18,-0.4621,0.0535,-0.3242,0.1893,0.4621
+high_st_states,ger_classes_ix_x_gpi_clean,dropout_upper_primary_pct,19,-0.2692,0.265,-0.1687,0.4899,0.2692

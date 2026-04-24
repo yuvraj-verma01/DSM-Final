@@ -69,9 +69,9 @@ The following associations use Pearson and Spearman correlations. Because indica
 | high_st_states | How does secondary dropout relate to ST poverty? | 9 | 0.53 | 0.15 | 0.55 | Moderate positive association; exploratory, not causal. |
 | high_st_states | How does secondary dropout relate to work participation? | 18 | 0.51 | 0.03 | 0.62 | Moderate positive association; exploratory, not causal. |
 | high_st_states | How does ST literacy relate to work participation? | 18 | -0.48 | 0.05 | -0.35 | Moderate negative association; exploratory, not causal. |
+| high_st_states | Do higher-secondary-GER states still show MGNREG 100-plus-days dependence? | 19 | 0.47 | 0.04 | 0.32 | Moderate positive association; exploratory, not causal. |
 | high_st_states | How does female literacy relate to female work participation? | 18 | -0.46 | 0.05 | -0.47 | Moderate negative association; exploratory, not causal. |
-| high_st_states | Do higher-GER states still show MGNREG 100-plus-days dependence? | 19 | 0.38 | 0.11 | 0.31 | Weak positive association; exploratory, not causal. |
-| all_states | How does ST literacy relate to work participation? | 27 | -0.36 | 0.06 | -0.36 | Weak negative association; exploratory, not causal. |
+| high_st_states | How does latest secondary ST GER relate to secondary dropout? | 19 | 0.45 | 0.05 | 0.36 | Moderate positive association; exploratory, not causal. |
 
 ## Regression Checks
 
