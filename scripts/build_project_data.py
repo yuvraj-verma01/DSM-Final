@@ -266,6 +266,143 @@ def clean_ger(df: pd.DataFrame) -> pd.DataFrame:
     return drop_aggregate_rows(out)
 
 
+def clean_ger_latest(df: pd.DataFrame) -> pd.DataFrame:
+    out = clean_base(df, "India/State/UT", year_col=None)
+    out["ger_latest_year"] = 2023
+    for col in df.columns:
+        low = col.lower()
+        if "gross enrolment ratio" not in low:
+            continue
+        if "primary (1 to 5)" in low:
+            level = "primary"
+        elif "upper primary (6 to 8)" in low:
+            level = "upper_primary"
+        elif "elementary (1 to 8)" in low:
+            level = "elementary"
+        elif "higher secondary (11-12)" in low:
+            level = "higher_secondary"
+        elif "secondary (9-10)" in low:
+            level = "secondary"
+        else:
+            level = slug(col)
+
+        if low.endswith(" - boys"):
+            gender = "boys"
+        elif low.endswith(" - girls"):
+            gender = "girls"
+        elif low.endswith(" - total"):
+            gender = "total"
+        else:
+            gender = slug(col)
+        out[f"ger_latest_{level}_{gender}"] = numeric(df[col])
+
+    for level in ["primary", "upper_primary", "elementary", "secondary", "higher_secondary"]:
+        boys_col = f"ger_latest_{level}_boys"
+        girls_col = f"ger_latest_{level}_girls"
+        if boys_col in out.columns and girls_col in out.columns:
+            out[f"ger_latest_{level}_gpi"] = out[girls_col] / out[boys_col].replace(0, np.nan)
+
+    for gender in ["boys", "girls", "total"]:
+        secondary_col = f"ger_latest_secondary_{gender}"
+        higher_col = f"ger_latest_higher_secondary_{gender}"
+        if secondary_col in out.columns and higher_col in out.columns:
+            out[f"ger_latest_ix_xii_avg_{gender}"] = out[[secondary_col, higher_col]].mean(axis=1, skipna=True)
+    if {"ger_latest_ix_xii_avg_boys", "ger_latest_ix_xii_avg_girls"}.issubset(out.columns):
+        out["ger_latest_ix_xii_avg_gpi"] = (
+            out["ger_latest_ix_xii_avg_girls"] / out["ger_latest_ix_xii_avg_boys"].replace(0, np.nan)
+        )
+    if "ger_latest_ix_xii_avg_total" in out.columns:
+        out["ger_latest_ix_xii_avg"] = out["ger_latest_ix_xii_avg_total"]
+    return drop_aggregate_rows(out)
+
+
+def clean_gpi(df: pd.DataFrame) -> pd.DataFrame:
+    out = clean_base(df, "State/UT", year_col=None)
+    out["gpi_academic_year"] = "2021-22"
+    for col in df.columns:
+        low = col.lower()
+        if " - " not in col:
+            continue
+        if "primary" in low and "upper" not in low:
+            level = "primary"
+        elif "upper primary" in low:
+            level = "upper_primary"
+        elif "higher secondary" in low:
+            level = "higher_secondary"
+        elif "secondary" in low:
+            level = "secondary"
+        else:
+            continue
+        year_key = "2021_22" if "2021-2022" in low else "2020_21" if "2020-2021" in low else None
+        if year_key:
+            out[f"gpi_{level}_{year_key}"] = numeric(df[col])
+
+    for level in ["primary", "upper_primary", "secondary", "higher_secondary"]:
+        latest_col = f"gpi_{level}_2021_22"
+        if latest_col in out.columns:
+            out[f"gpi_{level}"] = out[latest_col]
+    if {"gpi_secondary", "gpi_higher_secondary"}.issubset(out.columns):
+        out["gpi_ix_xii_avg"] = out[["gpi_secondary", "gpi_higher_secondary"]].mean(axis=1, skipna=True)
+    return drop_aggregate_rows(out)
+
+
+def clean_scholarships(df: pd.DataFrame) -> pd.DataFrame:
+    out = clean_base(df, "State/UT", year_col=None)
+    years = set()
+    for col in df.columns:
+        low = col.lower()
+        if "matric" not in low or "status" not in low:
+            continue
+        year_match = re.search(r"(20\d{2}-\d{2})", col)
+        if not year_match:
+            continue
+        year_key = year_match.group(1).replace("-", "_")
+        years.add(year_key)
+        scheme = "post_matric" if "post-matric" in low else "pre_matric"
+        metric = "utilized" if "utilized" in low else "release"
+        out[f"scholarship_{scheme}_{year_key}_{metric}_lakh"] = numeric(df[col])
+
+    for year_key in sorted(years):
+        release_cols = [
+            f"scholarship_pre_matric_{year_key}_release_lakh",
+            f"scholarship_post_matric_{year_key}_release_lakh",
+        ]
+        utilized_cols = [
+            f"scholarship_pre_matric_{year_key}_utilized_lakh",
+            f"scholarship_post_matric_{year_key}_utilized_lakh",
+        ]
+        existing_release = [col for col in release_cols if col in out.columns]
+        existing_utilized = [col for col in utilized_cols if col in out.columns]
+        if existing_release:
+            out[f"scholarship_total_release_{year_key}_lakh"] = out[existing_release].sum(axis=1, min_count=1)
+        if existing_utilized:
+            out[f"scholarship_total_utilized_{year_key}_lakh"] = out[existing_utilized].sum(axis=1, min_count=1)
+        total_release_col = f"scholarship_total_release_{year_key}_lakh"
+        total_utilized_col = f"scholarship_total_utilized_{year_key}_lakh"
+        if {total_release_col, total_utilized_col}.issubset(out.columns):
+            out[f"scholarship_utilization_{year_key}_pct"] = (
+                out[total_utilized_col] / out[total_release_col].replace(0, np.nan) * 100
+            )
+
+    cumulative_release_cols = [
+        col for col in out.columns if col.startswith("scholarship_total_release_") and col.endswith("_lakh")
+    ]
+    cumulative_utilized_cols = [
+        col for col in out.columns if col.startswith("scholarship_total_utilized_") and col.endswith("_lakh")
+    ]
+    if cumulative_release_cols:
+        out["scholarship_cumulative_release_lakh"] = out[cumulative_release_cols].sum(axis=1, min_count=1)
+    if cumulative_utilized_cols:
+        out["scholarship_cumulative_utilized_lakh"] = out[cumulative_utilized_cols].sum(axis=1, min_count=1)
+    if {"scholarship_cumulative_release_lakh", "scholarship_cumulative_utilized_lakh"}.issubset(out.columns):
+        out["scholarship_cumulative_utilization_pct"] = (
+            out["scholarship_cumulative_utilized_lakh"]
+            / out["scholarship_cumulative_release_lakh"].replace(0, np.nan)
+            * 100
+        )
+    return drop_aggregate_rows(out)
+
+
 def clean_low_literacy_districts(df: pd.DataFrame) -> pd.DataFrame:
     out = clean_base(df, "State")
     out["district"] = df["District"].astype(str).str.strip()
@@ -465,6 +602,45 @@ DATASETS = [
         "cleaner": clean_ger,
         "key_variables": "GER by gender and class group",
         "notes": "Raw filename is truncated by Windows path limits.",
+    },
+    {
+        "name": "ger_st_latest",
+        "proposal_no": "",
+        "in_proposal": False,
+        "level": "state-year-gender-level",
+        "candidates": [
+            "data/raw/ger_st_latest.csv",
+            "Additional(Potential)Data/StateUTs-wise Details of Gross Enrolment Ratio (GER) - Scheduled Tribes by Gender and Level of School Education during 2023-24.csv",
+        ],
+        "cleaner": clean_ger_latest,
+        "key_variables": "latest ST GER by school level and gender",
+        "notes": "Additional UDISE+ 2023-24 dataset used to strengthen schooling participation and gender questions.",
+    },
+    {
+        "name": "gpi_st",
+        "proposal_no": "",
+        "in_proposal": False,
+        "level": "state-academic-year-level",
+        "candidates": [
+            "data/raw/gpi_st.csv",
+            "Additional(Potential)Data/StateUT-wise Gender Parity Index of Scheduled Tribes as per Unified District Information System for Education Plus (UDISE+) from 2020-21 to 2021-22.csv",
+        ],
+        "cleaner": clean_gpi,
+        "key_variables": "ST gender parity index by school level",
+        "notes": "Additional UDISE+ 2021-22 dataset used to test whether enrolment parity translates into female outcomes.",
+    },
+    {
+        "name": "scholarships_st",
+        "proposal_no": "",
+        "in_proposal": False,
+        "level": "state-year-scheme",
+        "candidates": [
+            "data/raw/scholarships_st.csv",
+            "Additional(Potential)Data/StateUT-wise Details of Funds Allocated and Utilized under Post Matric and Pre-Matric Scholarship for Scheduled Tribe (ST) Students from 2019-20 to 2023-24.csv",
+        ],
+        "cleaner": clean_scholarships,
+        "key_variables": "pre-matric and post-matric ST scholarship release and utilization",
+        "notes": "Additional policy-support dataset; amounts are in Rs lakh.",
     },
     {
         "name": "low_literacy_districts",
@@ -718,10 +894,51 @@ def build_state_analysis_dataset(cleaned: dict[str, pd.DataFrame]) -> pd.DataFra
     state_df = merge_left(state_df, dropout)
 
     ger = cleaned["ger_st"].copy()
-    ger_total = ger[ger["gender_key"].eq("total")]
-    ger_pivot = ger_total.pivot_table(index="state", columns="class_group_key", values="ger_ratio", aggfunc="mean")
-    ger_pivot = ger_pivot.rename(columns={col: f"ger_{col}" for col in ger_pivot.columns}).reset_index()
+    ger_latest = ger.sort_values("year").groupby(["state", "gender_key", "class_group_key"], as_index=False).tail(1)
+    ger_year = ger_latest.groupby("state", as_index=False)["year"].max().rename(columns={"year": "ger_year"})
+    ger_pivot = ger_latest.pivot_table(
+        index="state",
+        columns=["class_group_key", "gender_key"],
+        values="ger_ratio",
+        aggfunc="mean",
+    )
+    ger_pivot.columns = [
+        f"ger_{class_group}" if gender == "total" else f"ger_{class_group}_{gender}"
+        for class_group, gender in ger_pivot.columns
+    ]
+    ger_pivot = ger_pivot.reset_index()
+    class_groups = sorted(ger_latest["class_group_key"].dropna().unique())
+    for class_group in class_groups:
+        boys_col = f"ger_{class_group}_boys"
+        girls_col = f"ger_{class_group}_girls"
+        if boys_col in ger_pivot.columns and girls_col in ger_pivot.columns:
+            ger_pivot[f"ger_{class_group}_gpi"] = ger_pivot[girls_col] / ger_pivot[boys_col].replace(0, np.nan)
+    ger_pivot = merge_left(ger_pivot, ger_year)
+    ger_pivot.to_csv(CLEAN_DIR / "ger_st_gender_summary.csv", index=False)
     state_df = merge_left(state_df, ger_pivot)
+
+    if "ger_st_latest" in cleaned:
+        ger_latest = cleaned["ger_st_latest"].copy()
+        state_df = merge_left(state_df, ger_latest)
+
+    if "gpi_st" in cleaned:
+        gpi = cleaned["gpi_st"].copy()
+        state_df = merge_left(state_df, gpi)
+
+    if "scholarships_st" in cleaned:
+        scholarships = cleaned["scholarships_st"].copy()
+        state_df = merge_left(state_df, scholarships)
+        if "st_population" in state_df.columns:
+            for col in [
+                "scholarship_total_release_2023_24_lakh",
+                "scholarship_total_utilized_2023_24_lakh",
+                "scholarship_cumulative_release_lakh",
+                "scholarship_cumulative_utilized_lakh",
+            ]:
+                if col in state_df.columns:
+                    state_df[f"{col}_per_100k_st_pop"] = (
+                        state_df[col] / state_df["st_population"].replace(0, np.nan) * 100000
+                    )
 
     employment = cleaned["employment_st"].copy()
     emp_pivot = employment.pivot_table(
@@ -756,6 +973,25 @@ def build_state_analysis_dataset(cleaned: dict[str, pd.DataFrame]) -> pd.DataFra
         "mgnreg_average_days_worked",
     ]
     mgnreg = mgnreg[[col for col in mgnreg_cols if col in mgnreg.columns]].rename(columns={"year": "mgnreg_year"})
+    work_received_cols = [
+        "mgnreg_work_less_20_days_per_1000",
+        "mgnreg_work_20_50_days_per_1000",
+        "mgnreg_work_50_100_days_per_1000",
+        "mgnreg_work_100_plus_days_per_1000",
+    ]
+    available_work_cols = [col for col in work_received_cols if col in mgnreg.columns]
+    if available_work_cols:
+        mgnreg["mgnreg_work_received_any_days_per_1000"] = mgnreg[available_work_cols].sum(axis=1, skipna=True)
+    if {
+        "mgnreg_work_100_plus_days_per_1000",
+        "mgnreg_work_received_any_days_per_1000",
+    }.issubset(mgnreg.columns):
+        mgnreg["mgnreg_100_plus_share_of_work_received_pct"] = (
+            mgnreg["mgnreg_work_100_plus_days_per_1000"]
+            / mgnreg["mgnreg_work_received_any_days_per_1000"].replace(0, np.nan)
+            * 100
+        )
+    mgnreg.to_csv(CLEAN_DIR / "mgnreg_st_dependency.csv", index=False)
     state_df = merge_left(state_df, mgnreg)
 
     scst = cleaned["sc_st_residence"].copy()
@@ -885,12 +1121,22 @@ def write_analysis_outputs(cleaned: dict[str, pd.DataFrame], state_df: pd.DataFr
     correlation_cols = [
         "st_literacy_rate_pct",
         "literacy_gap_pct",
+        "ger_classes_ix_xii",
+        "ger_classes_ix_xii_girls",
+        "ger_classes_ix_xii_gpi",
+        "ger_latest_ix_xii_avg",
+        "ger_latest_ix_xii_avg_girls",
+        "gpi_ix_xii_avg",
         "dropout_secondary_pct",
         "st_bpl_mean_pct",
+        "scholarship_total_release_2023_24_lakh_per_100k_st_pop",
+        "scholarship_utilization_2023_24_pct",
         "employment_lfpr_person_per_1000",
         "employment_wpr_person_per_1000",
         "employment_pu_person_per_1000",
         "mgnreg_sought_not_received_per_1000",
+        "mgnreg_work_100_plus_days_per_1000",
+        "mgnreg_100_plus_share_of_work_received_pct",
         "overall_priority_score",
     ]
     usable_cols = [col for col in correlation_cols if col in state_df.columns]
@@ -914,6 +1160,8 @@ def write_summary_markdown(cleaned: dict[str, pd.DataFrame], state_df: pd.DataFr
         "- Correlation matrix: `outputs/analysis/correlations.csv`",
         "- SQLite database: `outputs/st_education_project.sqlite`",
         "- Figures: `outputs/figures/`",
+        "- Derived GER gender/GPI summary: `outputs/cleaned/ger_st_gender_summary.csv`",
+        "- Derived MGNREG dependency summary: `outputs/cleaned/mgnreg_st_dependency.csv`",
         "",
         "## Scope Notes",
         "",

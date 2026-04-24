@@ -1,0 +1,38 @@
+Sl. No.,India/State/UT,Gross Enrolment Ratio (GER) - Scheduled Tribes (ST) - Primary (1 to 5) - Boys,Gross Enrolment Ratio (GER) - Scheduled Tribes (ST) - Primary (1 to 5) - Girls,Gross Enrolment Ratio (GER) - Scheduled Tribes (ST) - Primary (1 to 5) - Total,Gross Enrolment Ratio (GER) - Scheduled Tribes (ST) - Upper Primary (6 to 8) - Boys,Gross Enrolment Ratio (GER) - Scheduled Tribes (ST) - Upper Primary (6 to 8) - Girls,Gross Enrolment Ratio (GER) - Scheduled Tribes (ST) - Upper Primary (6 to 8) - Total,Gross Enrolment Ratio (GER) - Scheduled Tribes (ST) - Elementary (1 to 8) - Boys,Gross Enrolment Ratio (GER) - Scheduled Tribes (ST) - Elementary (1 to 8) - Girls,Gross Enrolment Ratio (GER) - Scheduled Tribes (ST) - Elementary (1 to 8) - Total,Gross Enrolment Ratio (GER) - Scheduled Tribes (ST) - Secondary (9-10) - Boys,Gross Enrolment Ratio (GER) - Scheduled Tribes (ST) - Secondary (9-10) - Girls,Gross Enrolment Ratio (GER) - Scheduled Tribes (ST) - Secondary (9-10) - Total,Gross Enrolment Ratio (GER) - Scheduled Tribes (ST) - Higher Secondary (11-12) - Boys,Gross Enrolment Ratio (GER) - Scheduled Tribes (ST) - Higher Secondary (11-12) - Girls,Gross Enrolment Ratio (GER) - Scheduled Tribes (ST) - Higher Secondary (11-12) - Total
+1,India,98,98.6,98.3,94.8,95.6,95.2,96.8,97.4,97.1,75.4,78.5,76.9,46,51.4,48.7
+2,Andaman and Nicobar Islands,86.3,94.4,90,95.7,108,101.3,89.8,99.5,94.3,77.7,90.5,83.7,65.3,86.3,75.2
+3,Andhra Pradesh,116,121.2,118.5,112.5,115.1,113.7,114.7,119,116.8,96,97.2,96.6,66.1,72,69
+4,Arunachal Pradesh,109.3,112.8,111,83.8,91,87.4,98.9,103.7,101.2,65.6,69.5,67.5,48.7,53.2,51
+5,Assam,117.9,124.3,121,99.7,104.7,102.1,110.7,116.4,113.5,92.5,96.8,94.7,53.7,53,53.3
+6,Bihar,127.5,123.9,125.8,95.3,96.8,96,115.5,113.6,114.6,57.1,60.9,59,45.9,48.9,47.4
+7,Chandigarh,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+8,Chhattisgarh,87.7,88.2,87.9,87,87.7,87.4,87.5,88,87.7,63.4,72.4,67.8,39.8,53.4,46.6
+9,Dadra and Nagar Haveli and Daman and Diu,65.9,71.4,68.5,64,68.6,66.2,65.1,70.3,67.6,66,76.1,70.7,25.6,34.9,29.9
+10,Delhi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11,Goa,62.7,68.6,65.5,66,71,68.4,64,69.5,66.6,60.9,71.6,65.9,63.2,72.1,67.6
+12,Gujarat,81.7,80.9,81.3,95.8,94.8,95.3,86.8,85.9,86.4,76.9,75.9,76.4,36.2,46.8,41.3
+13,Haryana,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14,Himachal Pradesh,97.8,100.8,99.2,99.4,100.9,100.1,98.4,100.8,99.6,98.8,97.6,98.2,79.6,80.8,80.2
+15,Jammu and Kashmir,142.6,136.4,139.5,84.2,86.6,85.3,117,115.6,116.3,65.4,62.3,64,32.1,28.8,30.6
+16,Jharkhand,99.1,101.6,100.3,82.3,84.8,83.6,92.8,95.1,93.9,55.1,60.2,57.7,32.4,37.2,34.8
+17,Karnataka,105.2,106,105.6,105.3,103.5,104.4,105.3,105,105.2,96,98.3,97.2,47,58,52.2
+18,Kerala,88.7,91.7,90.2,94.9,92.1,93.5,91.1,91.8,91.5,103.4,95.7,99.6,89.9,100.7,95.2
+19,Ladakh,71.3,76.5,73.8,55.2,67,60.7,65,72.9,68.7,55.6,66.3,60.8,29.5,36.4,32.8
+20,Lakshadweep,72.4,74,73.1,59.5,60.3,60,67.6,68.3,67.9,52.8,55.7,54.2,55.1,48.2,51.5
+21,Madhya Pradesh,80.9,79.4,80.2,87.8,83.2,85.5,83.2,80.7,82,56.1,56.3,56.2,30.9,35,32.9
+22,Maharashtra,101,104.7,102.8,96.9,100.6,98.6,99.4,103.2,101.2,90.7,91.5,91.1,54.7,54.4,54.6
+23,Manipur,124,131.5,127.5,66.2,72.1,69,99.5,106.2,102.7,50.9,57,53.8,29.7,32.6,31.2
+24,Meghalaya,182.1,185.7,183.9,106.8,127.7,117.1,152,162.2,157,73,98,85.4,31.9,47.4,39.6
+25,Mizoram,154.4,155.5,154.9,113.4,117.7,115.5,137.9,140.2,139,94.9,105.8,100.2,50.8,58.6,54.7
+26,Nagaland,85.7,89.5,87.5,66.4,72.9,69.5,77.6,82.6,80,54.8,64.1,59.3,36.6,43.4,40
+27,Odisha,93.6,92.1,92.8,107.6,107.4,107.5,98.5,97.4,98,84.6,89.6,87.1,52,58.7,55.3
+28,Puducherry,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+29,Punjab,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+30,Rajasthan,97.8,98.1,97.9,98.3,97.1,97.7,98,97.7,97.9,80.3,79.4,79.8,59.1,57.8,58.5
+31,Sikkim,101.3,92.7,97.1,76.6,79.1,77.8,90.5,86.7,88.6,72.9,78.8,75.8,56.1,68.1,62.1
+32,Tamil Nadu,110.7,112.6,111.6,116.2,115.4,115.8,112.7,113.6,113.1,97.3,103.3,100.1,69.2,85.6,77
+33,Telangana,97.8,96.6,97.2,98.1,97.9,98,97.9,97.1,97.5,82.6,85,83.8,70.7,79.3,74.8
+34,Tripura,119.5,123.3,121.3,91.9,95.4,93.6,107.9,111.5,109.6,69,76.5,72.6,47.7,56.7,52
+35,Uttar Pradesh,128.6,125.3,127,134.9,134.5,134.7,130.7,128.4,129.6,136.5,134.8,135.7,134.5,131.6,133.1
+36,Uttarakhand,87.5,92.9,90,77.2,79.9,78.5,83.2,87.5,85.2,73.4,75.3,74.3,60.1,64.5,62.2
+37,West Bengal,109,110.1,109.6,104.7,106.8,105.8,107.4,108.9,108.1,100.1,108.1,104,49.8,63.8,56.7

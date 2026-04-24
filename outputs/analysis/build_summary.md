@@ -10,10 +10,12 @@
 - Correlation matrix: `outputs/analysis/correlations.csv`
 - SQLite database: `outputs/st_education_project.sqlite`
 - Figures: `outputs/figures/`
+- Derived GER gender/GPI summary: `outputs/cleaned/ger_st_gender_summary.csv`
+- Derived MGNREG dependency summary: `outputs/cleaned/mgnreg_st_dependency.csv`
 
 ## Scope Notes
 
-- Cleaned datasets created: 14
+- Cleaned datasets created: 17
 - State rows in combined table: 34
 - High-ST-share states identified from the proposal dataset: 19
 - Original raw CSV files were not renamed or edited.

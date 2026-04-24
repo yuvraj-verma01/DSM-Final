@@ -6,6 +6,9 @@ sc_st_residence,state-year-residence,68,68,34,2011,"SC population, ST population
 tribal_villages,state-year,66,66,33,"2001, 2011",villages above ST concentration thresholds,"Raw metadata labels UOM as percentage, but values behave like counts."
 mgnreg_st,state-year,34,34,34,2013,"MGNREG job cards, work received, unmet demand, average days",Filtered to Scheduled Tribe and rural households.
 ger_st,state-year-gender-class,612,612,34,2013,GER by gender and class group,Raw filename is truncated by Windows path limits.
+ger_st_latest,state-year-gender-level,37,36,36,,latest ST GER by school level and gender,Additional UDISE+ 2023-24 dataset used to strengthen schooling participation and gender questions.
+gpi_st,state-academic-year-level,37,36,36,,ST gender parity index by school level,Additional UDISE+ 2021-22 dataset used to test whether enrolment parity translates into female outcomes.
+scholarships_st,state-year-scheme,33,32,32,,pre-matric and post-matric ST scholarship release and utilization,Additional policy-support dataset; amounts are in Rs lakh.
 low_literacy_districts,district-year,74,74,11,2011,district ST literacy rates where female literacy is below 35 percent,Supports state case studies and extreme-deprivation counts.
 tribe_socioeconomic,state-year-tribe,831,831,29,2011,"tribe-level households, population, literacy, WPR, worker type",Aggregated to state level with population-weighted averages.
 employment_st,state-year-gender-indicator,324,315,35,2013,"LFPR, WPR, PU by gender",Does not include rural/urban despite the proposal wording.

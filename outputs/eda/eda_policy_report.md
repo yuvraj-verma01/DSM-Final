@@ -10,7 +10,7 @@ This EDA therefore focuses on four outputs: identifying weak education outcomes,
 
 - Master all-state table: 34 states.
 - High-ST-state analytical subset: 19 states.
-- Cleaned datasets used: 14.
+- Cleaned datasets used: 17.
 - Main unit of analysis: one state profile assembled from the most relevant available state-level observations.
 - Sparse state-year fact table also generated: 455 state-year rows.
 - Time periods are mixed across sources: most structural education/demography measures are around 2011, labour/MGNREG/GER are around 2013, dropout is 2021-22, and the extra household-type table is later. Treat relationships as exploratory, not causal.
@@ -25,12 +25,12 @@ The cleaned data are analysis-ready, but coverage is uneven because the source d
 | st_bpl_rural_pct | 9 | 10 | 52.63 |
 | st_bpl_urban_pct | 9 | 10 | 52.63 |
 | st_bpl_mean_pct | 9 | 10 | 52.63 |
+| scholarship_utilization_2023_24_pct | 17 | 2 | 10.53 |
 | st_literacy_rate_pct | 18 | 1 | 5.26 |
 | literacy_gap_pct | 18 | 1 | 5.26 |
+| scholarship_total_release_2023_24_lakh_per_100k_st_pop | 18 | 1 | 5.26 |
 | employment_lfpr_person_per_1000 | 18 | 1 | 5.26 |
 | employment_wpr_person_per_1000 | 18 | 1 | 5.26 |
-| employment_pu_person_per_1000 | 18 | 1 | 5.26 |
-| tribal_villages_gt_50_count | 18 | 1 | 5.26 |
 
 ## Key Findings
 
@@ -70,8 +70,8 @@ The following associations use Pearson and Spearman correlations. Because indica
 | high_st_states | How does secondary dropout relate to work participation? | 18 | 0.51 | 0.03 | 0.62 | Moderate positive association; exploratory, not causal. |
 | high_st_states | How does ST literacy relate to work participation? | 18 | -0.48 | 0.05 | -0.35 | Moderate negative association; exploratory, not causal. |
 | high_st_states | How does female literacy relate to female work participation? | 18 | -0.46 | 0.05 | -0.47 | Moderate negative association; exploratory, not causal. |
+| high_st_states | Do higher-GER states still show MGNREG 100-plus-days dependence? | 19 | 0.38 | 0.11 | 0.31 | Weak positive association; exploratory, not causal. |
 | all_states | How does ST literacy relate to work participation? | 27 | -0.36 | 0.06 | -0.36 | Weak negative association; exploratory, not causal. |
-| all_states | How does unmet MGNREG demand relate to ST poverty? | 18 | 0.33 | 0.18 | 0.31 | Weak positive association; exploratory, not causal. |
 
 ## Regression Checks
 

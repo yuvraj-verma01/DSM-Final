@@ -38,10 +38,13 @@ cells = [
 
         ## Additional Questions
 
-        7. Does secondary dropout appear to be a stronger warning signal of poverty and weak labour outcomes than literacy alone?
-        8. Do high-ST-share states systematically perform worse, or do outcomes vary substantially?
-        9. Do states with high concentrations of ST villages show different education and livelihood outcomes?
-        10. Are there gender-specific disadvantages hidden behind state averages?
+        7. Are scholarship-supported states seeing lower secondary dropout among ST students?
+        8. Do states with high ST schooling participation still depend heavily on MGNREG?
+        9. Does gender parity in enrolment translate into better female literacy and work outcomes?
+        10. Does secondary dropout appear to be a stronger warning signal of poverty and weak labour outcomes than literacy alone?
+        11. Do high-ST-share states systematically perform worse, or do outcomes vary substantially?
+        12. Do states with high concentrations of ST villages show different education and livelihood outcomes?
+        13. Are there gender-specific disadvantages hidden behind state averages?
         """
     ),
     code(
@@ -103,6 +106,30 @@ cells = [
             clean_col = f"{col}_clean"
             high_st[clean_col] = high_st[col].where(high_st[col].between(0, 500))
             all_states[clean_col] = all_states[col].where(all_states[col].between(0, 500))
+
+        for col in ["ger_classes_ix_xii_boys", "ger_classes_ix_xii_girls", "ger_classes_i_viii_girls"]:
+            if col in high_st.columns:
+                clean_col = f"{col}_clean"
+                high_st[clean_col] = high_st[col].where(high_st[col].between(0, 500))
+                all_states[clean_col] = all_states[col].where(all_states[col].between(0, 500))
+
+        for col in ["ger_classes_ix_xii_gpi", "ger_classes_i_viii_gpi"]:
+            if col in high_st.columns:
+                clean_col = f"{col}_clean"
+                high_st[clean_col] = high_st[col].where(high_st[col].between(0, 3))
+                all_states[clean_col] = all_states[col].where(all_states[col].between(0, 3))
+
+        for col in ["ger_latest_ix_xii_avg", "ger_latest_ix_xii_avg_girls", "ger_latest_secondary_total", "ger_latest_higher_secondary_total"]:
+            if col in high_st.columns:
+                clean_col = f"{col}_clean"
+                high_st[clean_col] = high_st[col].where(high_st[col].between(0, 500))
+                all_states[clean_col] = all_states[col].where(all_states[col].between(0, 500))
+
+        for col in ["ger_latest_ix_xii_avg_gpi", "gpi_ix_xii_avg", "gpi_secondary", "gpi_higher_secondary"]:
+            if col in high_st.columns:
+                clean_col = f"{col}_clean"
+                high_st[clean_col] = high_st[col].where(high_st[col].between(0, 3))
+                all_states[clean_col] = all_states[col].where(all_states[col].between(0, 3))
 
         high_st["female_literacy_gap_pct"] = (
             high_st["tribe_weighted_literacy_male_pct"] - high_st["tribe_weighted_literacy_female_pct"]
@@ -177,17 +204,37 @@ cells = [
 
         def show_scatter(df, x, y, title, x_label, y_label, color="#34699a"):
             plot_df = df[["state", x, y]].dropna()
-            fig, ax = plt.subplots(figsize=(8.2, 5.6))
+            fig, ax = plt.subplots(figsize=(8.2, 5.9))
             ax.scatter(plot_df[x], plot_df[y], color=color, s=52)
             for _, row in plot_df.iterrows():
                 ax.annotate(row["state"], (row[x], row[y]), fontsize=7, xytext=(3, 2), textcoords="offset points")
-            if len(plot_df) >= 4:
+            if len(plot_df) >= 4 and plot_df[x].nunique() > 1 and plot_df[y].nunique() > 1:
+                r, p = stats.pearsonr(plot_df[x], plot_df[y])
+                if p < 0.001:
+                    p_text = "p < 0.001"
+                else:
+                    p_text = f"p = {p:.3f}"
+                corr_text = f"Pearson r = {r:.2f}, {p_text}, n = {len(plot_df)}"
+            else:
+                corr_text = f"Pearson r not shown; n = {len(plot_df)}"
+            if len(plot_df) >= 4 and plot_df[x].nunique() > 1:
                 m, b = np.polyfit(plot_df[x], plot_df[y], 1)
                 xs = np.linspace(plot_df[x].min(), plot_df[x].max(), 100)
                 ax.plot(xs, m * xs + b, color="#444444", linewidth=1)
             ax.set_title(title)
             ax.set_xlabel(x_label)
             ax.set_ylabel(y_label)
+            ax.text(
+                0.5,
+                -0.18,
+                corr_text,
+                transform=ax.transAxes,
+                ha="center",
+                va="top",
+                fontsize=10,
+                bbox={"boxstyle": "round,pad=0.3", "facecolor": "white", "edgecolor": "#d0d0d0", "alpha": 0.95},
+            )
+            fig.subplots_adjust(bottom=0.22)
             plt.show()
 
 
@@ -245,7 +292,7 @@ cells = [
         """
         ## Data Used, In Plain English
 
-        The analysis uses cleaned NDAP-based datasets for ST literacy, literacy gap, enrolment, GER, dropout, poverty, labour outcomes, MGNREG distress, ST population share, village concentration, district low female literacy, and tribe-level literacy summaries.
+        The analysis uses cleaned NDAP-based datasets for ST literacy, literacy gap, enrolment, GER, dropout, poverty, labour outcomes, MGNREG distress, ST population share, village concentration, district low female literacy, and tribe-level literacy summaries. It also adds official UDISE+/OGD policy-support files for latest ST GER, ST Gender Parity Index, and ST scholarship release/utilization. MGNREG 100-plus-days indicators are derived from the existing MGNREG table.
         """
     ),
     code(
@@ -265,14 +312,14 @@ cells = [
         """
         ## Coverage Caveat
 
-        Poverty is the biggest missing-data problem. GER also needs care because NDAP stores it as a ratio-style value and one state has a large outlier, so the notebook uses a cleaned GER field for visual work.
+        Poverty is the biggest missing-data problem. GER also needs care because some historical GER values are ratio-style and can exceed 100, so the notebook uses cleaned GER fields for visual work.
         """
     ),
     code(
         """
         coverage = pd.read_csv(OUTPUTS / "eda" / "tables" / "data_quality_core_variable_coverage.csv")
         coverage.query(
-            "table == 'high_st_master' and column in ['st_literacy_rate_pct','literacy_gap_pct','dropout_secondary_pct','ger_classes_ix_xii','employment_lfpr_person_per_1000','employment_wpr_person_per_1000','employment_pu_person_per_1000','st_bpl_mean_pct','mgnreg_sought_not_received_per_1000','low_literacy_district_count']"
+            "table == 'high_st_master' and column in ['st_literacy_rate_pct','literacy_gap_pct','dropout_secondary_pct','ger_classes_ix_xii','ger_latest_ix_xii_avg','gpi_ix_xii_avg','scholarship_total_release_2023_24_lakh_per_100k_st_pop','employment_lfpr_person_per_1000','employment_wpr_person_per_1000','employment_pu_person_per_1000','st_bpl_mean_pct','mgnreg_sought_not_received_per_1000','mgnreg_work_100_plus_days_per_1000','low_literacy_district_count']"
         )[["column", "non_missing", "missing", "missing_pct", "min", "median", "max"]].sort_values("missing_pct", ascending=False)
         """
     ),
@@ -290,10 +337,14 @@ cells = [
             "literacy_gap_pct",
             "dropout_secondary_pct",
             "ger_classes_ix_xii_clean",
+            "ger_latest_ix_xii_avg_clean",
+            "gpi_ix_xii_avg_clean",
             "employment_wpr_person_per_1000",
             "employment_pu_person_per_1000",
             "st_bpl_mean_pct",
             "mgnreg_sought_not_received_per_1000",
+            "mgnreg_work_100_plus_days_per_1000",
+            "scholarship_total_release_2023_24_lakh_per_100k_st_pop",
         ]].describe().T
         """
     ),
@@ -301,13 +352,13 @@ cells = [
         """
         show_distribution_grid(
             high_st,
-            ["st_literacy_rate_pct", "literacy_gap_pct", "dropout_secondary_pct", "ger_classes_ix_xii_clean"],
+            ["st_literacy_rate_pct", "literacy_gap_pct", "dropout_secondary_pct", "ger_latest_ix_xii_avg_clean", "gpi_ix_xii_avg_clean"],
             "Education indicator distributions across high-ST states",
         )
 
         show_distribution_grid(
             high_st,
-            ["employment_wpr_person_per_1000", "employment_pu_person_per_1000", "st_bpl_mean_pct", "mgnreg_sought_not_received_per_1000"],
+            ["employment_wpr_person_per_1000", "employment_pu_person_per_1000", "st_bpl_mean_pct", "mgnreg_sought_not_received_per_1000", "mgnreg_work_100_plus_days_per_1000", "scholarship_total_release_2023_24_lakh_per_100k_st_pop"],
             "Livelihood and distress indicator distributions across high-ST states",
         )
         """
@@ -359,7 +410,15 @@ cells = [
         """
         q2 = corr_frame(
             high_st,
-            ["ger_classes_i_viii_clean", "ger_classes_ix_xii_clean"],
+            [
+                "ger_classes_i_viii_clean",
+                "ger_classes_ix_xii_clean",
+                "ger_classes_ix_xii_girls_clean",
+                "ger_classes_ix_xii_gpi_clean",
+                "ger_latest_ix_xii_avg_clean",
+                "ger_latest_ix_xii_avg_girls_clean",
+                "gpi_ix_xii_avg_clean",
+            ],
             ["dropout_primary_pct", "dropout_upper_primary_pct", "dropout_secondary_pct", "st_bpl_mean_pct"],
             "high_st_states",
         )
@@ -370,6 +429,9 @@ cells = [
         """
         show_scatter(high_st, "ger_classes_i_viii_clean", "dropout_primary_pct", "Q2: GER I-VIII and primary dropout", "GER I-VIII (cleaned)", "Primary dropout (%)")
         show_scatter(high_st, "ger_classes_ix_xii_clean", "dropout_secondary_pct", "Q2: GER IX-XII and secondary dropout", "GER IX-XII (cleaned)", "Secondary dropout (%)", color="#8f3f3f")
+        show_scatter(high_st, "ger_classes_ix_xii_girls_clean", "dropout_secondary_pct", "Q2: Girls GER IX-XII and secondary dropout", "Girls GER IX-XII (cleaned)", "Secondary dropout (%)", color="#5f5b8f")
+        show_scatter(high_st, "ger_latest_ix_xii_avg_clean", "dropout_secondary_pct", "Q2: Latest GER IX-XII average and secondary dropout", "Latest GER IX-XII average", "Secondary dropout (%)", color="#4d7c8a")
+        show_scatter(high_st, "ger_latest_ix_xii_avg_girls_clean", "dropout_secondary_pct", "Q2: Latest girls GER IX-XII average and secondary dropout", "Latest girls GER IX-XII average", "Secondary dropout (%)", color="#5f5b8f")
         show_scatter(high_st, "ger_classes_ix_xii_clean", "st_bpl_mean_pct", "Q2: GER IX-XII and ST poverty", "GER IX-XII (cleaned)", "Mean ST poverty rate (%)", color="#7f4f24")
         show_scatter(high_st, "dropout_secondary_pct", "st_bpl_mean_pct", "Q2: Secondary dropout and ST poverty", "Secondary dropout (%)", "Mean ST poverty rate (%)", color="#a65d03")
         """
@@ -381,6 +443,11 @@ cells = [
         ][[
             "state",
             "ger_classes_ix_xii_clean",
+            "ger_latest_ix_xii_avg_clean",
+            "ger_classes_ix_xii_girls_clean",
+            "ger_latest_ix_xii_avg_girls_clean",
+            "gpi_ix_xii_avg_clean",
+            "ger_classes_ix_xii_gpi_clean",
             "dropout_secondary_pct",
             "st_bpl_mean_pct",
             "employment_wpr_person_per_1000",
@@ -404,7 +471,7 @@ cells = [
         """
         q2 = corr_frame(
             high_st,
-            ["ger_classes_i_viii_clean", "ger_classes_ix_xii_clean", "primary_total"],
+            ["ger_classes_i_viii_clean", "ger_classes_ix_xii_clean", "ger_latest_ix_xii_avg_clean", "ger_latest_ix_xii_avg_girls_clean", "gpi_ix_xii_avg_clean", "primary_total"],
             ["dropout_secondary_pct", "employment_wpr_person_per_1000", "st_bpl_mean_pct"],
             "high_st_states",
         )
@@ -414,25 +481,28 @@ cells = [
     code(
         """
         show_scatter(high_st, "ger_classes_ix_xii_clean", "dropout_secondary_pct", "Q3: GER IX-XII and secondary dropout", "GER IX-XII (cleaned)", "Secondary dropout (%)")
+        show_scatter(high_st, "ger_latest_ix_xii_avg_clean", "dropout_secondary_pct", "Q3: Latest GER IX-XII average and secondary dropout", "Latest GER IX-XII average", "Secondary dropout (%)", color="#4d7c8a")
+        show_scatter(high_st, "ger_classes_ix_xii_gpi_clean", "dropout_secondary_pct", "Q3: GER gender parity and secondary dropout", "GER IX-XII GPI (girls/boys)", "Secondary dropout (%)", color="#5f5b8f")
+        show_scatter(high_st, "gpi_ix_xii_avg_clean", "dropout_secondary_pct", "Q3: Official GPI IX-XII and secondary dropout", "Official GPI IX-XII average", "Secondary dropout (%)", color="#5f5b8f")
         show_scatter(high_st, "ger_classes_ix_xii_clean", "employment_wpr_person_per_1000", "Q3: GER IX-XII and work participation", "GER IX-XII (cleaned)", "WPR (NDAP ratio-style value)", color="#7f4f24")
         show_scatter(high_st, "primary_total", "dropout_secondary_pct", "Q3: Primary enrolment and secondary dropout", "Primary ST enrolment total", "Secondary dropout (%)", color="#8f3f3f")
         """
     ),
     code(
         """
-        med_ger = high_st["ger_classes_ix_xii_clean"].median()
+        med_ger = high_st["ger_latest_ix_xii_avg_clean"].median()
         med_dropout = high_st["dropout_secondary_pct"].median()
         med_wpr = high_st["employment_wpr_person_per_1000"].median()
 
         high_ger_high_dropout = high_st[
-            (high_st["ger_classes_ix_xii_clean"] >= med_ger)
+            (high_st["ger_latest_ix_xii_avg_clean"] >= med_ger)
             & (high_st["dropout_secondary_pct"] >= med_dropout)
-        ][["state", "ger_classes_ix_xii_clean", "dropout_secondary_pct", "employment_wpr_person_per_1000", "st_bpl_mean_pct"]].sort_values(["dropout_secondary_pct", "ger_classes_ix_xii_clean"], ascending=[False, False])
+        ][["state", "ger_latest_ix_xii_avg_clean", "gpi_ix_xii_avg_clean", "dropout_secondary_pct", "employment_wpr_person_per_1000", "st_bpl_mean_pct"]].sort_values(["dropout_secondary_pct", "ger_latest_ix_xii_avg_clean"], ascending=[False, False])
 
         high_ger_low_wpr = high_st[
-            (high_st["ger_classes_ix_xii_clean"] >= med_ger)
+            (high_st["ger_latest_ix_xii_avg_clean"] >= med_ger)
             & (high_st["employment_wpr_person_per_1000"] <= med_wpr)
-        ][["state", "ger_classes_ix_xii_clean", "dropout_secondary_pct", "employment_wpr_person_per_1000", "st_bpl_mean_pct"]].sort_values("employment_wpr_person_per_1000")
+        ][["state", "ger_latest_ix_xii_avg_clean", "gpi_ix_xii_avg_clean", "dropout_secondary_pct", "employment_wpr_person_per_1000", "st_bpl_mean_pct"]].sort_values("employment_wpr_person_per_1000")
 
         display(Markdown("### States with relatively high GER IX-XII but also high dropout"))
         display(high_ger_high_dropout)
@@ -485,17 +555,18 @@ cells = [
     code(
         """
         med_lit = high_st["st_literacy_rate_pct"].median()
-        med_ger = high_st["ger_classes_ix_xii_clean"].median()
+        med_ger = high_st["ger_latest_ix_xii_avg_clean"].median()
         med_wpr = high_st["employment_wpr_person_per_1000"].median()
         med_unemp = high_st["employment_pu_person_per_1000"].median()
         med_pov = high_st["st_bpl_mean_pct"].median()
         med_mgnreg = high_st["mgnreg_sought_not_received_per_1000"].median()
+        med_mgnreg_100 = high_st["mgnreg_work_100_plus_days_per_1000"].median()
 
         mismatch_rows = []
         for _, row in high_st.iterrows():
             education_ok = (
                 (pd.notna(row["st_literacy_rate_pct"]) and row["st_literacy_rate_pct"] >= med_lit)
-                or (pd.notna(row["ger_classes_ix_xii_clean"]) and row["ger_classes_ix_xii_clean"] >= med_ger)
+                or (pd.notna(row["ger_latest_ix_xii_avg_clean"]) and row["ger_latest_ix_xii_avg_clean"] >= med_ger)
             )
             distress = []
             if pd.notna(row["employment_wpr_person_per_1000"]) and row["employment_wpr_person_per_1000"] <= med_wpr:
@@ -506,6 +577,8 @@ cells = [
                 distress.append("high_poverty")
             if pd.notna(row["mgnreg_sought_not_received_per_1000"]) and row["mgnreg_sought_not_received_per_1000"] >= med_mgnreg:
                 distress.append("high_mgnreg_unmet")
+            if pd.notna(row["mgnreg_work_100_plus_days_per_1000"]) and row["mgnreg_work_100_plus_days_per_1000"] >= med_mgnreg_100:
+                distress.append("high_mgnreg_100_plus")
 
             if education_ok and len(distress) >= 2:
                 mismatch_rows.append(
@@ -513,10 +586,12 @@ cells = [
                         "state": row["state"],
                         "st_literacy_rate_pct": row["st_literacy_rate_pct"],
                         "ger_ix_xii": row["ger_classes_ix_xii_clean"],
+                        "ger_latest_ix_xii_avg": row["ger_latest_ix_xii_avg_clean"],
                         "employment_wpr_person_per_1000": row["employment_wpr_person_per_1000"],
                         "employment_pu_person_per_1000": row["employment_pu_person_per_1000"],
                         "st_bpl_mean_pct": row["st_bpl_mean_pct"],
                         "mgnreg_sought_not_received_per_1000": row["mgnreg_sought_not_received_per_1000"],
+                        "mgnreg_work_100_plus_days_per_1000": row["mgnreg_work_100_plus_days_per_1000"],
                         "distress_count": len(distress),
                         "distress_flags": ", ".join(distress),
                     }
@@ -551,7 +626,13 @@ cells = [
         """
         q5 = corr_frame(
             high_st,
-            ["mgnreg_sought_not_received_per_1000", "mgnreg_average_days_worked", "mgnreg_job_card_households_per_1000"],
+            [
+                "mgnreg_sought_not_received_per_1000",
+                "mgnreg_work_100_plus_days_per_1000",
+                "mgnreg_100_plus_share_of_work_received_pct",
+                "mgnreg_average_days_worked",
+                "mgnreg_job_card_households_per_1000",
+            ],
             ["st_bpl_mean_pct", "dropout_secondary_pct", "employment_wpr_person_per_1000", "st_literacy_rate_pct"],
             "high_st_states",
         )
@@ -562,8 +643,10 @@ cells = [
         """
         show_scatter(high_st, "mgnreg_sought_not_received_per_1000", "st_bpl_mean_pct", "Q6: MGNREG unmet demand and ST poverty", "MGNREG sought-not-received per 1000", "Mean ST poverty rate (%)")
         show_scatter(high_st, "mgnreg_sought_not_received_per_1000", "dropout_secondary_pct", "Q6: MGNREG unmet demand and secondary dropout", "MGNREG sought-not-received per 1000", "Secondary dropout (%)", color="#8f3f3f")
+        show_scatter(high_st, "mgnreg_work_100_plus_days_per_1000", "dropout_secondary_pct", "Q6: MGNREG 100-plus-days and secondary dropout", "MGNREG 100-plus-days per 1000", "Secondary dropout (%)", color="#5f5b8f")
         show_scatter(high_st, "mgnreg_sought_not_received_per_1000", "st_literacy_rate_pct", "Q6: MGNREG unmet demand and ST literacy", "MGNREG sought-not-received per 1000", "ST literacy rate (%)", color="#a65d03")
         show_rank_bar(high_st, "mgnreg_sought_not_received_per_1000", "Q6: Highest MGNREG unmet demand", "Sought-not-received per 1000", ascending=False, top_n=10, color="#7f4f24")
+        show_rank_bar(high_st, "mgnreg_work_100_plus_days_per_1000", "Q6: Highest MGNREG 100-plus-days among ST households", "100-plus-days per 1000", ascending=False, top_n=10, color="#4d7c8a")
         """
     ),
     md(
@@ -573,7 +656,160 @@ cells = [
     ),
     md(
         """
-        ## Q7. Does Secondary Dropout Appear To Be A Stronger Warning Signal Of Poverty And Weak Labour Outcomes Than Literacy Alone?
+        ## Q7. Are Scholarship-Supported States Seeing Lower Secondary Dropout Among ST Students?
+
+        This is a policy-response question. The scholarship dataset measures pre-matric and post-matric ST scholarship release and utilization in Rs lakh. Because larger states naturally receive larger totals, the notebook also uses release per 100,000 ST population.
+        """
+    ),
+    code(
+        """
+        q7 = corr_frame(
+            high_st,
+            [
+                "scholarship_total_release_2023_24_lakh",
+                "scholarship_total_utilized_2023_24_lakh",
+                "scholarship_utilization_2023_24_pct",
+                "scholarship_total_release_2023_24_lakh_per_100k_st_pop",
+                "scholarship_cumulative_release_lakh_per_100k_st_pop",
+            ],
+            ["dropout_secondary_pct", "st_bpl_mean_pct", "ger_latest_ix_xii_avg_clean"],
+            "high_st_states",
+        )
+        q7
+        """
+    ),
+    code(
+        """
+        show_scatter(high_st, "scholarship_total_release_2023_24_lakh_per_100k_st_pop", "dropout_secondary_pct", "Q7: ST scholarship release per ST population and secondary dropout", "2023-24 scholarship release lakh per 100k ST pop", "Secondary dropout (%)", color="#7f4f24")
+        show_scatter(high_st, "scholarship_utilization_2023_24_pct", "dropout_secondary_pct", "Q7: Scholarship utilization and secondary dropout", "2023-24 scholarship utilization (%)", "Secondary dropout (%)", color="#5f5b8f")
+        show_scatter(high_st, "scholarship_cumulative_release_lakh_per_100k_st_pop", "st_bpl_mean_pct", "Q7: Cumulative scholarship release and ST poverty", "2019-24 release lakh per 100k ST pop", "Mean ST poverty rate (%)", color="#a65d03")
+        """
+    ),
+    code(
+        """
+        high_st[[
+            "state",
+            "dropout_secondary_pct",
+            "st_bpl_mean_pct",
+            "scholarship_total_release_2023_24_lakh",
+            "scholarship_total_utilized_2023_24_lakh",
+            "scholarship_utilization_2023_24_pct",
+            "scholarship_total_release_2023_24_lakh_per_100k_st_pop",
+            "scholarship_cumulative_release_lakh_per_100k_st_pop",
+        ]].sort_values("scholarship_total_release_2023_24_lakh_per_100k_st_pop", ascending=False)
+        """
+    ),
+    md(
+        """
+        **Reading Q7:** if scholarship release is higher in high-dropout states, that does not mean scholarships cause dropout. It means support may be targeted toward need, or that money alone is not enough to solve retention.
+        """
+    ),
+    md(
+        """
+        ## Q8. Do States With High ST Schooling Participation Still Depend Heavily On MGNREG?
+
+        This directly tests the education-livelihood mismatch idea. If GER is high but MGNREG dependence or unmet demand is also high, schooling participation is not yet translating into secure livelihoods.
+        """
+    ),
+    code(
+        """
+        q8 = corr_frame(
+            high_st,
+            ["ger_latest_ix_xii_avg_clean", "ger_latest_ix_xii_avg_girls_clean", "gpi_ix_xii_avg_clean", "dropout_secondary_pct"],
+            [
+                "mgnreg_job_card_households_per_1000",
+                "mgnreg_work_100_plus_days_per_1000",
+                "mgnreg_100_plus_share_of_work_received_pct",
+                "mgnreg_sought_not_received_per_1000",
+            ],
+            "high_st_states",
+        )
+        q8
+        """
+    ),
+    code(
+        """
+        show_scatter(high_st, "ger_latest_ix_xii_avg_clean", "mgnreg_work_100_plus_days_per_1000", "Q8: Latest GER IX-XII average and MGNREG 100-plus-days", "Latest GER IX-XII average", "MGNREG 100-plus-days per 1000", color="#7f4f24")
+        show_scatter(high_st, "ger_latest_ix_xii_avg_clean", "mgnreg_sought_not_received_per_1000", "Q8: Latest GER IX-XII average and MGNREG unmet demand", "Latest GER IX-XII average", "MGNREG sought-not-received per 1000", color="#a65d03")
+        show_scatter(high_st, "dropout_secondary_pct", "mgnreg_work_100_plus_days_per_1000", "Q8: Secondary dropout and MGNREG 100-plus-days", "Secondary dropout (%)", "MGNREG 100-plus-days per 1000", color="#5f5b8f")
+        """
+    ),
+    code(
+        """
+        high_ger_mgnreg = high_st[
+            (high_st["ger_latest_ix_xii_avg_clean"] >= high_st["ger_latest_ix_xii_avg_clean"].median())
+            & (
+                (high_st["mgnreg_work_100_plus_days_per_1000"] >= high_st["mgnreg_work_100_plus_days_per_1000"].median())
+                | (high_st["mgnreg_sought_not_received_per_1000"] >= high_st["mgnreg_sought_not_received_per_1000"].median())
+            )
+        ][[
+            "state",
+            "ger_latest_ix_xii_avg_clean",
+            "ger_latest_ix_xii_avg_girls_clean",
+            "gpi_ix_xii_avg_clean",
+            "dropout_secondary_pct",
+            "mgnreg_work_100_plus_days_per_1000",
+            "mgnreg_sought_not_received_per_1000",
+            "employment_wpr_person_per_1000",
+            "st_bpl_mean_pct",
+        ]].sort_values(["mgnreg_work_100_plus_days_per_1000", "mgnreg_sought_not_received_per_1000"], ascending=[False, False])
+
+        high_ger_mgnreg
+        """
+    ),
+    md(
+        """
+        **Reading Q8:** the correlations are not strong enough to claim a direct relationship, but the state table is useful. It identifies places where reasonable ST schooling participation coexists with MGNREG dependence or unmet demand.
+        """
+    ),
+    md(
+        """
+        ## Q9. Does Gender Parity In Enrolment Translate Into Better Female Literacy And Work Outcomes?
+
+        A GPI value near 1 means parity in enrolment. This section uses the official ST Gender Parity Index dataset and asks whether enrolment parity lines up with later female literacy and work outcomes.
+        """
+    ),
+    code(
+        """
+        q9 = corr_frame(
+            high_st,
+            ["gpi_ix_xii_avg_clean", "gpi_secondary_clean", "gpi_higher_secondary_clean", "ger_latest_ix_xii_avg_girls_clean", "female_literacy_gap_pct"],
+            ["tribe_weighted_literacy_female_pct", "employment_wpr_female_per_1000", "low_literacy_district_count"],
+            "high_st_states",
+        )
+        q9
+        """
+    ),
+    code(
+        """
+        show_scatter(high_st, "gpi_ix_xii_avg_clean", "tribe_weighted_literacy_female_pct", "Q9: Official GPI IX-XII and female ST literacy", "Official GPI IX-XII average", "Female ST literacy (%)", color="#5f5b8f")
+        show_scatter(high_st, "gpi_ix_xii_avg_clean", "employment_wpr_female_per_1000", "Q9: Official GPI IX-XII and female work participation", "Official GPI IX-XII average", "Female WPR (NDAP ratio-style value)", color="#7f4f24")
+        show_scatter(high_st, "ger_latest_ix_xii_avg_girls_clean", "employment_wpr_female_per_1000", "Q9: Latest girls GER IX-XII and female work participation", "Latest girls GER IX-XII average", "Female WPR (NDAP ratio-style value)", color="#a65d03")
+        """
+    ),
+    code(
+        """
+        high_st[[
+            "state",
+            "gpi_secondary",
+            "gpi_higher_secondary",
+            "gpi_ix_xii_avg",
+            "ger_latest_ix_xii_avg_girls",
+            "tribe_weighted_literacy_female_pct",
+            "female_literacy_gap_pct",
+            "employment_wpr_female_per_1000",
+            "low_literacy_district_count",
+        ]].sort_values("gpi_ix_xii_avg", ascending=False)
+        """
+    ),
+    md(
+        """
+        **Reading Q9:** official enrolment parity does not automatically translate into female work participation. If GPI is near parity but female WPR remains weak, the state has a gendered education-livelihood mismatch rather than only an enrolment problem.
+        """
+    ),
+    md(
+        """
+        ## Q10. Does Secondary Dropout Appear To Be A Stronger Warning Signal Of Poverty And Weak Labour Outcomes Than Literacy Alone?
         """
     ),
     code(
@@ -581,7 +817,13 @@ cells = [
         q6 = compare_predictors(
             high_st,
             ["st_literacy_rate_pct", "dropout_secondary_pct"],
-            ["st_bpl_mean_pct", "employment_wpr_person_per_1000", "employment_pu_person_per_1000", "mgnreg_sought_not_received_per_1000"],
+            [
+                "st_bpl_mean_pct",
+                "employment_wpr_person_per_1000",
+                "employment_pu_person_per_1000",
+                "mgnreg_sought_not_received_per_1000",
+                "mgnreg_work_100_plus_days_per_1000",
+            ],
         )
         q6
         """
@@ -591,19 +833,19 @@ cells = [
         show_abs_correlation_compare(
             high_st,
             ["st_literacy_rate_pct", "dropout_secondary_pct"],
-            ["st_bpl_mean_pct", "employment_wpr_person_per_1000", "employment_pu_person_per_1000", "mgnreg_sought_not_received_per_1000"],
-            "Q7: Literacy vs dropout as warning signals",
+            ["st_bpl_mean_pct", "employment_wpr_person_per_1000", "employment_pu_person_per_1000", "mgnreg_sought_not_received_per_1000", "mgnreg_work_100_plus_days_per_1000"],
+            "Q10: Literacy vs dropout as warning signals",
         )
         """
     ),
     md(
         """
-        **Reading Q7:** secondary dropout is often the stronger warning signal for poverty, weak work participation, and MGNREG distress.
+        **Reading Q10:** secondary dropout is often the stronger warning signal for poverty, weak work participation, and MGNREG distress.
         """
     ),
     md(
         """
-        ## Q8. Do High-ST-Share States Systematically Perform Worse, Or Do Outcomes Vary Substantially?
+        ## Q11. Do High-ST-Share States Systematically Perform Worse, Or Do Outcomes Vary Substantially?
         """
     ),
     code(
@@ -619,18 +861,18 @@ cells = [
     ),
     code(
         """
-        show_scatter(all_states, "st_share_state_population_pct", "st_literacy_rate_pct", "Q8: ST share and ST literacy", "ST share in state population (%)", "ST literacy rate (%)")
-        show_scatter(all_states, "st_share_state_population_pct", "st_bpl_mean_pct", "Q8: ST share and ST poverty", "ST share in state population (%)", "Mean ST poverty rate (%)", color="#7f4f24")
+        show_scatter(all_states, "st_share_state_population_pct", "st_literacy_rate_pct", "Q11: ST share and ST literacy", "ST share in state population (%)", "ST literacy rate (%)")
+        show_scatter(all_states, "st_share_state_population_pct", "st_bpl_mean_pct", "Q11: ST share and ST poverty", "ST share in state population (%)", "Mean ST poverty rate (%)", color="#7f4f24")
         """
     ),
     md(
         """
-        **Reading Q8:** concentration alone does not explain everything. High-ST states differ sharply in education and livelihood outcomes.
+        **Reading Q11:** concentration alone does not explain everything. High-ST states differ sharply in education and livelihood outcomes.
         """
     ),
     md(
         """
-        ## Q9. Do States With High Concentrations Of ST Villages Show Different Education And Livelihood Outcomes?
+        ## Q12. Do States With High Concentrations Of ST Villages Show Different Education And Livelihood Outcomes?
 
         Raw village counts are not directly comparable across states, so the notebook uses villages per 100,000 ST population.
         """
@@ -648,19 +890,19 @@ cells = [
     ),
     code(
         """
-        show_scatter(high_st, "villages_gt50_per_100k_st_pop", "mgnreg_sought_not_received_per_1000", "Q9: ST village concentration and MGNREG distress", "Villages >50% ST per 100k ST population", "MGNREG sought-not-received per 1000")
-        show_scatter(high_st, "villages_gt50_per_100k_st_pop", "st_literacy_rate_pct", "Q9: ST village concentration and ST literacy", "Villages >50% ST per 100k ST population", "ST literacy rate (%)", color="#a65d03")
-        show_rank_bar(high_st, "villages_gt50_per_100k_st_pop", "Q9: Highest normalized ST village concentration", "Villages >50% ST per 100k ST population", ascending=False, top_n=10, color="#4d7c8a")
+        show_scatter(high_st, "villages_gt50_per_100k_st_pop", "mgnreg_sought_not_received_per_1000", "Q12: ST village concentration and MGNREG distress", "Villages >50% ST per 100k ST population", "MGNREG sought-not-received per 1000")
+        show_scatter(high_st, "villages_gt50_per_100k_st_pop", "st_literacy_rate_pct", "Q12: ST village concentration and ST literacy", "Villages >50% ST per 100k ST population", "ST literacy rate (%)", color="#a65d03")
+        show_rank_bar(high_st, "villages_gt50_per_100k_st_pop", "Q12: Highest normalized ST village concentration", "Villages >50% ST per 100k ST population", ascending=False, top_n=10, color="#4d7c8a")
         """
     ),
     md(
         """
-        **Reading Q9:** normalized village concentration looks more connected to MGNREG distress than to literacy alone. It is useful, but secondary.
+        **Reading Q12:** normalized village concentration looks more connected to MGNREG distress than to literacy alone. It is useful, but secondary.
         """
     ),
     md(
         """
-        ## Q10. Are There Gender-Specific Disadvantages Hidden Behind State Averages?
+        ## Q13. Are There Gender-Specific Disadvantages Hidden Behind State Averages?
         """
     ),
     code(
@@ -676,8 +918,8 @@ cells = [
     ),
     code(
         """
-        show_rank_bar(high_st, "female_literacy_gap_pct", "Q10: Largest female literacy gaps within ST populations", "Male-female literacy gap (percentage points)", ascending=False, top_n=10, color="#8f3f3f")
-        show_scatter(high_st, "female_literacy_gap_pct", "employment_wpr_female_per_1000", "Q10: Female literacy gap and female work participation", "Female literacy gap (percentage points)", "Female WPR (NDAP ratio-style value)", color="#5f5b8f")
+        show_rank_bar(high_st, "female_literacy_gap_pct", "Q13: Largest female literacy gaps within ST populations", "Male-female literacy gap (percentage points)", ascending=False, top_n=10, color="#8f3f3f")
+        show_scatter(high_st, "female_literacy_gap_pct", "employment_wpr_female_per_1000", "Q13: Female literacy gap and female work participation", "Female literacy gap (percentage points)", "Female WPR (NDAP ratio-style value)", color="#5f5b8f")
         """
     ),
     code(
@@ -694,7 +936,7 @@ cells = [
     ),
     md(
         """
-        **Reading Q10:** the strongest gender result is descriptive: Rajasthan, Odisha, Jharkhand, Jammu and Kashmir, and Madhya Pradesh show particularly large female literacy disadvantages.
+        **Reading Q13:** the strongest gender result is descriptive: Rajasthan, Odisha, Jharkhand, Jammu and Kashmir, and Madhya Pradesh show particularly large female literacy disadvantages.
         """
     ),
     md(
