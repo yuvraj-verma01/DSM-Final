@@ -1,0 +1,11 @@
+state,overall_priority_rank,overall_priority_score,policy_priority_category
+Odisha,1.0,0.6338171333168844,High education disadvantage and high economic vulnerability
+Madhya Pradesh,3.0,0.5740138989355852,High education disadvantage and high economic vulnerability
+Jharkhand,6.0,0.5068818412091027,Economic vulnerability priority
+Maharashtra,7.0,0.5054883093714195,High education disadvantage and high economic vulnerability
+Rajasthan,9.0,0.45422244244723503,Education disadvantage priority
+Nagaland,10.0,0.4351874079188212,Economic vulnerability priority
+Chhattisgarh,11.0,0.42380299348510986,Economic vulnerability priority
+Jammu and Kashmir,12.0,0.409902711457965,Education disadvantage priority
+Gujarat,13.0,0.408765566162183,Monitor / comparatively lower priority
+Tripura,15.0,0.3801636956941634,Economic vulnerability priority

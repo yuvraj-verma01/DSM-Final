@@ -1,0 +1,10 @@
+# Root-level raw files have very long Windows filenames.
+# Short, reproducible copies are tracked under data/raw/.
+/*.csv
+
+__pycache__/
+**/__pycache__/
+*.pyc
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+.DS_Store

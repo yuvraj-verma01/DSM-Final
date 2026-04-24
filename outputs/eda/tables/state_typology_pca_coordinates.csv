@@ -1,0 +1,20 @@
+state,cluster_id,cluster_name,pca_1,pca_2
+Nagaland,1,Economic and labour vulnerability,3.6365389053664687,2.3779239719371814
+Tripura,1,Economic and labour vulnerability,2.6311424618015535,1.2004950695810688
+Lakshadweep,1,Economic and labour vulnerability,0.384127904977373,1.7942693830415846
+Odisha,2,Compound education and economic disadvantage,2.121640891404087,0.742215164026788
+Madhya Pradesh,2,Compound education and economic disadvantage,1.4794155900403445,-1.095423633075022
+Jharkhand,2,Compound education and economic disadvantage,-2.187020159855176,2.340949589332541
+Maharashtra,2,Compound education and economic disadvantage,1.210545828799564,0.6713009964120613
+Rajasthan,2,Compound education and economic disadvantage,3.3136673656571767,-4.049558603305119
+Chhattisgarh,2,Compound education and economic disadvantage,1.405672127114595,-0.36193619028732116
+Gujarat,2,Compound education and economic disadvantage,-2.041266140224135,0.9258263574143185
+Dadra and Nagar Haveli and Daman and Diu,2,Compound education and economic disadvantage,0.5557007228022501,-0.03968198742219356
+Assam,3,Lower composite risk with poverty watchlist,-0.7781134662389227,0.3807094333966184
+Arunachal Pradesh,3,Lower composite risk with poverty watchlist,-0.3575962483387052,0.36672413038213014
+Sikkim,3,Lower composite risk with poverty watchlist,-1.560650614371751,-0.7974784906113808
+Meghalaya,3,Lower composite risk with poverty watchlist,-0.05229368944461279,-0.6833006741081465
+Goa,3,Lower composite risk with poverty watchlist,-1.8492080889097058,-0.9553341372123489
+Manipur,3,Lower composite risk with poverty watchlist,-4.002328341724084,0.21098271877082908
+Mizoram,3,Lower composite risk with poverty watchlist,-1.9320259004032094,-1.4922788901953488
+Jammu and Kashmir,4,Education-system disadvantage,-1.9779491484531118,-1.5364042080782432

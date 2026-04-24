@@ -1,0 +1,5 @@
+cluster_id,cluster_name,state_count,states,avg_education_disadvantage,avg_economic_vulnerability,avg_overall_priority,avg_st_literacy,avg_secondary_dropout,avg_st_poverty,avg_wpr
+1,Economic and labour vulnerability,3,"Lakshadweep, Nagaland, Tripura",0.20998229602567772,0.47183687943262403,0.34090958772915086,83.60000000000001,8.666666666666666,,384.0
+2,Compound education and economic disadvantage,8,"Chhattisgarh, Dadra and Nagar Haveli and Daman and Diu, Gujarat, Jharkhand, Madhya Pradesh, Maharashtra, Odisha, Rajasthan",0.6233344563215819,0.3467695460439447,0.4850520011827633,57.142857142857146,17.395,40.964285714285715,458.0
+3,Lower composite risk with poverty watchlist,7,"Arunachal Pradesh, Assam, Goa, Manipur, Meghalaya, Mizoram, Sikkim",0.2980985116850417,0.18842643552356778,0.24326247360430475,76.98571428571428,10.321428571428571,24.5,417.57142857142856
+4,Education-system disadvantage,1,Jammu and Kashmir,0.7875854303481112,0.0322199925678186,0.409902711457965,50.6,14.17,9.65,620.0

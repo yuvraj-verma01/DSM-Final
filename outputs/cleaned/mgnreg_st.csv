@@ -1,0 +1,35 @@
+state,year,social_group,residence_type,mgnreg_job_card_households_per_1000,mgnreg_work_less_20_days_per_1000,mgnreg_work_20_50_days_per_1000,mgnreg_work_50_100_days_per_1000,mgnreg_work_100_plus_days_per_1000,mgnreg_sought_not_received_per_1000,mgnreg_not_seeking_work_per_1000,mgnreg_all_status_per_1000,mgnreg_average_days_worked
+Andaman and Nicobar Islands,2013,Scheduled Tribe,rural,118,0,6,0,2,81,865,1000,61
+Andhra Pradesh,2013,Scheduled Tribe,rural,694,78,195,265,29,181,252,1000,62
+Arunachal Pradesh,2013,Scheduled Tribe,rural,260,77,32,109,0,285,328,1000,51
+Assam,2013,Scheduled Tribe,rural,300,64,120,4,2,282,515,1000,28
+Bihar,2013,Scheduled Tribe,rural,294,79,3,4,0,522,388,1000,23
+Chandigarh,2013,Scheduled Tribe,rural,0,0,0,0,0,0,0,0,0
+Chhattisgarh,2013,Scheduled Tribe,rural,613,185,229,105,0,233,247,1000,36
+Delhi,2013,Scheduled Tribe,rural,0,0,0,0,0,1000,0,1000,0
+Goa,2013,Scheduled Tribe,rural,195,0,0,0,0,6,994,1000,0
+Gujarat,2013,Scheduled Tribe,rural,450,203,84,27,0,96,512,1000,23
+Haryana,2013,Scheduled Tribe,rural,0,0,0,0,0,60,940,1000,0
+Himachal Pradesh,2013,Scheduled Tribe,rural,543,57,170,125,40,143,465,1000,62
+Jammu and Kashmir,2013,Scheduled Tribe,rural,368,36,0,0,0,32,588,1000,14
+Jharkhand,2013,Scheduled Tribe,rural,391,140,29,20,0,245,491,1000,20
+Karnataka,2013,Scheduled Tribe,rural,300,147,12,27,0,98,716,1000,22
+Kerala,2013,Scheduled Tribe,rural,344,44,97,27,0,62,770,1000,44
+Lakshadweep,2013,Scheduled Tribe,rural,392,42,213,132,0,21,592,1000,54
+Madhya Pradesh,2013,Scheduled Tribe,rural,740,198,227,68,4,236,143,1000,31
+Maharashtra,2013,Scheduled Tribe,rural,214,46,11,6,0,218,719,1000,22
+Manipur,2013,Scheduled Tribe,rural,860,106,165,589,0,9,123,1000,62
+Meghalaya,2013,Scheduled Tribe,rural,490,71,171,182,0,141,353,1000,51
+Mizoram,2013,Scheduled Tribe,rural,913,27,138,704,17,35,48,1000,76
+Nagaland,2013,Scheduled Tribe,rural,695,241,126,253,0,154,224,1000,39
+Odisha,2013,Scheduled Tribe,rural,503,178,102,42,0,255,420,1000,26
+Puducherry,2013,Scheduled Tribe,rural,0,0,0,0,0,0,0,0,0
+Punjab,2013,Scheduled Tribe,rural,0,0,0,0,0,322,678,1000,0
+Rajasthan,2013,Scheduled Tribe,rural,828,22,135,617,3,82,93,1000,78
+Sikkim,2013,Scheduled Tribe,rural,552,69,79,374,0,8,470,1000,66
+Tamil Nadu,2013,Scheduled Tribe,rural,293,91,79,116,0,11,703,1000,41
+Dadra and Nagar Haveli and Daman and Diu,2013,Scheduled Tribe,rural,122,0,122,0,0,220,1632,2000,32
+Tripura,2013,Scheduled Tribe,rural,884,9,227,640,0,39,80,1000,66
+Uttar Pradesh,2013,Scheduled Tribe,rural,140,13,84,42,0,304,556,1000,37
+Uttarakhand,2013,Scheduled Tribe,rural,471,239,129,5,0,259,329,1000,19
+West Bengal,2013,Scheduled Tribe,rural,758,395,222,36,0,193,149,1000,22

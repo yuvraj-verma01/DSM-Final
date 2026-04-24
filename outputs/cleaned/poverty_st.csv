@@ -1,0 +1,81 @@
+state,year,residence_type,st_bpl_pct
+Andhra Pradesh,2011,rural,24.1
+Andhra Pradesh,2011,urban,12.1
+Assam,2011,rural,33.4
+Assam,2011,urban,15.6
+Bihar,2011,rural,59.3
+Bihar,2011,urban,10.3
+Chhattisgarh,2011,rural,52.6
+Chhattisgarh,2011,urban,35.2
+Gujarat,2011,rural,36.5
+Gujarat,2011,urban,30.1
+Himachal Pradesh,2011,rural,9.5
+Himachal Pradesh,2011,urban,4.0
+Jammu and Kashmir,2011,rural,16.3
+Jammu and Kashmir,2011,urban,3.0
+Jharkhand,2011,rural,51.6
+Jharkhand,2011,urban,28.7
+Karnataka,2011,rural,30.8
+Karnataka,2011,urban,33.7
+Kerala,2011,rural,41.0
+Kerala,2011,urban,13.6
+Ladakh,2011,rural,16.3
+Ladakh,2011,urban,3.0
+Madhya Pradesh,2011,rural,55.3
+Madhya Pradesh,2011,urban,32.3
+Maharashtra,2011,rural,61.6
+Maharashtra,2011,urban,23.3
+Odisha,2011,rural,63.5
+Odisha,2011,urban,39.7
+Rajasthan,2011,rural,41.4
+Rajasthan,2011,urban,21.7
+Tamil Nadu,2011,rural,36.8
+Tamil Nadu,2011,urban,2.8
+Telangana,2011,rural,24.1
+Telangana,2011,urban,12.1
+Uttar Pradesh,2011,rural,27.0
+Uttar Pradesh,2011,urban,16.3
+Uttarakhand,2011,rural,11.9
+Uttarakhand,2011,urban,25.7
+West Bengal,2011,rural,50.1
+West Bengal,2011,urban,44.5
+Andhra Pradesh,2009,rural,40.2
+Andhra Pradesh,2009,urban,21.2
+Assam,2009,rural,32.0
+Assam,2009,urban,29.2
+Bihar,2009,rural,64.4
+Bihar,2009,urban,16.5
+Chhattisgarh,2009,rural,66.8
+Chhattisgarh,2009,urban,28.6
+Gujarat,2009,rural,48.6
+Gujarat,2009,urban,32.2
+Himachal Pradesh,2009,rural,22.0
+Himachal Pradesh,2009,urban,19.6
+Jammu and Kashmir,2009,rural,3.1
+Jammu and Kashmir,2009,urban,15.0
+Jharkhand,2009,rural,51.5
+Jharkhand,2009,urban,49.5
+Karnataka,2009,rural,21.3
+Karnataka,2009,urban,35.6
+Kerala,2009,rural,24.4
+Kerala,2009,urban,5.0
+Ladakh,2009,rural,3.1
+Ladakh,2009,urban,15.0
+Madhya Pradesh,2009,rural,61.9
+Madhya Pradesh,2009,urban,41.6
+Maharashtra,2009,rural,51.7
+Maharashtra,2009,urban,32.4
+Odisha,2009,rural,66.0
+Odisha,2009,urban,34.1
+Rajasthan,2009,rural,35.9
+Rajasthan,2009,urban,28.9
+Tamil Nadu,2009,rural,11.5
+Tamil Nadu,2009,urban,17.6
+Telangana,2009,rural,40.2
+Telangana,2009,urban,21.2
+Uttar Pradesh,2009,rural,49.8
+Uttar Pradesh,2009,urban,20.2
+Uttarakhand,2009,rural,20.0
+Uttarakhand,2009,urban,0.0
+West Bengal,2009,rural,32.9
+West Bengal,2009,urban,20.6

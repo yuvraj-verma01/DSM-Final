@@ -1,0 +1,20 @@
+state,education_disadvantage_score,economic_vulnerability_score,overall_priority_score,policy_priority_category
+Odisha,0.7996555432295135,0.4679787234042553,0.6338171333168844,High education disadvantage and high economic vulnerability
+Madhya Pradesh,0.7656300180376829,0.3823977798334875,0.5740138989355852,High education disadvantage and high economic vulnerability
+Jharkhand,0.5491103857713844,0.4646532966468211,0.5068818412091027,Economic vulnerability priority
+Maharashtra,0.6446122837254051,0.366364335017434,0.5054883093714195,High education disadvantage and high economic vulnerability
+Rajasthan,0.6755168584548803,0.2329280264395897,0.454222442447235,Education disadvantage priority
+Nagaland,0.2933748158376424,0.577,0.4351874079188212,Economic vulnerability priority
+Chhattisgarh,0.4938337833284508,0.3537722036417689,0.4238029934851098,Economic vulnerability priority
+Jammu and Kashmir,0.7875854303481112,0.0322199925678186,0.409902711457965,Education disadvantage priority
+Gujarat,0.5314691289561647,0.2860620033682013,0.408765566162183,Monitor / comparatively lower priority
+Tripura,0.3365720722393907,0.4237553191489361,0.3801636956941634,Economic vulnerability priority
+Dadra and Nagar Haveli and Daman and Diu,0.5268476490691736,0.22,0.3734238245345868,Monitor / comparatively lower priority
+Assam,0.3506800058621133,0.3535807933458257,0.3521303996039695,Monitor / comparatively lower priority
+Arunachal Pradesh,0.4030059766051831,0.2169680851063829,0.309987030855783,Monitor / comparatively lower priority
+Sikkim,0.2751783223304565,0.2380425531914893,0.2566104377609729,Monitor / comparatively lower priority
+Meghalaya,0.371504485726134,0.1236914893617021,0.2475979875439181,Monitor / comparatively lower priority
+Goa,0.2983530760605523,0.1625744680851064,0.2304637720728293,Monitor / comparatively lower priority
+Lakshadweep,0.0,0.4147553191489361,0.207377659574468,Economic vulnerability priority
+Manipur,0.2540865940623157,0.1108829787234042,0.18248478639286,Monitor / comparatively lower priority
+Mizoram,0.1338811211485368,0.1132446808510638,0.1235629009998003,Monitor / comparatively lower priority

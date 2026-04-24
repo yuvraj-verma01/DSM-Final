@@ -1,0 +1,613 @@
+state,year,gender,gender_key,class_group,class_group_key,ger_ratio
+Andaman and Nicobar Islands,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,77.3
+Andaman and Nicobar Islands,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,74.5
+Andaman and Nicobar Islands,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,76.7
+Andaman and Nicobar Islands,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,50.7
+Andaman and Nicobar Islands,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,63.5
+Andaman and Nicobar Islands,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,72.9
+Andaman and Nicobar Islands,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,75.4
+Andaman and Nicobar Islands,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,76.5
+Andaman and Nicobar Islands,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,75.6
+Andaman and Nicobar Islands,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,59.6
+Andaman and Nicobar Islands,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,68.5
+Andaman and Nicobar Islands,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,73.1
+Andaman and Nicobar Islands,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,76.4
+Andaman and Nicobar Islands,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,75.4
+Andaman and Nicobar Islands,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,76.2
+Andaman and Nicobar Islands,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,55.0
+Andaman and Nicobar Islands,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,66.0
+Andaman and Nicobar Islands,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,73.0
+Andhra Pradesh,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,111.6
+Andhra Pradesh,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,71.1
+Andhra Pradesh,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,104.0
+Andhra Pradesh,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,60.4
+Andhra Pradesh,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,66.2
+Andhra Pradesh,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,98.0
+Andhra Pradesh,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,112.5
+Andhra Pradesh,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,74.2
+Andhra Pradesh,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,105.8
+Andhra Pradesh,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,46.1
+Andhra Pradesh,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,60.6
+Andhra Pradesh,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,97.3
+Andhra Pradesh,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,112.0
+Andhra Pradesh,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,72.5
+Andhra Pradesh,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,104.9
+Andhra Pradesh,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,53.5
+Andhra Pradesh,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,63.6
+Andhra Pradesh,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,97.7
+Arunachal Pradesh,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,174.0
+Arunachal Pradesh,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,77.8
+Arunachal Pradesh,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,153.7
+Arunachal Pradesh,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,55.0
+Arunachal Pradesh,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,66.9
+Arunachal Pradesh,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,137.9
+Arunachal Pradesh,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,165.7
+Arunachal Pradesh,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,69.3
+Arunachal Pradesh,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,145.6
+Arunachal Pradesh,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,49.6
+Arunachal Pradesh,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,59.9
+Arunachal Pradesh,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,130.5
+Arunachal Pradesh,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,169.9
+Arunachal Pradesh,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,73.5
+Arunachal Pradesh,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,149.7
+Arunachal Pradesh,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,52.3
+Arunachal Pradesh,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,63.5
+Arunachal Pradesh,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,134.2
+Assam,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,96.4
+Assam,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,55.4
+Assam,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,87.4
+Assam,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,18.6
+Assam,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,36.8
+Assam,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,74.9
+Assam,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,97.2
+Assam,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,47.0
+Assam,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,85.9
+Assam,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,12.6
+Assam,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,29.4
+Assam,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,72.0
+Assam,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,96.8
+Assam,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,51.2
+Assam,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,86.7
+Assam,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,15.5
+Assam,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,33.1
+Assam,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,73.5
+Bihar,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,145.4
+Bihar,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,40.7
+Bihar,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,124.4
+Bihar,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,33.3
+Bihar,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,37.2
+Bihar,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,110.5
+Bihar,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,108.4
+Bihar,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,26.5
+Bihar,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,92.3
+Bihar,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,19.3
+Bihar,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,23.1
+Bihar,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,81.2
+Bihar,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,127.7
+Bihar,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,33.9
+Bihar,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,109.0
+Bihar,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,26.6
+Bihar,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,30.5
+Bihar,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,96.5
+Chandigarh,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,
+Chandigarh,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,
+Chandigarh,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,
+Chandigarh,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,
+Chandigarh,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,
+Chandigarh,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,
+Chandigarh,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,
+Chandigarh,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,
+Chandigarh,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,
+Chandigarh,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,
+Chandigarh,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,
+Chandigarh,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,
+Chandigarh,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,
+Chandigarh,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,
+Chandigarh,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,
+Chandigarh,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,
+Chandigarh,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,
+Chandigarh,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,
+Chhattisgarh,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,104.8
+Chhattisgarh,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,58.0
+Chhattisgarh,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,95.6
+Chhattisgarh,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,32.6
+Chhattisgarh,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,45.9
+Chhattisgarh,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,85.9
+Chhattisgarh,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,98.4
+Chhattisgarh,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,55.2
+Chhattisgarh,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,90.0
+Chhattisgarh,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,24.7
+Chhattisgarh,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,40.3
+Chhattisgarh,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,79.7
+Chhattisgarh,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,101.6
+Chhattisgarh,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,56.7
+Chhattisgarh,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,92.8
+Chhattisgarh,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,28.6
+Chhattisgarh,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,43.1
+Chhattisgarh,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,82.9
+Delhi,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,
+Delhi,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,
+Delhi,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,
+Delhi,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,
+Delhi,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,
+Delhi,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,
+Delhi,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,
+Delhi,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,
+Delhi,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,
+Delhi,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,
+Delhi,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,
+Delhi,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,
+Delhi,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,
+Delhi,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,
+Delhi,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,
+Delhi,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,
+Delhi,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,
+Delhi,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,
+Goa,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,16011.8
+Goa,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,17643.6
+Goa,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,16264.6
+Goa,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,5908.7
+Goa,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,10131.7
+Goa,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,14027.4
+Goa,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,12190.5
+Goa,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,11808.0
+Goa,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,12120.5
+Goa,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,8813.5
+Goa,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,10435.7
+Goa,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,11677.0
+Goa,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,13942.5
+Goa,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,14195.8
+Goa,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,13985.7
+Goa,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,7091.4
+Goa,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,10280.5
+Goa,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,12792.9
+Gujarat,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,108.8
+Gujarat,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,52.5
+Gujarat,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,98.1
+Gujarat,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,33.2
+Gujarat,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,43.5
+Gujarat,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,88.8
+Gujarat,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,109.4
+Gujarat,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,51.9
+Gujarat,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,98.5
+Gujarat,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,29.5
+Gujarat,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,41.4
+Gujarat,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,88.7
+Gujarat,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,109.1
+Gujarat,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,52.2
+Gujarat,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,98.3
+Gujarat,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,31.4
+Gujarat,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,42.5
+Gujarat,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,88.7
+Haryana,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,
+Haryana,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,
+Haryana,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,
+Haryana,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,
+Haryana,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,
+Haryana,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,
+Haryana,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,
+Haryana,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,
+Haryana,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,
+Haryana,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,
+Haryana,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,
+Haryana,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,
+Haryana,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,
+Haryana,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,
+Haryana,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,
+Haryana,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,
+Haryana,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,
+Haryana,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,
+Himachal Pradesh,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,148.2
+Himachal Pradesh,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,137.1
+Himachal Pradesh,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,146.0
+Himachal Pradesh,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,116.4
+Himachal Pradesh,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,126.8
+Himachal Pradesh,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,141.0
+Himachal Pradesh,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,145.7
+Himachal Pradesh,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,139.2
+Himachal Pradesh,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,144.4
+Himachal Pradesh,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,101.6
+Himachal Pradesh,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,119.9
+Himachal Pradesh,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,136.8
+Himachal Pradesh,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,147.0
+Himachal Pradesh,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,138.2
+Himachal Pradesh,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,145.2
+Himachal Pradesh,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,108.9
+Himachal Pradesh,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,123.4
+Himachal Pradesh,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,138.9
+Jammu and Kashmir,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,82.8
+Jammu and Kashmir,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,36.0
+Jammu and Kashmir,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,73.8
+Jammu and Kashmir,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,24.7
+Jammu and Kashmir,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,30.6
+Jammu and Kashmir,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,66.3
+Jammu and Kashmir,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,78.0
+Jammu and Kashmir,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,26.7
+Jammu and Kashmir,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,68.4
+Jammu and Kashmir,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,18.1
+Jammu and Kashmir,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,22.5
+Jammu and Kashmir,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,60.9
+Jammu and Kashmir,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,80.6
+Jammu and Kashmir,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,31.7
+Jammu and Kashmir,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,71.2
+Jammu and Kashmir,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,21.7
+Jammu and Kashmir,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,26.9
+Jammu and Kashmir,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,63.8
+Jharkhand,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,134.1
+Jharkhand,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,42.7
+Jharkhand,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,115.5
+Jharkhand,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,11.1
+Jharkhand,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,27.6
+Jharkhand,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,99.0
+Jharkhand,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,131.6
+Jharkhand,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,39.0
+Jharkhand,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,112.4
+Jharkhand,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,9.1
+Jharkhand,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,24.5
+Jharkhand,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,95.5
+Jharkhand,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,132.8
+Jharkhand,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,40.9
+Jharkhand,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,114.0
+Jharkhand,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,10.1
+Jharkhand,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,26.0
+Jharkhand,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,97.3
+Karnataka,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,106.7
+Karnataka,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,73.3
+Karnataka,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,99.9
+Karnataka,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,38.9
+Karnataka,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,56.6
+Karnataka,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,90.1
+Karnataka,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,103.1
+Karnataka,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,72.2
+Karnataka,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,97.1
+Karnataka,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,37.2
+Karnataka,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,55.7
+Karnataka,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,88.3
+Karnataka,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,104.9
+Karnataka,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,72.8
+Karnataka,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,98.5
+Karnataka,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,38.1
+Karnataka,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,56.2
+Karnataka,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,89.2
+Kerala,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,140.7
+Kerala,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,91.9
+Kerala,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,130.8
+Kerala,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,24.7
+Kerala,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,59.5
+Kerala,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,114.0
+Kerala,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,135.4
+Kerala,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,98.3
+Kerala,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,127.9
+Kerala,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,25.8
+Kerala,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,62.3
+Kerala,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,111.0
+Kerala,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,138.1
+Kerala,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,95.0
+Kerala,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,129.4
+Kerala,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,25.3
+Kerala,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,60.9
+Kerala,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,112.5
+Lakshadweep,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,78.5
+Lakshadweep,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,70.2
+Lakshadweep,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,76.8
+Lakshadweep,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,76.3
+Lakshadweep,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,72.9
+Lakshadweep,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,76.7
+Lakshadweep,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,85.8
+Lakshadweep,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,74.6
+Lakshadweep,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,83.5
+Lakshadweep,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,84.4
+Lakshadweep,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,79.1
+Lakshadweep,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,83.7
+Lakshadweep,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,82.0
+Lakshadweep,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,72.4
+Lakshadweep,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,80.1
+Lakshadweep,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,80.3
+Lakshadweep,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,76.0
+Lakshadweep,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,80.1
+Madhya Pradesh,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,132.4
+Madhya Pradesh,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,60.0
+Madhya Pradesh,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,119.4
+Madhya Pradesh,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,35.6
+Madhya Pradesh,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,48.5
+Madhya Pradesh,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,108.0
+Madhya Pradesh,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,137.3
+Madhya Pradesh,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,36.6
+Madhya Pradesh,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,119.1
+Madhya Pradesh,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,22.2
+Madhya Pradesh,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,29.5
+Madhya Pradesh,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,104.8
+Madhya Pradesh,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,134.8
+Madhya Pradesh,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,48.5
+Madhya Pradesh,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,119.3
+Madhya Pradesh,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,28.7
+Madhya Pradesh,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,39.0
+Madhya Pradesh,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,106.4
+Maharashtra,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,115.9
+Maharashtra,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,56.5
+Maharashtra,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,104.6
+Maharashtra,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,51.2
+Maharashtra,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,54.0
+Maharashtra,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,96.8
+Maharashtra,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,112.7
+Maharashtra,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,40.8
+Maharashtra,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,98.9
+Maharashtra,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,41.2
+Maharashtra,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,41.0
+Maharashtra,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,90.1
+Maharashtra,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,114.4
+Maharashtra,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,49.0
+Maharashtra,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,101.9
+Maharashtra,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,46.3
+Maharashtra,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,47.7
+Maharashtra,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,93.6
+Manipur,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,154.8
+Manipur,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,63.4
+Manipur,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,133.1
+Manipur,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,16.5
+Manipur,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,40.4
+Manipur,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,111.3
+Manipur,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,136.4
+Manipur,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,54.8
+Manipur,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,117.2
+Manipur,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,14.1
+Manipur,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,34.2
+Manipur,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,97.1
+Manipur,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,145.8
+Manipur,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,59.2
+Manipur,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,125.3
+Manipur,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,15.3
+Manipur,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,37.3
+Manipur,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,104.3
+Meghalaya,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,148.8
+Meghalaya,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,47.7
+Meghalaya,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,128.4
+Meghalaya,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,10.3
+Meghalaya,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,28.6
+Meghalaya,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,107.9
+Meghalaya,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,153.8
+Meghalaya,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,52.1
+Meghalaya,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,133.0
+Meghalaya,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,12.8
+Meghalaya,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,32.1
+Meghalaya,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,112.1
+Meghalaya,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,151.3
+Meghalaya,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,49.9
+Meghalaya,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,130.7
+Meghalaya,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,11.5
+Meghalaya,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,30.4
+Meghalaya,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,110.0
+Mizoram,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,159.4
+Mizoram,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,76.8
+Mizoram,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,141.0
+Mizoram,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,42.0
+Mizoram,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,58.7
+Mizoram,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,121.7
+Mizoram,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,148.9
+Mizoram,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,79.7
+Mizoram,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,133.5
+Mizoram,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,40.7
+Mizoram,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,59.0
+Mizoram,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,114.8
+Mizoram,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,154.2
+Mizoram,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,78.2
+Mizoram,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,137.3
+Mizoram,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,41.3
+Mizoram,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,58.8
+Mizoram,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,118.3
+Nagaland,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,88.7
+Nagaland,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,28.9
+Nagaland,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,74.3
+Nagaland,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,18.3
+Nagaland,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,23.5
+Nagaland,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,63.1
+Nagaland,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,86.7
+Nagaland,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,30.6
+Nagaland,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,73.4
+Nagaland,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,17.5
+Nagaland,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,23.9
+Nagaland,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,62.2
+Nagaland,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,87.7
+Nagaland,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,29.7
+Nagaland,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,73.9
+Nagaland,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,17.9
+Nagaland,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,23.7
+Nagaland,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,62.7
+Odisha,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,113.5
+Odisha,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,43.2
+Odisha,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,100.3
+Odisha,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,20.1
+Odisha,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,32.6
+Odisha,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,89.1
+Odisha,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,114.8
+Odisha,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,40.7
+Odisha,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,101.0
+Odisha,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,14.2
+Odisha,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,28.1
+Odisha,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,88.5
+Odisha,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,114.1
+Odisha,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,42.1
+Odisha,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,100.6
+Odisha,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,17.2
+Odisha,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,30.4
+Odisha,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,88.8
+Puducherry,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,
+Puducherry,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,
+Puducherry,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,
+Puducherry,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,
+Puducherry,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,
+Puducherry,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,
+Puducherry,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,
+Puducherry,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,
+Puducherry,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,
+Puducherry,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,
+Puducherry,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,
+Puducherry,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,
+Puducherry,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,
+Puducherry,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,
+Puducherry,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,
+Puducherry,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,
+Puducherry,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,
+Puducherry,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,
+Punjab,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,
+Punjab,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,
+Punjab,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,
+Punjab,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,
+Punjab,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,
+Punjab,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,
+Punjab,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,
+Punjab,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,
+Punjab,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,
+Punjab,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,
+Punjab,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,
+Punjab,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,
+Punjab,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,
+Punjab,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,
+Punjab,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,
+Punjab,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,
+Punjab,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,
+Punjab,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,
+Rajasthan,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,120.0
+Rajasthan,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,58.1
+Rajasthan,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,108.4
+Rajasthan,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,28.7
+Rajasthan,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,44.0
+Rajasthan,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,96.7
+Rajasthan,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,107.7
+Rajasthan,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,44.3
+Rajasthan,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,95.8
+Rajasthan,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,18.9
+Rajasthan,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,31.9
+Rajasthan,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,84.0
+Rajasthan,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,114.2
+Rajasthan,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,51.5
+Rajasthan,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,102.4
+Rajasthan,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,23.9
+Rajasthan,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,38.2
+Rajasthan,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,90.6
+Sikkim,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,208.2
+Sikkim,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,74.3
+Sikkim,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,178.8
+Sikkim,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,48.1
+Sikkim,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,60.8
+Sikkim,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,154.0
+Sikkim,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,221.0
+Sikkim,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,89.1
+Sikkim,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,191.4
+Sikkim,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,52.8
+Sikkim,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,70.1
+Sikkim,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,164.0
+Sikkim,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,214.6
+Sikkim,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,81.9
+Sikkim,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,185.2
+Sikkim,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,50.5
+Sikkim,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,65.6
+Sikkim,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,159.1
+Tamil Nadu,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,150.4
+Tamil Nadu,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,81.5
+Tamil Nadu,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,138.0
+Tamil Nadu,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,44.0
+Tamil Nadu,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,63.7
+Tamil Nadu,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,125.0
+Tamil Nadu,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,151.9
+Tamil Nadu,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,85.8
+Tamil Nadu,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,140.6
+Tamil Nadu,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,51.1
+Tamil Nadu,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,69.1
+Tamil Nadu,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,128.5
+Tamil Nadu,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,151.1
+Tamil Nadu,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,83.5
+Tamil Nadu,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,139.3
+Tamil Nadu,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,47.3
+Tamil Nadu,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,66.3
+Tamil Nadu,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,126.6
+Dadra and Nagar Haveli and Daman and Diu,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,161.1
+Dadra and Nagar Haveli and Daman and Diu,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,126.6
+Dadra and Nagar Haveli and Daman and Diu,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,154.7
+Dadra and Nagar Haveli and Daman and Diu,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,57.5
+Dadra and Nagar Haveli and Daman and Diu,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,95.4
+Dadra and Nagar Haveli and Daman and Diu,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,141.7
+Dadra and Nagar Haveli and Daman and Diu,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,168.6
+Dadra and Nagar Haveli and Daman and Diu,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,126.8
+Dadra and Nagar Haveli and Daman and Diu,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,161.7
+Dadra and Nagar Haveli and Daman and Diu,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,60.2
+Dadra and Nagar Haveli and Daman and Diu,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,95.2
+Dadra and Nagar Haveli and Daman and Diu,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,148.2
+Dadra and Nagar Haveli and Daman and Diu,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,164.5
+Dadra and Nagar Haveli and Daman and Diu,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,126.7
+Dadra and Nagar Haveli and Daman and Diu,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,157.8
+Dadra and Nagar Haveli and Daman and Diu,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,58.1
+Dadra and Nagar Haveli and Daman and Diu,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,95.2
+Dadra and Nagar Haveli and Daman and Diu,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,144.5
+Tripura,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,127.4
+Tripura,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,75.0
+Tripura,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,116.4
+Tripura,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,23.2
+Tripura,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,50.1
+Tripura,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,101.3
+Tripura,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,123.1
+Tripura,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,70.0
+Tripura,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,112.2
+Tripura,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,17.1
+Tripura,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,44.3
+Tripura,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,96.9
+Tripura,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,125.3
+Tripura,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,72.6
+Tripura,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,114.4
+Tripura,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,20.2
+Tripura,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,47.3
+Tripura,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,99.1
+Uttar Pradesh,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,849.6
+Uttar Pradesh,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,749.4
+Uttar Pradesh,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,832.1
+Uttar Pradesh,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,485.0
+Uttar Pradesh,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,619.8
+Uttar Pradesh,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,782.4
+Uttar Pradesh,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,812.3
+Uttar Pradesh,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,489.1
+Uttar Pradesh,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,753.2
+Uttar Pradesh,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,306.3
+Uttar Pradesh,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,399.1
+Uttar Pradesh,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,685.8
+Uttar Pradesh,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,831.5
+Uttar Pradesh,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,618.9
+Uttar Pradesh,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,793.5
+Uttar Pradesh,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,395.0
+Uttar Pradesh,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,509.0
+Uttar Pradesh,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,735.0
+Uttarakhand,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,142.8
+Uttarakhand,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,101.1
+Uttarakhand,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,134.4
+Uttarakhand,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,70.9
+Uttarakhand,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,86.1
+Uttarakhand,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,123.9
+Uttarakhand,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,137.9
+Uttarakhand,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,104.7
+Uttarakhand,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,131.3
+Uttarakhand,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,68.1
+Uttarakhand,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,85.9
+Uttarakhand,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,120.3
+Uttarakhand,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,140.4
+Uttarakhand,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,102.8
+Uttarakhand,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,132.9
+Uttarakhand,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,69.5
+Uttarakhand,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,86.0
+Uttarakhand,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,122.1
+West Bengal,2013,Boys,boys,Classes I-VIII (6-13 Years),classes_i_viii,116.9
+West Bengal,2013,Boys,boys,Classes IX-X (14-15 Years),classes_ix_x,60.5
+West Bengal,2013,Boys,boys,Classes I-X (6-15 Years),classes_i_x,105.2
+West Bengal,2013,Boys,boys,Classes XI-XII (16-17  Years),classes_xi_xii,35.6
+West Bengal,2013,Boys,boys,Classes IX-XII (14-17  Years),classes_ix_xii,48.5
+West Bengal,2013,Boys,boys,Classes I-XII (6-17 Years),classes_i_xii,93.9
+West Bengal,2013,Girls,girls,Classes I-VIII (6-13 Years),classes_i_viii,119.7
+West Bengal,2013,Girls,girls,Classes IX-X (14-15 Years),classes_ix_x,62.4
+West Bengal,2013,Girls,girls,Classes I-X (6-15 Years),classes_i_x,108.2
+West Bengal,2013,Girls,girls,Classes XI-XII (16-17  Years),classes_xi_xii,24.4
+West Bengal,2013,Girls,girls,Classes IX-XII (14-17  Years),classes_ix_xii,43.7
+West Bengal,2013,Girls,girls,Classes I-XII (6-17 Years),classes_i_xii,94.6
+West Bengal,2013,Total,total,Classes I-VIII (6-13 Years),classes_i_viii,118.2
+West Bengal,2013,Total,total,Classes IX-X (14-15 Years),classes_ix_x,61.4
+West Bengal,2013,Total,total,Classes I-X (6-15 Years),classes_i_x,106.7
+West Bengal,2013,Total,total,Classes XI-XII (16-17  Years),classes_xi_xii,30.1
+West Bengal,2013,Total,total,Classes IX-XII (14-17  Years),classes_ix_xii,46.2
+West Bengal,2013,Total,total,Classes I-XII (6-17 Years),classes_i_xii,94.2

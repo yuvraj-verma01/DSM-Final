@@ -1,0 +1,35 @@
+state,is_high_st_share_state,education_disadvantage_score,economic_vulnerability_score,overall_priority_score,overall_priority_rank,policy_priority_category
+Odisha,True,0.7996555432295135,0.46797872340425534,0.6338171333168844,1.0,High education disadvantage and high economic vulnerability
+Bihar,False,0.7055268340002072,0.4533946725491591,0.5794607532746832,2.0,High education disadvantage and high economic vulnerability
+Madhya Pradesh,True,0.7656300180376829,0.3823977798334875,0.5740138989355852,3.0,High education disadvantage and high economic vulnerability
+West Bengal,False,0.677207477036483,0.44372247127936304,0.5604649741579231,4.0,High education disadvantage and high economic vulnerability
+Tamil Nadu,False,0.9126287987471673,0.11484103038497116,0.5137349145660692,5.0,Education disadvantage priority
+Jharkhand,True,0.5491103857713844,0.4646532966468211,0.5068818412091027,6.0,Economic vulnerability priority
+Maharashtra,True,0.6446122837254051,0.366364335017434,0.5054883093714195,7.0,High education disadvantage and high economic vulnerability
+Uttar Pradesh,False,0.7180459810004438,0.21207283537718316,0.4650594081888135,8.0,Education disadvantage priority
+Rajasthan,True,0.6755168584548803,0.23292802643958976,0.45422244244723503,9.0,Education disadvantage priority
+Nagaland,True,0.29337481583764247,0.577,0.4351874079188212,10.0,Economic vulnerability priority
+Chhattisgarh,True,0.49383378332845085,0.3537722036417689,0.42380299348510986,11.0,Economic vulnerability priority
+Jammu and Kashmir,True,0.7875854303481112,0.032219992567818656,0.409902711457965,12.0,Education disadvantage priority
+Gujarat,True,0.5314691289561647,0.2860620033682013,0.408765566162183,13.0,Monitor / comparatively lower priority
+Kerala,False,0.4555541413368282,0.329426362105363,0.39249025172109564,14.0,Monitor / comparatively lower priority
+Tripura,True,0.3365720722393907,0.42375531914893616,0.3801636956941634,15.0,Economic vulnerability priority
+Andhra Pradesh,False,0.5993066802393747,0.15178079018319537,0.37554373521128503,16.0,Education disadvantage priority
+Dadra and Nagar Haveli and Daman and Diu,True,0.5268476490691736,0.22,0.3734238245345868,17.0,Monitor / comparatively lower priority
+Karnataka,False,0.5075736047560875,0.22218729096989964,0.36488044786299356,18.0,Monitor / comparatively lower priority
+Assam,True,0.3506800058621133,0.3535807933458257,0.3521303996039695,19.0,Monitor / comparatively lower priority
+Andaman and Nicobar Islands,False,0.40038801916721417,0.2851808510638298,0.342784435115522,20.0,Monitor / comparatively lower priority
+Puducherry,False,0.6391908212560388,0.0,0.3195954106280194,21.0,Education disadvantage priority
+Arunachal Pradesh,True,0.4030059766051831,0.21696808510638296,0.30998703085578305,22.0,Monitor / comparatively lower priority
+Uttarakhand,False,0.3446708967796027,0.17589111854329245,0.26028100766144757,23.0,Monitor / comparatively lower priority
+Sikkim,True,0.2751783223304565,0.23804255319148937,0.2566104377609729,24.0,Monitor / comparatively lower priority
+Delhi,False,0.0,0.5,0.25,25.0,Economic vulnerability priority
+Meghalaya,True,0.37150448572613404,0.12369148936170213,0.2475979875439181,26.0,Monitor / comparatively lower priority
+Goa,True,0.2983530760605523,0.1625744680851064,0.23046377207282934,27.0,Monitor / comparatively lower priority
+Himachal Pradesh,False,0.2863802931174064,0.13277304964539005,0.20957667138139824,28.0,Monitor / comparatively lower priority
+Lakshadweep,True,0.0,0.41475531914893615,0.20737765957446808,29.0,Economic vulnerability priority
+Manipur,True,0.25408659406231576,0.11088297872340426,0.18248478639286,30.0,Monitor / comparatively lower priority
+Mizoram,True,0.13388112114853684,0.11324468085106383,0.12356290099980033,31.0,Monitor / comparatively lower priority
+Punjab,False,0.0,0.2461063829787234,0.1230531914893617,32.0,Monitor / comparatively lower priority
+Haryana,False,0.0,0.22148936170212766,0.11074468085106383,33.0,Monitor / comparatively lower priority
+Chandigarh,False,0.0,0.0,0.0,34.0,Monitor / comparatively lower priority

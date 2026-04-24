@@ -1,0 +1,20 @@
+state,st_share_state_population_pct,st_population,st_literacy_rate_pct,literacy_gap_pct,tribe_weighted_literacy_female_pct,dropout_secondary_pct,st_bpl_mean_pct,employment_wpr_person_per_1000,employment_pu_person_per_1000,mgnreg_sought_not_received_per_1000,low_literacy_district_count,overall_priority_score,overall_priority_rank,policy_priority_category,cluster_id,cluster_name
+Odisha,22.85,9590756.0,52.2,20.6,41.03999544424092,33.12,51.6,504.0,7.0,255,6.0,0.6338171333168844,1.0,High education disadvantage and high economic vulnerability,2,Compound education and economic disadvantage
+Madhya Pradesh,21.09,15316784.0,50.6,18.8,41.19527921427571,17.6,43.8,452.0,4.0,236,11.0,0.5740138989355852,3.0,High education disadvantage and high economic vulnerability,2,Compound education and economic disadvantage
+Jharkhand,26.21,8645042.0,57.1,9.3,46.1635147561837,12.71,40.15,375.0,19.0,245,6.0,0.5068818412091027,6.0,Economic vulnerability priority,2,Compound education and economic disadvantage
+Maharashtra,9.35,10510213.0,65.7,16.6,56.66043894382318,21.04,42.45,501.0,4.0,218,,0.5054883093714195,7.0,High education disadvantage and high economic vulnerability,2,Compound education and economic disadvantage
+Rajasthan,13.48,9238534.0,52.8,13.3,37.13395509581534,9.34,31.55,454.0,3.0,82,11.0,0.454222442447235,9.0,Education disadvantage priority,2,Compound education and economic disadvantage
+Nagaland,86.48,1710973.0,80.0,0.5,76.38144702827144,16.79,,385.0,47.0,154,,0.4351874079188212,10.0,Economic vulnerability priority,1,Economic and labour vulnerability
+Chhattisgarh,30.62,7822902.0,59.1,11.2,48.615475462197686,12.79,43.900000000000006,455.0,0.0,233,2.0,0.4238029934851098,11.0,Economic vulnerability priority,2,Compound education and economic disadvantage
+Jammu and Kashmir,11.91,1493299.0,50.6,16.6,39.16619528195508,14.17,9.65,620.0,0.0,32,15.0,0.409902711457965,12.0,Education disadvantage priority,4,Education-system disadvantage
+Gujarat,14.75,8917174.0,62.5,15.6,52.67811191599082,20.35,33.3,465.0,8.0,96,1.0,0.408765566162183,13.0,Monitor / comparatively lower priority,2,Compound education and economic disadvantage
+Tripura,31.76,1166813.0,79.1,8.2,71.29769664815008,9.21,,372.0,38.0,39,,0.3801636956941634,15.0,Economic vulnerability priority,1,Economic and labour vulnerability
+Dadra and Nagar Haveli and Daman and Diu,58.27,193927.0,,,56.934503742199134,12.21,,,,220,,0.3734238245345868,17.0,Monitor / comparatively lower priority,2,Compound education and economic disadvantage
+Assam,12.45,3884371.0,72.1,0.1,64.85817990949484,12.67,24.5,386.0,18.0,282,,0.3521303996039695,19.0,Monitor / comparatively lower priority,3,Lower composite risk with poverty watchlist
+Arunachal Pradesh,68.79,951821.0,64.6,0.8,57.61617562151524,9.04,,385.0,7.0,285,,0.309987030855783,22.0,Monitor / comparatively lower priority,3,Lower composite risk with poverty watchlist
+Sikkim,33.8,206360.0,79.7,1.7,74.29524879110964,11.5,,467.0,22.0,8,,0.2566104377609729,24.0,Monitor / comparatively lower priority,3,Lower composite risk with poverty watchlist
+Meghalaya,86.15,2555861.0,74.5,0.1,73.7620524049554,21.99,,462.0,5.0,141,,0.2475979875439181,26.0,Monitor / comparatively lower priority,3,Lower composite risk with poverty watchlist
+Goa,10.23,149275.0,79.1,9.6,71.29286581095232,2.34,,362.0,15.0,6,,0.2304637720728293,27.0,Monitor / comparatively lower priority,3,Lower composite risk with poverty watchlist
+Lakshadweep,94.8,61120.0,91.7,0.1,100.0,0.0,,395.0,38.0,21,,0.207377659574468,29.0,Economic vulnerability priority,1,Economic and labour vulnerability
+Manipur,35.12,902740.0,77.4,1.9,67.79292535600409,3.23,,400.0,10.0,9,,0.18248478639286,30.0,Monitor / comparatively lower priority,3,Lower composite risk with poverty watchlist
+Mizoram,94.43,1036115.0,91.5,0.2,88.66467410269496,11.48,,461.0,9.0,35,,0.1235629009998003,31.0,Monitor / comparatively lower priority,3,Lower composite risk with poverty watchlist

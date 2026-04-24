@@ -1,0 +1,15 @@
+short_name,proposal_no,in_proposal,source_file,cleaned_file,level,raw_rows,cleaned_rows,raw_columns,cleaned_columns,state_count,years,key_variables,notes
+literacy,1,True,literacy.csv,outputs\cleaned\literacy.csv,state-year,108,105,7,6,35,"1991, 2001, 2011","total literacy, ST literacy, literacy gap",Core education attainment dataset.
+enrolment_st,2,True,enrolment_st.csv,outputs\cleaned\enrolment_st.csv,state-year,34,34,9,14,34,2010,ST enrolment by stage and gender,Includes derived totals and female shares.
+high_st_share,3,True,high_st_share.csv,outputs\cleaned\high_st_share.csv,state-year,19,19,6,5,19,2011,"ST share in state population, state share of national ST population",Defines high-ST-share states.
+sc_st_residence,4,True,sc_st_residence.csv,outputs\cleaned\sc_st_residence.csv,state-year-residence,68,68,7,6,34,2011,"SC population, ST population by rural/urban residence",Useful for demographic scale and rural/urban distribution.
+tribal_villages,5,True,tribal_villages.csv,outputs\cleaned\tribal_villages.csv,state-year,66,66,8,7,33,"2001, 2011",villages above ST concentration thresholds,"Raw metadata labels UOM as percentage, but values behave like counts."
+mgnreg_st,6,True,mgnreg_st.csv,outputs\cleaned\mgnreg_st.csv,state-year,34,34,14,13,34,2013,"MGNREG job cards, work received, unmet demand, average days",Filtered to Scheduled Tribe and rural households.
+ger_st,7,True,ger_st.csv,outputs\cleaned\ger_st.csv,state-year-gender-class,612,612,6,7,34,2013,GER by gender and class group,Raw filename is truncated by Windows path limits.
+low_literacy_districts,8,True,low_literacy_districts.csv,outputs\cleaned\low_literacy_districts.csv,district-year,74,74,7,6,11,2011,district ST literacy rates where female literacy is below 35 percent,Supports state case studies and extreme-deprivation counts.
+tribe_socioeconomic,9,True,tribe_socioeconomic.csv,outputs\cleaned\tribe_socioeconomic.csv,state-year-tribe,831,831,15,15,29,2011,"tribe-level households, population, literacy, WPR, worker type",Aggregated to state level with population-weighted averages.
+employment_st,10,True,employment_st.csv,outputs\cleaned\employment_st.csv,state-year-gender-indicator,324,315,6,7,35,2013,"LFPR, WPR, PU by gender",Does not include rural/urban despite the proposal wording.
+demographics_st,11,True,demographics_st.csv,outputs\cleaned\demographics_st.csv,state-year,102,102,10,9,34,"1991, 2001, 2011","total population, ST population, ST population share",Main base table for state-level merging.
+dropout_st,12,True,dropout_st.csv,outputs\cleaned\dropout_st.csv,state-academic-year,36,36,4,5,36,2021-22,"ST dropout rates at primary, upper primary, secondary levels",External 2021-22 dataset from proposal.
+poverty_st,13,True,poverty_st.csv,outputs\cleaned\poverty_st.csv,state-year-residence,80,80,5,4,20,"2009, 2011",ST population below poverty line by residence,Economic deprivation indicator.
+household_type_rural,,False,household_type_rural.csv,outputs\cleaned\household_type_rural.csv,state-year,251,251,11,10,36,"2017, 2018, 2019, 2020, 2021, 2022, 2023",rural household type distribution,Extra dataset not listed in proposal.

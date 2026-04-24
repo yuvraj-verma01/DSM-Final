@@ -1,0 +1,4 @@
+query_name,rows_returned,output_file
+top_priority_high_st_states,10,tables/sql_top_priority_high_st_states.csv
+worst_literacy_high_st_states,10,tables/sql_worst_literacy_high_st_states.csv
+poverty_employment_high_st_states,9,tables/sql_poverty_employment_high_st_states.csv

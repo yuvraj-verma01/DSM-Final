@@ -1,0 +1,35 @@
+Country,State,Year,Social Group,Type Of Residence,"Number Of Households  (UOM:Number), Scaling Factor:1","Number Of Households  Status Of Getting Mahatma Gandhi National Rural Employment Guarantee Act (Mgnreg) Work With Work For Less Than 20 Days (UOM:Number), Scaling Factor:1","Number Of Households Of Getting Mahatma Gandhi National Rural Employment Guarantee Act (Mgnreg) Work For 20 To 50 Days (UOM:Number), Scaling Factor:1","Number Of Households Status Of Getting Mahatma Gandhi National Rural Employment Guarantee Act (Mgnreg) Work For 50 To 100 Days (UOM:Number), Scaling Factor:1","Number Of Households Status Of Getting Mahatma Gandhi National Rural Employment Guarantee Act (Mgnreg) Work For 100 Days Or More (UOM:Number), Scaling Factor:1","Number Of Households  Status Of Having Sought But Not Received Mahatma Gandhi National Rural Employment Guarantee (Mgnreg) Work (UOM:Number), Scaling Factor:1","Number Of Households Status Of Not Seeking Mahatma Gandhi National Rural Employment Guarantee (Mgnreg) Work (UOM:Number), Scaling Factor:1","Number Of Households Per 1000 Distribution By Status Of All (Including Not Reported) (UOM:Number), Scaling Factor:1","Average Number Of Days Worked (UOM:%(Percentage)), Scaling Factor:1"
+India,Andaman and Nicobar Islands,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,118,0,6,0,2,81,865,1000,61
+India,Andhra Pradesh,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,694,78,195,265,29,181,252,1000,62
+India,Arunachal Pradesh,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,260,77,32,109,0,285,328,1000,51
+India,Assam,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,300,64,120,4,2,282,515,1000,28
+India,Bihar,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,294,79,3,4,0,522,388,1000,23
+India,Chandigarh,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,0,0,0,0,0,0,0,0,0
+India,Chhattisgarh,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,613,185,229,105,0,233,247,1000,36
+India,Delhi,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,0,0,0,0,0,1000,0,1000,0
+India,Goa,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,195,0,0,0,0,6,994,1000,0
+India,Gujarat,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,450,203,84,27,0,96,512,1000,23
+India,Haryana,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,0,0,0,0,0,60,940,1000,0
+India,Himachal Pradesh,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,543,57,170,125,40,143,465,1000,62
+India,Jammu and Kashmir,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,368,36,0,0,0,32,588,1000,14
+India,Jharkhand,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,391,140,29,20,0,245,491,1000,20
+India,Karnataka,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,300,147,12,27,0,98,716,1000,22
+India,Kerala,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,344,44,97,27,0,62,770,1000,44
+India,Lakshadweep,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,392,42,213,132,0,21,592,1000,54
+India,Madhya Pradesh,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,740,198,227,68,4,236,143,1000,31
+India,Maharashtra,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,214,46,11,6,0,218,719,1000,22
+India,Manipur,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,860,106,165,589,0,9,123,1000,62
+India,Meghalaya,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,490,71,171,182,0,141,353,1000,51
+India,Mizoram,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,913,27,138,704,17,35,48,1000,76
+India,Nagaland,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,695,241,126,253,0,154,224,1000,39
+India,Odisha,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,503,178,102,42,0,255,420,1000,26
+India,Puducherry,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,0,0,0,0,0,0,0,0,0
+India,Punjab,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,0,0,0,0,0,322,678,1000,0
+India,Rajasthan,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,828,22,135,617,3,82,93,1000,78
+India,Sikkim,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,552,69,79,374,0,8,470,1000,66
+India,Tamil Nadu,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,293,91,79,116,0,11,703,1000,41
+India,The Dadra and Nagar Haveli and Daman and Diu,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,122,0,122,0,0,220,1632,2000,32
+India,Tripura,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,884,9,227,640,0,39,80,1000,66
+India,Uttar Pradesh,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,140,13,84,42,0,304,556,1000,37
+India,Uttarakhand,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,471,239,129,5,0,259,329,1000,19
+India,West Bengal,"Calendar Year (Jan - Dec), 2013",Scheduled Tribe,Rural,758,395,222,36,0,193,149,1000,22

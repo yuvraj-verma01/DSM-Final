@@ -1,0 +1,15 @@
+short_name,level,raw_rows,cleaned_rows,state_count,years,key_variables,notes
+literacy,state-year,108,105,35,"1991, 2001, 2011","total literacy, ST literacy, literacy gap",Core education attainment dataset.
+enrolment_st,state-year,34,34,34,2010,ST enrolment by stage and gender,Includes derived totals and female shares.
+high_st_share,state-year,19,19,19,2011,"ST share in state population, state share of national ST population",Defines high-ST-share states.
+sc_st_residence,state-year-residence,68,68,34,2011,"SC population, ST population by rural/urban residence",Useful for demographic scale and rural/urban distribution.
+tribal_villages,state-year,66,66,33,"2001, 2011",villages above ST concentration thresholds,"Raw metadata labels UOM as percentage, but values behave like counts."
+mgnreg_st,state-year,34,34,34,2013,"MGNREG job cards, work received, unmet demand, average days",Filtered to Scheduled Tribe and rural households.
+ger_st,state-year-gender-class,612,612,34,2013,GER by gender and class group,Raw filename is truncated by Windows path limits.
+low_literacy_districts,district-year,74,74,11,2011,district ST literacy rates where female literacy is below 35 percent,Supports state case studies and extreme-deprivation counts.
+tribe_socioeconomic,state-year-tribe,831,831,29,2011,"tribe-level households, population, literacy, WPR, worker type",Aggregated to state level with population-weighted averages.
+employment_st,state-year-gender-indicator,324,315,35,2013,"LFPR, WPR, PU by gender",Does not include rural/urban despite the proposal wording.
+demographics_st,state-year,102,102,34,"1991, 2001, 2011","total population, ST population, ST population share",Main base table for state-level merging.
+dropout_st,state-academic-year,36,36,36,2021-22,"ST dropout rates at primary, upper primary, secondary levels",External 2021-22 dataset from proposal.
+poverty_st,state-year-residence,80,80,20,"2009, 2011",ST population below poverty line by residence,Economic deprivation indicator.
+household_type_rural,state-year,251,251,36,"2017, 2018, 2019, 2020, 2021, 2022, 2023",rural household type distribution,Extra dataset not listed in proposal.
