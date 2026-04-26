@@ -541,13 +541,13 @@ def render_overview(high_st: pd.DataFrame, all_states: pd.DataFrame) -> None:
             chart_key="overview_india_map",
         )
 
-        st.markdown("### Compare two India maps")
-        compare_left, compare_right = st.columns(2)
+        st.markdown("### Compare India maps")
         default_left = "dropout_secondary_pct" if "dropout_secondary_pct" in map_options else map_options[0]
         default_right = "st_bpl_mean_pct" if "st_bpl_mean_pct" in map_options else map_options[min(1, len(map_options) - 1)]
-        with compare_left:
+        map_tabs = st.tabs(["Map 1", "Map 2"])
+        with map_tabs[0]:
             left_metric = st.selectbox(
-                "Left map indicator",
+                "Map 1 indicator",
                 map_options,
                 index=map_options.index(default_left),
                 format_func=label,
@@ -558,22 +558,22 @@ def render_overview(high_st: pd.DataFrame, all_states: pd.DataFrame) -> None:
                 left_metric,
                 f"India map: {label(left_metric)}",
                 chart_key="overview_india_map_left",
-                height=560,
+                height=700,
             )
-        with compare_right:
+        with map_tabs[1]:
             right_metric = st.selectbox(
-                "Right map indicator",
+                "Map 2 indicator",
                 map_options,
                 index=map_options.index(default_right),
                 format_func=label,
-                help="Pick the second indicator to compare side by side with the left map.",
+                help="Pick the second indicator to compare with Map 1.",
             )
             choropleth(
                 all_states,
                 right_metric,
                 f"India map: {label(right_metric)}",
                 chart_key="overview_india_map_right",
-                height=560,
+                height=700,
             )
 
     variable_options = [
@@ -1113,6 +1113,35 @@ def main() -> None:
             background: #2f5d7c !important;
             color: #ffffff !important;
         }
+        div[data-testid="stRadio"] {
+            margin-bottom: 18px;
+        }
+        div[data-testid="stRadio"] > div {
+            gap: 10px;
+        }
+        div[data-testid="stRadio"] label[data-baseweb="radio"] {
+            min-height: 46px;
+            margin: 0 8px 0 0;
+            padding: 0 18px;
+            border: 1px solid #d8d0c0;
+            border-radius: 999px;
+            background: #fffdf8;
+            box-shadow: 0 8px 18px rgba(49, 43, 32, 0.05);
+        }
+        div[data-testid="stRadio"] label[data-baseweb="radio"] > div:first-child {
+            display: none;
+        }
+        div[data-testid="stRadio"] label[data-baseweb="radio"]:has(input:checked) {
+            background: #2f5d7c !important;
+            border-color: #2f5d7c !important;
+        }
+        div[data-testid="stRadio"] label[data-baseweb="radio"] p {
+            color: #2f5d7c !important;
+            font-weight: 900 !important;
+        }
+        div[data-testid="stRadio"] label[data-baseweb="radio"]:has(input:checked) p {
+            color: #ffffff !important;
+        }
         div[data-testid="stCaptionContainer"] {
             padding: 8px 2px 16px;
             color: #5c6462;
@@ -1126,9 +1155,13 @@ def main() -> None:
 
     high_st, all_states = load_data()
 
-    st.sidebar.title("Dashboard")
-    page = st.sidebar.radio("View", ["Overview", "Question Visuals"], index=0)
-    st.sidebar.caption("Separate Streamlit app. The GitHub Pages article is unchanged.")
+    page = st.radio(
+        "Dashboard view",
+        ["Overview", "Question Visuals"],
+        horizontal=True,
+        label_visibility="collapsed",
+        key="top_dashboard_view",
+    )
 
     if page == "Overview":
         render_overview(high_st, all_states)

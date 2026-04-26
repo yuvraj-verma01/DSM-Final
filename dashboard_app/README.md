@@ -1,7 +1,5 @@
 # ST Education and Livelihood Dashboard
 
-Separate interactive dashboard app for the DSM final project.
-
 ## Run
 
 From the project root:
@@ -15,8 +13,6 @@ The app reads the existing project outputs:
 - `outputs/analysis/state_analysis_dataset_high_st_states.csv`
 - `outputs/analysis/state_analysis_dataset_all_states.csv`
 - `outputs/analysis/state_disadvantage_scores.csv`
-
-It does not change the GitHub Pages article site.
 
 ## What It Shows
 
