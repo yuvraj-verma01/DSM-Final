@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import pandas as pd
@@ -7,6 +8,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 from scipy import stats
+from shapely.geometry import mapping, shape
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,6 +16,7 @@ ANALYSIS = ROOT / "outputs" / "analysis"
 
 HIGH_ST_PATH = ANALYSIS / "state_analysis_dataset_high_st_states.csv"
 ALL_STATES_PATH = ANALYSIS / "state_analysis_dataset_all_states.csv"
+GEOJSON_PATH = ROOT / "dashboard_app" / "india_state.geojson"
 
 THEME = {
     "blue": "#2f5d7c",
@@ -64,12 +67,63 @@ LABELS = {
     "low_literacy_district_count": "Low female-literacy district count",
 }
 
+MAP_FEATURE_KEY = "map_name"
+MAP_SIMPLIFY_TOLERANCE = 0.005
+MAP_STATE_NAME_FIXES = {
+    "Andaman and Nicobar": "Andaman and Nicobar Islands",
+    "Andaman and Nicobar Islands": "Andaman and Nicobar Islands",
+    "Orissa": "Odisha",
+    "Odisha": "Odisha",
+    "Uttaranchal": "Uttarakhand",
+    "Uttarakhand": "Uttarakhand",
+}
+MAP_STATE_EXPANSIONS = {
+    "Dadra and Nagar Haveli and Daman and Diu": ["Dadra and Nagar Haveli", "Daman and Diu"],
+}
+RISK_HIGH_COLUMNS = {
+    "literacy_gap_pct",
+    "female_literacy_gap_pct",
+    "dropout_primary_pct",
+    "dropout_upper_primary_pct",
+    "dropout_secondary_pct",
+    "st_bpl_mean_pct",
+    "employment_pu_person_per_1000",
+    "mgnreg_sought_not_received_per_1000",
+    "low_literacy_district_count",
+}
+MAP_GOOD_SCALE = ["#f5ecda", "#d8c38f", "#7ea297", "#2f5d7c"]
+MAP_RISK_SCALE = ["#fbf4e6", "#e5c67a", "#c47a45", "#8f3f3f"]
+
 
 @st.cache_data
 def load_data() -> tuple[pd.DataFrame, pd.DataFrame]:
     high_st = pd.read_csv(HIGH_ST_PATH)
     all_states = pd.read_csv(ALL_STATES_PATH)
     return add_derived_columns(high_st), add_derived_columns(all_states)
+
+
+@st.cache_data
+def load_geojson() -> dict:
+    with GEOJSON_PATH.open("r", encoding="utf-8") as handle:
+        raw_geojson = json.load(handle)
+
+    features = []
+    for feature in raw_geojson["features"]:
+        props = feature.get("properties", {})
+        raw_name = props.get("NAME_1")
+        geometry = feature.get("geometry")
+        simplified_geometry = geometry
+        if geometry:
+            simplified_geometry = mapping(shape(geometry).simplify(MAP_SIMPLIFY_TOLERANCE, preserve_topology=True))
+        features.append(
+            {
+                "type": feature.get("type", "Feature"),
+                "properties": {MAP_FEATURE_KEY: normalize_map_state(raw_name)},
+                "geometry": simplified_geometry,
+            }
+        )
+
+    return {"type": "FeatureCollection", "features": features}
 
 
 def add_derived_columns(df: pd.DataFrame) -> pd.DataFrame:
@@ -127,6 +181,19 @@ def label(col: str) -> str:
     return LABELS.get(col, col.replace("_", " ").title())
 
 
+def normalize_map_state(value: str | None) -> str | None:
+    if pd.isna(value):
+        return value
+    return MAP_STATE_NAME_FIXES.get(str(value).strip(), str(value).strip())
+
+
+def expand_map_states(value: str | None) -> list[str]:
+    normalized = normalize_map_state(value)
+    if normalized is None:
+        return []
+    return MAP_STATE_EXPANSIONS.get(normalized, [normalized])
+
+
 def corr_text(df: pd.DataFrame, x: str, y: str) -> str:
     subset = df[[x, y]].dropna()
     if len(subset) < 4 or subset[x].nunique() <= 1 or subset[y].nunique() <= 1:
@@ -134,6 +201,66 @@ def corr_text(df: pd.DataFrame, x: str, y: str) -> str:
     r, p = stats.pearsonr(subset[x], subset[y])
     p_text = "p < 0.001" if p < 0.001 else f"p = {p:.4f}"
     return f"Pearson r = {r:.4f}; {p_text}; n = {len(subset)}"
+
+
+def map_metric_options(df: pd.DataFrame) -> list[str]:
+    options = [
+        "st_literacy_rate_pct",
+        "literacy_gap_pct",
+        "dropout_upper_primary_pct",
+        "dropout_secondary_pct",
+        "ger_classes_i_viii_clean",
+        "ger_classes_ix_x_clean",
+        "ger_latest_secondary_total_clean",
+        "st_bpl_mean_pct",
+        "employment_wpr_person_per_1000",
+        "employment_pu_person_per_1000",
+        "mgnreg_sought_not_received_per_1000",
+        "mgnreg_average_days_worked",
+        "scholarship_utilization_2023_24_pct",
+        "st_share_state_population_pct",
+        "villages_gt50_per_100k_st_pop",
+        "low_literacy_district_count",
+    ]
+    return [col for col in options if col in df.columns]
+
+
+def choropleth(df: pd.DataFrame, metric: str, title: str, chart_key: str, height: int = 620) -> None:
+    geojson = load_geojson()
+    plot_df = df[["state", metric]].dropna(subset=[metric]).copy()
+    plot_df["map_state"] = plot_df["state"].map(expand_map_states)
+    plot_df = plot_df.explode("map_state").dropna(subset=["map_state"])
+
+    if plot_df.empty:
+        st.warning(f"No map data available for {label(metric)}.")
+        return
+
+    color_scale = MAP_RISK_SCALE if metric in RISK_HIGH_COLUMNS else MAP_GOOD_SCALE
+    fig = px.choropleth(
+        plot_df,
+        geojson=geojson,
+        featureidkey=f"properties.{MAP_FEATURE_KEY}",
+        locations="map_state",
+        color=metric,
+        hover_name="state",
+        hover_data={metric: ":.2f"},
+        color_continuous_scale=color_scale,
+        labels={metric: label(metric), "map_state": "State"},
+        title=title,
+        height=height,
+    )
+    fig.update_traces(marker_line_color="#fffdf8", marker_line_width=0.85)
+    fig.update_geos(fitbounds="locations", visible=False)
+    fig.update_layout(
+        margin={"l": 12, "r": 12, "t": 62, "b": 12},
+        paper_bgcolor=THEME["panel"],
+        plot_bgcolor=THEME["panel"],
+        font={"size": 16, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
+        title={"font": {"size": 23, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"}},
+        coloraxis={"colorbar": {"tickfont": {"size": 13, "color": THEME["ink"]}, "title": {"font": {"size": 14, "color": THEME["ink"]}}}},
+        hoverlabel={"bgcolor": "white", "font_size": 14, "font_color": THEME["ink"]},
+    )
+    st.plotly_chart(fig, use_container_width=True, key=chart_key)
 
 
 def scatter(
@@ -396,6 +523,58 @@ def render_overview(high_st: pd.DataFrame, all_states: pd.DataFrame) -> None:
         unsafe_allow_html=True,
     )
     metric_row(high_st)
+
+    map_options = map_metric_options(all_states)
+    if map_options:
+        st.markdown("### India map explorer")
+        overview_metric = st.selectbox(
+            "Choose the indicator for the overall India map",
+            map_options,
+            index=map_options.index("st_literacy_rate_pct") if "st_literacy_rate_pct" in map_options else 0,
+            format_func=label,
+            help="This full-width map gives a single national view of one key indicator across all states and union territories in the analysis table.",
+        )
+        choropleth(
+            all_states,
+            overview_metric,
+            f"Overall India map: {label(overview_metric)}",
+            chart_key="overview_india_map",
+        )
+
+        st.markdown("### Compare two India maps")
+        compare_left, compare_right = st.columns(2)
+        default_left = "dropout_secondary_pct" if "dropout_secondary_pct" in map_options else map_options[0]
+        default_right = "st_bpl_mean_pct" if "st_bpl_mean_pct" in map_options else map_options[min(1, len(map_options) - 1)]
+        with compare_left:
+            left_metric = st.selectbox(
+                "Left map indicator",
+                map_options,
+                index=map_options.index(default_left),
+                format_func=label,
+                help="Pick the first indicator to compare geographically.",
+            )
+            choropleth(
+                all_states,
+                left_metric,
+                f"India map: {label(left_metric)}",
+                chart_key="overview_india_map_left",
+                height=560,
+            )
+        with compare_right:
+            right_metric = st.selectbox(
+                "Right map indicator",
+                map_options,
+                index=map_options.index(default_right),
+                format_func=label,
+                help="Pick the second indicator to compare side by side with the left map.",
+            )
+            choropleth(
+                all_states,
+                right_metric,
+                f"India map: {label(right_metric)}",
+                chart_key="overview_india_map_right",
+                height=560,
+            )
 
     variable_options = [
         "st_literacy_rate_pct",
