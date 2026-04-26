@@ -92,9 +92,11 @@ RISK_HIGH_COLUMNS = {
     "mgnreg_sought_not_received_per_1000",
     "low_literacy_district_count",
 }
-MAP_GOOD_SCALE = ["#1d2a34", "#2f6f8f", "#58b6a5", "#d8b45c"]
-MAP_RISK_SCALE = ["#211f2d", "#5e4265", "#bd6c4f", "#f27d7d"]
+MAP_HEAT_SCALE = ["#fff1b8", "#f9c55c", "#f28a3c", "#cf3f2e", "#7f1d1d"]
+MAP_GOOD_SCALE = MAP_HEAT_SCALE
+MAP_RISK_SCALE = MAP_HEAT_SCALE
 CHART_COLOR_SCALE = ["#66b8e8", "#69c2aa", "#d8b45c", "#d79b6b", "#f27d7d"]
+PLOT_CONFIG = {"displayModeBar": False, "responsive": True}
 
 
 @st.cache_data
@@ -227,7 +229,7 @@ def map_metric_options(df: pd.DataFrame) -> list[str]:
     return [col for col in options if col in df.columns]
 
 
-def choropleth(df: pd.DataFrame, metric: str, title: str, chart_key: str, height: int = 680) -> None:
+def choropleth(df: pd.DataFrame, metric: str, title: str, chart_key: str, height: int = 560) -> None:
     geojson = load_geojson()
     plot_df = df[["state", metric]].dropna(subset=[metric]).copy()
     plot_df["map_state"] = plot_df["state"].map(expand_map_states)
@@ -251,18 +253,38 @@ def choropleth(df: pd.DataFrame, metric: str, title: str, chart_key: str, height
         title=title,
         height=height,
     )
-    fig.update_traces(marker_line_color=THEME["panel"], marker_line_width=0.85)
-    fig.update_geos(fitbounds="locations", visible=False)
+    fig.update_traces(marker_line_color=THEME["panel"], marker_line_width=0.65)
+    fig.update_geos(
+        visible=False,
+        bgcolor=THEME["plot"],
+        projection_type="mercator",
+        center={"lat": 22.5, "lon": 82.0},
+        lonaxis={"range": [66.5, 98.5]},
+        lataxis={"range": [5.5, 38.5]},
+        domain={"x": [0.0, 0.88], "y": [0.0, 1.0]},
+    )
     fig.update_layout(
-        margin={"l": 8, "r": 8, "t": 56, "b": 8},
+        margin={"l": 4, "r": 4, "t": 38, "b": 4},
         paper_bgcolor=THEME["panel"],
         plot_bgcolor=THEME["panel"],
-        font={"size": 16, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
-        title={"font": {"size": 23, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"}},
-        coloraxis={"colorbar": {"tickfont": {"size": 13, "color": THEME["ink"]}, "title": {"font": {"size": 14, "color": THEME["ink"]}}}},
-        hoverlabel={"bgcolor": THEME["plot"], "font_size": 14, "font_color": THEME["ink"]},
+        font={"size": 12, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
+        title={
+            "font": {"size": 16, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
+            "x": 0.02,
+            "xanchor": "left",
+        },
+        coloraxis={
+            "colorbar": {
+                "len": 0.68,
+                "thickness": 11,
+                "x": 0.93,
+                "tickfont": {"size": 10, "color": THEME["ink"]},
+                "title": {"font": {"size": 11, "color": THEME["ink"]}, "side": "top"},
+            }
+        },
+        hoverlabel={"bgcolor": THEME["plot"], "font_size": 12, "font_color": THEME["ink"]},
     )
-    st.plotly_chart(fig, use_container_width=True, key=chart_key)
+    st.plotly_chart(fig, use_container_width=True, key=chart_key, config=PLOT_CONFIG)
 
 
 def scatter(
@@ -272,7 +294,7 @@ def scatter(
     title: str,
     color_col: str | None = "dropout_secondary_pct",
     trendline: bool = True,
-    height: int = 560,
+    height: int = 480,
     chart_key: str | None = None,
 ) -> None:
     cols = ["state", x, y]
@@ -317,17 +339,17 @@ def scatter(
         margin={"l": 30, "r": 25, "t": 72, "b": 58},
         paper_bgcolor=THEME["panel"],
         plot_bgcolor=THEME["plot"],
-        font={"size": 16, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
-        title={"font": {"size": 24, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"}},
-        legend={"font": {"size": 15, "color": THEME["ink"]}},
-        xaxis={"title": {"font": {"size": 17, "color": THEME["ink"]}}, "tickfont": {"size": 14, "color": THEME["ink"]}},
-        yaxis={"title": {"font": {"size": 17, "color": THEME["ink"]}}, "tickfont": {"size": 14, "color": THEME["ink"]}},
-        coloraxis={"colorbar": {"tickfont": {"size": 14, "color": THEME["ink"]}, "title": {"font": {"size": 15, "color": THEME["ink"]}}}},
-        hoverlabel={"bgcolor": THEME["plot"], "font_size": 14, "font_color": THEME["ink"]},
+        font={"size": 12, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
+        title={"font": {"size": 17, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"}},
+        legend={"font": {"size": 11, "color": THEME["ink"]}},
+        xaxis={"title": {"font": {"size": 12, "color": THEME["ink"]}}, "tickfont": {"size": 10, "color": THEME["ink"]}},
+        yaxis={"title": {"font": {"size": 12, "color": THEME["ink"]}}, "tickfont": {"size": 10, "color": THEME["ink"]}},
+        coloraxis={"colorbar": {"tickfont": {"size": 10, "color": THEME["ink"]}, "title": {"font": {"size": 11, "color": THEME["ink"]}}}},
+        hoverlabel={"bgcolor": THEME["plot"], "font_size": 11, "font_color": THEME["ink"]},
     )
     fig.update_xaxes(showgrid=True, gridcolor=THEME["line"], zeroline=False, showline=True, linecolor="#596473")
     fig.update_yaxes(showgrid=True, gridcolor=THEME["line"], zeroline=False, showline=True, linecolor="#596473")
-    st.plotly_chart(fig, use_container_width=True, key=chart_key or f"scatter_{title}_{x}_{y}_{color_col}")
+    st.plotly_chart(fig, use_container_width=True, key=chart_key or f"scatter_{title}_{x}_{y}_{color_col}", config=PLOT_CONFIG)
     st.caption(corr_text(plot_df, x, y))
 
 
@@ -340,15 +362,15 @@ def bar_rank(df: pd.DataFrame, value: str, title: str, top_n: int = 10, ascendin
         orientation="h",
         labels={value: label(value), "state": "State"},
         title=title,
-        height=520,
+        height=440,
         color=value,
         color_continuous_scale=CHART_COLOR_SCALE,
     )
     fig.update_layout(
-        yaxis={"categoryorder": "total ascending", "tickfont": {"size": 15, "color": THEME["ink"]}, "title": {"font": {"size": 17, "color": THEME["ink"]}}},
-        xaxis={"tickfont": {"size": 14, "color": THEME["ink"]}, "title": {"font": {"size": 17, "color": THEME["ink"]}}},
-        title={"font": {"size": 24, "color": THEME["ink"]}},
-        font={"size": 16, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
+        yaxis={"categoryorder": "total ascending", "tickfont": {"size": 11, "color": THEME["ink"]}, "title": {"font": {"size": 12, "color": THEME["ink"]}}},
+        xaxis={"tickfont": {"size": 10, "color": THEME["ink"]}, "title": {"font": {"size": 12, "color": THEME["ink"]}}},
+        title={"font": {"size": 17, "color": THEME["ink"]}},
+        font={"size": 12, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
         paper_bgcolor=THEME["panel"],
         plot_bgcolor=THEME["plot"],
         margin={"l": 25, "r": 20, "t": 72, "b": 45},
@@ -356,7 +378,7 @@ def bar_rank(df: pd.DataFrame, value: str, title: str, top_n: int = 10, ascendin
     )
     fig.update_xaxes(showgrid=True, gridcolor=THEME["line"], zeroline=False)
     fig.update_yaxes(showgrid=False)
-    st.plotly_chart(fig, use_container_width=True, key=f"bar_{title}_{value}")
+    st.plotly_chart(fig, use_container_width=True, key=f"bar_{title}_{value}", config=PLOT_CONFIG)
 
 
 def correlation_table(df: pd.DataFrame, pairs: list[tuple[str, str]]) -> pd.DataFrame:
@@ -492,19 +514,20 @@ def q5_mismatch(df: pd.DataFrame) -> None:
             color="distress_flags",
             color_continuous_scale=CHART_COLOR_SCALE,
             title="Mismatch flags by state",
+            height=420,
         )
         fig.update_layout(
             yaxis={"categoryorder": "total ascending", "tickfont": {"color": THEME["ink"]}},
             xaxis={"tickfont": {"color": THEME["ink"]}},
             paper_bgcolor=THEME["panel"],
             plot_bgcolor=THEME["plot"],
-            font={"size": 16, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
-            title={"font": {"size": 24, "color": THEME["ink"]}},
+            font={"size": 12, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
+            title={"font": {"size": 17, "color": THEME["ink"]}},
             hoverlabel={"bgcolor": THEME["plot"], "font_color": THEME["ink"]},
         )
         fig.update_xaxes(showgrid=True, gridcolor=THEME["line"], zeroline=False)
         fig.update_yaxes(showgrid=False)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, config=PLOT_CONFIG)
 
 
 def q10_compare(df: pd.DataFrame) -> None:
@@ -543,22 +566,22 @@ def q10_compare(df: pd.DataFrame) -> None:
         barmode="group",
         orientation="h",
         title="Literacy vs secondary dropout as warning signals",
-        height=520,
+        height=430,
         color_discrete_sequence=[THEME["blue"], THEME["gold"]],
     )
     fig.update_layout(
-        yaxis={"categoryorder": "total ascending", "tickfont": {"size": 15, "color": THEME["ink"]}},
-        xaxis={"tickfont": {"size": 14, "color": THEME["ink"]}},
-        title={"font": {"size": 24, "color": THEME["ink"]}},
-        font={"size": 16, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
-        legend={"font": {"color": THEME["ink"]}},
+        yaxis={"categoryorder": "total ascending", "tickfont": {"size": 11, "color": THEME["ink"]}},
+        xaxis={"tickfont": {"size": 10, "color": THEME["ink"]}},
+        title={"font": {"size": 17, "color": THEME["ink"]}},
+        font={"size": 12, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
+        legend={"font": {"size": 11, "color": THEME["ink"]}},
         paper_bgcolor=THEME["panel"],
         plot_bgcolor=THEME["plot"],
         hoverlabel={"bgcolor": THEME["plot"], "font_color": THEME["ink"]},
     )
     fig.update_xaxes(showgrid=True, gridcolor=THEME["line"], zeroline=False)
     fig.update_yaxes(showgrid=False)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, config=PLOT_CONFIG)
 
 
 def render_overview(high_st: pd.DataFrame, all_states: pd.DataFrame) -> None:
@@ -617,7 +640,7 @@ def render_overview(high_st: pd.DataFrame, all_states: pd.DataFrame) -> None:
                 left_metric,
                 f"India map: {label(left_metric)}",
                 chart_key="overview_india_map_left",
-                height=760,
+                height=560,
             )
         with compare_right:
             right_metric = st.selectbox(
@@ -632,7 +655,7 @@ def render_overview(high_st: pd.DataFrame, all_states: pd.DataFrame) -> None:
                 right_metric,
                 f"India map: {label(right_metric)}",
                 chart_key="overview_india_map_right",
-                height=760,
+                height=560,
             )
 
     variable_options = [
@@ -962,7 +985,7 @@ def main() -> None:
             margin-top: 0 !important;
         }
         html, body, [class*="css"] {
-            font-size: 18px !important;
+            font-size: 15px !important;
             font-family: Inter, Segoe UI, sans-serif !important;
         }
         .stApp {
@@ -970,11 +993,11 @@ def main() -> None:
             color: #f4f7fb;
         }
         .block-container {
-            max-width: 1900px;
-            padding-top: 1.2rem;
-            padding-left: 1.4rem;
-            padding-right: 1.4rem;
-            padding-bottom: 4rem;
+            max-width: 1680px;
+            padding-top: 0.65rem;
+            padding-left: 1.15rem;
+            padding-right: 1.15rem;
+            padding-bottom: 2.4rem;
         }
         section[data-testid="stSidebar"] {
             background: #11161d;
@@ -992,8 +1015,8 @@ def main() -> None:
             font-weight: 900 !important;
         }
         .hero-card {
-            padding: 28px 32px;
-            margin-bottom: 18px;
+            padding: 18px 22px;
+            margin-bottom: 14px;
             border: 1px solid #303947;
             border-radius: 8px;
             background: linear-gradient(135deg, rgba(23,28,36,0.98), rgba(18,24,32,0.96));
@@ -1002,118 +1025,124 @@ def main() -> None:
         div[data-testid="column"] {
             padding: 0.08rem 0.12rem;
         }
+        div[data-testid="stVerticalBlock"] {
+            gap: 0.65rem !important;
+        }
+        div[data-testid="stHorizontalBlock"] {
+            gap: 0.75rem !important;
+        }
         .hero-card .eyebrow {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #d8b45c;
-            font-size: 0.82rem !important;
+            font-size: 0.68rem !important;
             font-weight: 900;
             letter-spacing: 0.09em;
             text-transform: uppercase;
         }
         .hero-card h1 {
-            margin: 0 0 10px;
+            margin: 0 0 7px;
             max-width: 1060px;
         }
         .hero-card p {
             max-width: 1000px;
             margin: 0;
             color: #aeb8c2;
-            font-size: 1.12rem !important;
+            font-size: 0.9rem !important;
         }
         .hero-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 18px;
+            gap: 7px;
+            margin-top: 12px;
         }
         .hero-meta span {
-            padding: 6px 10px;
+            padding: 4px 8px;
             border: 1px solid #303947;
             border-radius: 999px;
             background: #11161d;
             color: #cbd4dd;
-            font-size: 0.86rem !important;
+            font-size: 0.72rem !important;
             font-weight: 800;
         }
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 14px;
-            margin: 14px 0 26px;
+            gap: 10px;
+            margin: 10px 0 16px;
         }
         .kpi-card {
             position: relative;
-            min-height: 132px;
-            padding: 20px 20px 18px;
+            min-height: 92px;
+            padding: 14px 15px 12px;
             border: 1px solid #303947;
             border-radius: 8px;
             background: #171c24;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.20);
             overflow: hidden;
         }
         .kpi-card::before {
             content: "";
             position: absolute;
             inset: 0 0 auto 0;
-            height: 3px;
+            height: 2px;
             background: linear-gradient(90deg, #66b8e8, #69c2aa, #d8b45c);
         }
         .kpi-label {
             color: #aeb8c2;
-            font-size: 0.9rem !important;
+            font-size: 0.68rem !important;
             font-weight: 900;
             text-transform: uppercase;
         }
         .kpi-value {
-            margin-top: 14px;
+            margin-top: 10px;
             color: #f4f7fb;
-            font-size: 2.35rem !important;
+            font-size: 1.65rem !important;
             line-height: 1;
             font-weight: 900;
         }
         .kpi-note {
-            margin-top: 12px;
+            margin-top: 8px;
             color: #66b8e8;
-            font-size: 0.88rem !important;
+            font-size: 0.72rem !important;
             font-weight: 800;
         }
         .section-heading {
-            margin: 34px 0 14px;
-            padding-top: 4px;
+            margin: 22px 0 10px;
+            padding-top: 3px;
             border-top: 1px solid #303947;
         }
         .section-eyebrow {
             color: #d8b45c;
-            font-size: 0.78rem !important;
+            font-size: 0.68rem !important;
             font-weight: 900;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         .section-heading h2 {
             margin: 0 !important;
             color: #f4f7fb !important;
-            font-size: 1.85rem !important;
+            font-size: 1.22rem !important;
             line-height: 1.2 !important;
         }
         h1 {
-            font-size: 3rem !important;
+            font-size: 2rem !important;
             line-height: 1.08 !important;
             letter-spacing: 0 !important;
             color: #f4f7fb !important;
         }
         h2 {
-            font-size: 2.25rem !important;
+            font-size: 1.45rem !important;
             letter-spacing: 0 !important;
             color: #f4f7fb !important;
         }
         h3 {
-            font-size: 1.65rem !important;
+            font-size: 1.14rem !important;
             letter-spacing: 0 !important;
             color: #f4f7fb !important;
         }
         p, li, label, div, span {
-            font-size: 1.04rem;
+            font-size: 0.9rem;
         }
         div[data-testid="stMetric"] {
             background: #171c24;
@@ -1141,11 +1170,11 @@ def main() -> None:
             border-radius: 8px;
         }
         div[data-testid="stPlotlyChart"] {
-            padding: 8px;
+            padding: 5px;
             border: 1px solid #303947;
             border-radius: 8px;
             background: #171c24;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.30);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
         }
         .stSelectbox [data-baseweb="select"],
         .stSelectbox div[data-baseweb="select"] > div,
@@ -1183,7 +1212,7 @@ def main() -> None:
         div[data-testid="stSelectbox"] label,
         div[data-testid="stDataFrame"] {
             color: #f4f7fb !important;
-            font-size: 1.05rem !important;
+            font-size: 0.82rem !important;
             font-weight: 800 !important;
         }
         div[data-testid="stDataFrame"] {
@@ -1193,21 +1222,21 @@ def main() -> None:
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
         }
         .profile-card {
-            padding: 18px;
+            padding: 14px;
             border: 1px solid #303947;
             border-radius: 8px;
             background: #171c24;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
         }
         .profile-card h3 {
-            margin: 0 0 12px !important;
+            margin: 0 0 8px !important;
             color: #66b8e8 !important;
         }
         .profile-row {
             display: grid;
             grid-template-columns: minmax(0, 1fr) auto;
-            gap: 4px 14px;
-            padding: 11px 0;
+            gap: 3px 10px;
+            padding: 8px 0;
             border-bottom: 1px solid #303947;
         }
         .profile-row:last-child {
@@ -1216,25 +1245,25 @@ def main() -> None:
         .profile-label {
             color: #f4f7fb;
             font-weight: 800;
-            font-size: 0.98rem !important;
+            font-size: 0.78rem !important;
         }
         .profile-value {
             color: #f4f7fb;
             font-weight: 900;
-            font-size: 1.08rem !important;
+            font-size: 0.88rem !important;
         }
         .profile-median {
             grid-column: 1 / -1;
             color: #aeb8c2;
-            font-size: 0.9rem !important;
+            font-size: 0.72rem !important;
             font-weight: 700;
         }
         .stTabs [data-baseweb="tab-list"] {
             gap: 8px;
         }
         .stTabs [data-baseweb="tab"] {
-            height: 42px;
-            padding: 0 14px;
+            height: 34px;
+            padding: 0 11px;
             border: 1px solid #303947;
             border-radius: 999px;
             background: #171c24;
@@ -1246,7 +1275,7 @@ def main() -> None:
             color: #ffffff !important;
         }
         div[data-testid="stRadio"] {
-            margin-bottom: 18px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: center;
         }
@@ -1259,10 +1288,10 @@ def main() -> None:
             margin-right: auto;
         }
         div[data-testid="stRadio"] label[data-baseweb="radio"] {
-            min-height: 46px;
-            margin: 0 8px 0 0;
-            padding: 0 18px;
-            min-width: 250px;
+            min-height: 36px;
+            margin: 0 6px 0 0;
+            padding: 0 14px;
+            min-width: 180px;
             justify-content: center;
             border: 1px solid #303947;
             border-radius: 999px;
@@ -1279,6 +1308,7 @@ def main() -> None:
         div[data-testid="stRadio"] label[data-baseweb="radio"] p {
             color: #66b8e8 !important;
             font-weight: 900 !important;
+            font-size: 0.88rem !important;
             text-align: center !important;
             width: 100%;
         }
@@ -1286,9 +1316,9 @@ def main() -> None:
             color: #ffffff !important;
         }
         div[data-testid="stCaptionContainer"] {
-            padding: 8px 2px 16px;
+            padding: 5px 2px 10px;
             color: #aeb8c2;
-            font-size: 1rem !important;
+            font-size: 0.78rem !important;
             font-weight: 700;
         }
         @media (max-width: 1200px) {
