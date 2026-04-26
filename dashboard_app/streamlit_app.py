@@ -431,7 +431,7 @@ def metric_row(df: pd.DataFrame) -> None:
         """
         for name, value, note in cards
     )
-    st.markdown(f'<div class="kpi-grid">{card_html}</div>', unsafe_allow_html=True)
+    st.html(f'<div class="kpi-grid">{card_html}</div>')
 
 
 def state_profile(df: pd.DataFrame, state: str) -> None:
@@ -588,18 +588,11 @@ def render_overview(high_st: pd.DataFrame, all_states: pd.DataFrame) -> None:
     st.markdown(
         """
         <div class="hero-card">
-          <div class="eyebrow">DSM Final Project</div>
           <h1>Scheduled Tribe education and livelihood outcomes</h1>
           <p>
             Explore how ST schooling indicators relate to dropout, poverty, labour outcomes,
             MGNREG distress, and spatial concentration across high-ST states in India.
           </p>
-          <div class="hero-meta">
-            <span>State-level evidence</span>
-            <span>Education</span>
-            <span>Livelihoods</span>
-            <span>Policy prioritization</span>
-          </div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -1031,14 +1024,6 @@ def main() -> None:
         div[data-testid="stHorizontalBlock"] {
             gap: 0.75rem !important;
         }
-        .hero-card .eyebrow {
-            margin-bottom: 6px;
-            color: #d8b45c;
-            font-size: 0.68rem !important;
-            font-weight: 900;
-            letter-spacing: 0.09em;
-            text-transform: uppercase;
-        }
         .hero-card h1 {
             margin: 0 0 7px;
             max-width: 1060px;
@@ -1048,21 +1033,6 @@ def main() -> None:
             margin: 0;
             color: #aeb8c2;
             font-size: 0.9rem !important;
-        }
-        .hero-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 7px;
-            margin-top: 12px;
-        }
-        .hero-meta span {
-            padding: 4px 8px;
-            border: 1px solid #303947;
-            border-radius: 999px;
-            background: #11161d;
-            color: #cbd4dd;
-            font-size: 0.72rem !important;
-            font-weight: 800;
         }
         .kpi-grid {
             display: grid;
