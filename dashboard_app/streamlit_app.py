@@ -416,8 +416,8 @@ def section_header(title: str, eyebrow: str | None = None) -> None:
 
 def metric_row(df: pd.DataFrame) -> None:
     cards = [
-        ("High-ST states", f"{len(df)}", "state cohort"),
         ("Mean ST literacy", f"{df['st_literacy_rate_pct'].mean():.1f}%", "education baseline"),
+        ("Mean literacy gap", f"{df['literacy_gap_pct'].mean():.1f} pp", "ST vs total population"),
         ("Mean secondary dropout", f"{df['dropout_secondary_pct'].mean():.1f}%", "retention pressure"),
         ("Mean MGNREG unmet demand", f"{df['mgnreg_sought_not_received_per_1000'].mean():.1f}", "livelihood stress"),
     ]
