@@ -19,17 +19,18 @@ ALL_STATES_PATH = ANALYSIS / "state_analysis_dataset_all_states.csv"
 GEOJSON_PATH = ROOT / "dashboard_app" / "india_state.geojson"
 
 THEME = {
-    "blue": "#2f5d7c",
-    "brown": "#8a4f28",
-    "green": "#4d7c8a",
-    "red": "#8f3f3f",
-    "gold": "#b7832f",
-    "gray": "#6d7475",
-    "paper": "#f8f5ec",
-    "panel": "#fffdf8",
-    "ink": "#202426",
-    "muted": "#68716f",
-    "line": "#ddd4c3",
+    "blue": "#66b8e8",
+    "brown": "#d79b6b",
+    "green": "#69c2aa",
+    "red": "#f27d7d",
+    "gold": "#d8b45c",
+    "gray": "#9aa6ad",
+    "paper": "#0d1117",
+    "panel": "#171c24",
+    "plot": "#11161d",
+    "ink": "#f4f7fb",
+    "muted": "#aeb8c2",
+    "line": "#303947",
 }
 
 LABELS = {
@@ -91,8 +92,9 @@ RISK_HIGH_COLUMNS = {
     "mgnreg_sought_not_received_per_1000",
     "low_literacy_district_count",
 }
-MAP_GOOD_SCALE = ["#f5ecda", "#d8c38f", "#7ea297", "#2f5d7c"]
-MAP_RISK_SCALE = ["#fbf4e6", "#e5c67a", "#c47a45", "#8f3f3f"]
+MAP_GOOD_SCALE = ["#1d2a34", "#2f6f8f", "#58b6a5", "#d8b45c"]
+MAP_RISK_SCALE = ["#211f2d", "#5e4265", "#bd6c4f", "#f27d7d"]
+CHART_COLOR_SCALE = ["#66b8e8", "#69c2aa", "#d8b45c", "#d79b6b", "#f27d7d"]
 
 
 @st.cache_data
@@ -225,7 +227,7 @@ def map_metric_options(df: pd.DataFrame) -> list[str]:
     return [col for col in options if col in df.columns]
 
 
-def choropleth(df: pd.DataFrame, metric: str, title: str, chart_key: str, height: int = 620) -> None:
+def choropleth(df: pd.DataFrame, metric: str, title: str, chart_key: str, height: int = 680) -> None:
     geojson = load_geojson()
     plot_df = df[["state", metric]].dropna(subset=[metric]).copy()
     plot_df["map_state"] = plot_df["state"].map(expand_map_states)
@@ -249,16 +251,16 @@ def choropleth(df: pd.DataFrame, metric: str, title: str, chart_key: str, height
         title=title,
         height=height,
     )
-    fig.update_traces(marker_line_color="#fffdf8", marker_line_width=0.85)
+    fig.update_traces(marker_line_color=THEME["panel"], marker_line_width=0.85)
     fig.update_geos(fitbounds="locations", visible=False)
     fig.update_layout(
-        margin={"l": 12, "r": 12, "t": 62, "b": 12},
+        margin={"l": 8, "r": 8, "t": 56, "b": 8},
         paper_bgcolor=THEME["panel"],
         plot_bgcolor=THEME["panel"],
         font={"size": 16, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
         title={"font": {"size": 23, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"}},
         coloraxis={"colorbar": {"tickfont": {"size": 13, "color": THEME["ink"]}, "title": {"font": {"size": 14, "color": THEME["ink"]}}}},
-        hoverlabel={"bgcolor": "white", "font_size": 14, "font_color": THEME["ink"]},
+        hoverlabel={"bgcolor": THEME["plot"], "font_size": 14, "font_color": THEME["ink"]},
     )
     st.plotly_chart(fig, use_container_width=True, key=chart_key)
 
@@ -289,13 +291,13 @@ def scatter(
         color=color_col if color_col in plot_df.columns else None,
         hover_name="state",
         hover_data={x: ":.2f", y: ":.2f"},
-        color_continuous_scale=["#2f5d7c", "#75a99f", "#d8c06c", "#8a4f28"],
+        color_continuous_scale=CHART_COLOR_SCALE,
         labels={x: label(x), y: label(y), **({color_col: label(color_col)} if color_col else {})},
         title=title,
         height=height,
     )
     if color_col is None:
-        fig.update_traces(marker=dict(color="#496f79", size=11, line=dict(color="#ffffff", width=1.2)))
+        fig.update_traces(marker=dict(color=THEME["blue"], size=11, line=dict(color=THEME["paper"], width=1.2)))
     if trendline and len(plot_df) >= 4 and plot_df[x].nunique() > 1:
         slope, intercept, *_ = stats.linregress(plot_df[x], plot_df[y])
         x_min = float(plot_df[x].min())
@@ -305,26 +307,26 @@ def scatter(
                 x=[x_min, x_max],
                 y=[slope * x_min + intercept, slope * x_max + intercept],
                 mode="lines",
-                line={"color": "#1f2426", "width": 2.3},
+                line={"color": THEME["ink"], "width": 2.3},
                 name="Linear trend",
                 hoverinfo="skip",
             )
         )
-    fig.update_traces(marker={"size": 12, "line": {"width": 1.4, "color": "white"}, "opacity": 0.92})
+    fig.update_traces(marker={"size": 12, "line": {"width": 1.4, "color": THEME["paper"]}, "opacity": 0.94})
     fig.update_layout(
         margin={"l": 30, "r": 25, "t": 72, "b": 58},
         paper_bgcolor=THEME["panel"],
-        plot_bgcolor="#fbf8f0",
-        font={"size": 16, "color": "#1f2426", "family": "Inter, Segoe UI, sans-serif"},
+        plot_bgcolor=THEME["plot"],
+        font={"size": 16, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
         title={"font": {"size": 24, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"}},
-        legend={"font": {"size": 15}},
-        xaxis={"title": {"font": {"size": 17, "color": "#1f2426"}}, "tickfont": {"size": 14, "color": "#1f2426"}},
-        yaxis={"title": {"font": {"size": 17, "color": "#1f2426"}}, "tickfont": {"size": 14, "color": "#1f2426"}},
-        coloraxis={"colorbar": {"tickfont": {"size": 14, "color": "#1f2426"}, "title": {"font": {"size": 15, "color": "#1f2426"}}}},
-        hoverlabel={"bgcolor": "white", "font_size": 14, "font_color": THEME["ink"]},
+        legend={"font": {"size": 15, "color": THEME["ink"]}},
+        xaxis={"title": {"font": {"size": 17, "color": THEME["ink"]}}, "tickfont": {"size": 14, "color": THEME["ink"]}},
+        yaxis={"title": {"font": {"size": 17, "color": THEME["ink"]}}, "tickfont": {"size": 14, "color": THEME["ink"]}},
+        coloraxis={"colorbar": {"tickfont": {"size": 14, "color": THEME["ink"]}, "title": {"font": {"size": 15, "color": THEME["ink"]}}}},
+        hoverlabel={"bgcolor": THEME["plot"], "font_size": 14, "font_color": THEME["ink"]},
     )
-    fig.update_xaxes(showgrid=True, gridcolor="#e2dacb", zeroline=False, showline=True, linecolor="#9b927f")
-    fig.update_yaxes(showgrid=True, gridcolor="#e2dacb", zeroline=False, showline=True, linecolor="#9b927f")
+    fig.update_xaxes(showgrid=True, gridcolor=THEME["line"], zeroline=False, showline=True, linecolor="#596473")
+    fig.update_yaxes(showgrid=True, gridcolor=THEME["line"], zeroline=False, showline=True, linecolor="#596473")
     st.plotly_chart(fig, use_container_width=True, key=chart_key or f"scatter_{title}_{x}_{y}_{color_col}")
     st.caption(corr_text(plot_df, x, y))
 
@@ -340,18 +342,19 @@ def bar_rank(df: pd.DataFrame, value: str, title: str, top_n: int = 10, ascendin
         title=title,
         height=520,
         color=value,
-        color_continuous_scale=["#2f5d7c", "#6f9b92", "#d7c17a", "#8a4f28"],
+        color_continuous_scale=CHART_COLOR_SCALE,
     )
     fig.update_layout(
-        yaxis={"categoryorder": "total ascending", "tickfont": {"size": 15}, "title": {"font": {"size": 17}}},
-        xaxis={"tickfont": {"size": 14}, "title": {"font": {"size": 17}}},
-        title={"font": {"size": 24}},
+        yaxis={"categoryorder": "total ascending", "tickfont": {"size": 15, "color": THEME["ink"]}, "title": {"font": {"size": 17, "color": THEME["ink"]}}},
+        xaxis={"tickfont": {"size": 14, "color": THEME["ink"]}, "title": {"font": {"size": 17, "color": THEME["ink"]}}},
+        title={"font": {"size": 24, "color": THEME["ink"]}},
         font={"size": 16, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
         paper_bgcolor=THEME["panel"],
-        plot_bgcolor="#fbf8f0",
+        plot_bgcolor=THEME["plot"],
         margin={"l": 25, "r": 20, "t": 72, "b": 45},
+        hoverlabel={"bgcolor": THEME["plot"], "font_color": THEME["ink"]},
     )
-    fig.update_xaxes(showgrid=True, gridcolor="#e2dacb", zeroline=False)
+    fig.update_xaxes(showgrid=True, gridcolor=THEME["line"], zeroline=False)
     fig.update_yaxes(showgrid=False)
     st.plotly_chart(fig, use_container_width=True, key=f"bar_{title}_{value}")
 
@@ -456,8 +459,26 @@ def q5_mismatch(df: pd.DataFrame) -> None:
     result = pd.DataFrame(rows).sort_values("distress_flags", ascending=False)
     st.dataframe(result, use_container_width=True, hide_index=True)
     if not result.empty:
-        fig = px.bar(result, x="distress_flags", y="state", orientation="h", color="distress_flags", title="Mismatch flags by state")
-        fig.update_layout(yaxis={"categoryorder": "total ascending"})
+        fig = px.bar(
+            result,
+            x="distress_flags",
+            y="state",
+            orientation="h",
+            color="distress_flags",
+            color_continuous_scale=CHART_COLOR_SCALE,
+            title="Mismatch flags by state",
+        )
+        fig.update_layout(
+            yaxis={"categoryorder": "total ascending", "tickfont": {"color": THEME["ink"]}},
+            xaxis={"tickfont": {"color": THEME["ink"]}},
+            paper_bgcolor=THEME["panel"],
+            plot_bgcolor=THEME["plot"],
+            font={"size": 16, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
+            title={"font": {"size": 24, "color": THEME["ink"]}},
+            hoverlabel={"bgcolor": THEME["plot"], "font_color": THEME["ink"]},
+        )
+        fig.update_xaxes(showgrid=True, gridcolor=THEME["line"], zeroline=False)
+        fig.update_yaxes(showgrid=False)
         st.plotly_chart(fig, use_container_width=True)
 
 
@@ -498,13 +519,20 @@ def q10_compare(df: pd.DataFrame) -> None:
         orientation="h",
         title="Literacy vs secondary dropout as warning signals",
         height=520,
+        color_discrete_sequence=[THEME["blue"], THEME["gold"]],
     )
     fig.update_layout(
-        yaxis={"categoryorder": "total ascending", "tickfont": {"size": 15}},
-        xaxis={"tickfont": {"size": 14}},
-        title={"font": {"size": 24}},
-        font={"size": 16},
+        yaxis={"categoryorder": "total ascending", "tickfont": {"size": 15, "color": THEME["ink"]}},
+        xaxis={"tickfont": {"size": 14, "color": THEME["ink"]}},
+        title={"font": {"size": 24, "color": THEME["ink"]}},
+        font={"size": 16, "color": THEME["ink"], "family": "Inter, Segoe UI, sans-serif"},
+        legend={"font": {"color": THEME["ink"]}},
+        paper_bgcolor=THEME["panel"],
+        plot_bgcolor=THEME["plot"],
+        hoverlabel={"bgcolor": THEME["plot"], "font_color": THEME["ink"]},
     )
+    fig.update_xaxes(showgrid=True, gridcolor=THEME["line"], zeroline=False)
+    fig.update_yaxes(showgrid=False)
     st.plotly_chart(fig, use_container_width=True)
 
 
@@ -541,13 +569,13 @@ def render_overview(high_st: pd.DataFrame, all_states: pd.DataFrame) -> None:
             chart_key="overview_india_map",
         )
 
-        st.markdown("### Compare India maps")
+        st.markdown("### Compare two India maps")
         default_left = "dropout_secondary_pct" if "dropout_secondary_pct" in map_options else map_options[0]
         default_right = "st_bpl_mean_pct" if "st_bpl_mean_pct" in map_options else map_options[min(1, len(map_options) - 1)]
-        map_tabs = st.tabs(["Map 1", "Map 2"])
-        with map_tabs[0]:
+        compare_left, compare_right = st.columns(2, gap="small")
+        with compare_left:
             left_metric = st.selectbox(
-                "Map 1 indicator",
+                "Left map indicator",
                 map_options,
                 index=map_options.index(default_left),
                 format_func=label,
@@ -558,22 +586,22 @@ def render_overview(high_st: pd.DataFrame, all_states: pd.DataFrame) -> None:
                 left_metric,
                 f"India map: {label(left_metric)}",
                 chart_key="overview_india_map_left",
-                height=700,
+                height=760,
             )
-        with map_tabs[1]:
+        with compare_right:
             right_metric = st.selectbox(
-                "Map 2 indicator",
+                "Right map indicator",
                 map_options,
                 index=map_options.index(default_right),
                 format_func=label,
-                help="Pick the second indicator to compare with Map 1.",
+                help="Pick the second indicator to compare side by side with the left map.",
             )
             choropleth(
                 all_states,
                 right_metric,
                 f"India map: {label(right_metric)}",
                 chart_key="overview_india_map_right",
-                height=700,
+                height=760,
             )
 
     variable_options = [
@@ -883,7 +911,7 @@ def main() -> None:
         page_title="ST Education and Livelihood Dashboard",
         page_icon="DSM",
         layout="wide",
-        initial_sidebar_state="expanded",
+        initial_sidebar_state="collapsed",
     )
 
     st.markdown(
@@ -907,48 +935,48 @@ def main() -> None:
         }
         .stApp {
             background:
-                linear-gradient(180deg, rgba(248,245,236,0.96), rgba(240,235,224,0.98)),
-                radial-gradient(circle at top left, rgba(47,93,124,0.14), transparent 36%);
-            color: #202426;
+                linear-gradient(180deg, rgba(13,17,23,0.98), rgba(16,21,29,0.99)),
+                radial-gradient(circle at top left, rgba(102,184,232,0.16), transparent 35%);
+            color: #f4f7fb;
         }
         .block-container {
-            max-width: 1500px;
+            max-width: 1900px;
             padding-top: 1.2rem;
-            padding-left: 3rem;
-            padding-right: 3rem;
+            padding-left: 1.4rem;
+            padding-right: 1.4rem;
             padding-bottom: 4rem;
         }
         section[data-testid="stSidebar"] {
-            background: #fffdf8;
-            border-right: 1px solid #ddd4c3;
-            box-shadow: 8px 0 24px rgba(49, 43, 32, 0.06);
+            background: #11161d;
+            border-right: 1px solid #303947;
+            box-shadow: 8px 0 24px rgba(0, 0, 0, 0.25);
         }
         section[data-testid="stSidebar"] * {
-            color: #202426 !important;
+            color: #f4f7fb !important;
             font-size: 17px !important;
         }
         section[data-testid="stSidebar"] h1,
         section[data-testid="stSidebar"] h2,
         section[data-testid="stSidebar"] h3 {
-            color: #2f5d7c !important;
+            color: #66b8e8 !important;
             font-weight: 900 !important;
         }
         .hero-card {
             padding: 30px 34px;
             margin-bottom: 22px;
-            border: 1px solid #ddd4c3;
+            border: 1px solid #303947;
             border-radius: 10px;
             background:
-                linear-gradient(135deg, rgba(255,253,248,0.97), rgba(239,232,218,0.94)),
-                radial-gradient(circle at 92% 8%, rgba(138,79,40,0.14), transparent 30%);
-            box-shadow: 0 18px 45px rgba(49, 43, 32, 0.10);
+                linear-gradient(135deg, rgba(23,28,36,0.98), rgba(18,24,32,0.96)),
+                radial-gradient(circle at 92% 8%, rgba(216,180,92,0.18), transparent 30%);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.32);
         }
         div[data-testid="column"] {
-            padding: 0.15rem 0.25rem;
+            padding: 0.08rem 0.12rem;
         }
         .hero-card .eyebrow {
             margin-bottom: 8px;
-            color: #8a4f28;
+            color: #d8b45c;
             font-size: 0.82rem !important;
             font-weight: 900;
             letter-spacing: 0.09em;
@@ -961,41 +989,41 @@ def main() -> None:
         .hero-card p {
             max-width: 1000px;
             margin: 0;
-            color: #4f5a59;
+            color: #aeb8c2;
             font-size: 1.12rem !important;
         }
         h1 {
             font-size: 3rem !important;
             line-height: 1.08 !important;
             letter-spacing: 0 !important;
-            color: #202426 !important;
+            color: #f4f7fb !important;
         }
         h2 {
             font-size: 2.25rem !important;
             letter-spacing: 0 !important;
-            color: #202426 !important;
+            color: #f4f7fb !important;
         }
         h3 {
             font-size: 1.65rem !important;
             letter-spacing: 0 !important;
-            color: #202426 !important;
+            color: #f4f7fb !important;
         }
         p, li, label, div, span {
             font-size: 1.04rem;
         }
         div[data-testid="stMetric"] {
-            background: #fffdf8;
-            border: 1px solid #d8d0c0;
+            background: #171c24;
+            border: 1px solid #303947;
             padding: 22px;
             border-radius: 10px;
             min-height: 128px;
-            box-shadow: 0 12px 28px rgba(49, 43, 32, 0.08);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
         }
         div[data-testid="stMetric"] * {
-            color: #202426 !important;
+            color: #f4f7fb !important;
         }
         div[data-testid="stMetricValue"] {
-            color: #2f5d7c !important;
+            color: #66b8e8 !important;
             font-size: 2.45rem !important;
             font-weight: 800 !important;
         }
@@ -1009,11 +1037,11 @@ def main() -> None:
             border-radius: 10px;
         }
         div[data-testid="stPlotlyChart"] {
-            padding: 12px;
-            border: 1px solid #ddd4c3;
+            padding: 8px;
+            border: 1px solid #303947;
             border-radius: 10px;
-            background: #fffdf8;
-            box-shadow: 0 12px 30px rgba(49, 43, 32, 0.08);
+            background: #171c24;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.30);
         }
         .stSelectbox [data-baseweb="select"],
         .stSelectbox div[data-baseweb="select"] > div,
@@ -1021,79 +1049,79 @@ def main() -> None:
         .stSelectbox div[data-baseweb="select"] input,
         .stTextInput input {
             border-radius: 8px !important;
-            background-color: #fffdf8 !important;
-            border-color: #d8d0c0 !important;
-            color: #202426 !important;
-            -webkit-text-fill-color: #202426 !important;
-            box-shadow: 0 8px 18px rgba(49, 43, 32, 0.05);
+            background-color: #11161d !important;
+            border-color: #303947 !important;
+            color: #f4f7fb !important;
+            -webkit-text-fill-color: #f4f7fb !important;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
         }
         .stSelectbox svg {
-            fill: #202426 !important;
+            fill: #f4f7fb !important;
         }
         div[data-baseweb="popover"],
         div[data-baseweb="menu"],
         ul[role="listbox"] {
-            background: #fffdf8 !important;
-            color: #202426 !important;
+            background: #171c24 !important;
+            color: #f4f7fb !important;
         }
         li[role="option"],
         li[role="option"] * {
-            color: #202426 !important;
-            background: #fffdf8 !important;
+            color: #f4f7fb !important;
+            background: #171c24 !important;
         }
         li[role="option"]:hover,
         li[role="option"][aria-selected="true"] {
-            background: #e9dfcf !important;
+            background: #263140 !important;
         }
         .stSelectbox [data-baseweb="select"] * {
-            color: #202426 !important;
+            color: #f4f7fb !important;
         }
         div[data-testid="stSelectbox"] label,
         div[data-testid="stDataFrame"] {
-            color: #202426 !important;
+            color: #f4f7fb !important;
             font-size: 1.05rem !important;
             font-weight: 800 !important;
         }
         div[data-testid="stDataFrame"] {
-            border: 1px solid #ddd4c3;
+            border: 1px solid #303947;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 24px rgba(49, 43, 32, 0.06);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
         }
         .profile-card {
             padding: 18px;
-            border: 1px solid #ddd4c3;
+            border: 1px solid #303947;
             border-radius: 10px;
-            background: #fffdf8;
-            box-shadow: 0 12px 28px rgba(49, 43, 32, 0.08);
+            background: #171c24;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
         }
         .profile-card h3 {
             margin: 0 0 12px !important;
-            color: #2f5d7c !important;
+            color: #66b8e8 !important;
         }
         .profile-row {
             display: grid;
             grid-template-columns: minmax(0, 1fr) auto;
             gap: 4px 14px;
             padding: 11px 0;
-            border-bottom: 1px solid #e6dece;
+            border-bottom: 1px solid #303947;
         }
         .profile-row:last-child {
             border-bottom: 0;
         }
         .profile-label {
-            color: #202426;
+            color: #f4f7fb;
             font-weight: 800;
             font-size: 0.98rem !important;
         }
         .profile-value {
-            color: #202426;
+            color: #f4f7fb;
             font-weight: 900;
             font-size: 1.08rem !important;
         }
         .profile-median {
             grid-column: 1 / -1;
-            color: #68716f;
+            color: #aeb8c2;
             font-size: 0.9rem !important;
             font-weight: 700;
         }
@@ -1103,48 +1131,59 @@ def main() -> None:
         .stTabs [data-baseweb="tab"] {
             height: 42px;
             padding: 0 14px;
-            border: 1px solid #d8d0c0;
+            border: 1px solid #303947;
             border-radius: 999px;
-            background: #fffdf8;
-            color: #2f5d7c;
+            background: #171c24;
+            color: #66b8e8;
             font-weight: 800;
         }
         .stTabs [aria-selected="true"] {
-            background: #2f5d7c !important;
+            background: #315f7d !important;
             color: #ffffff !important;
         }
         div[data-testid="stRadio"] {
             margin-bottom: 18px;
+            display: flex;
+            justify-content: center;
         }
-        div[data-testid="stRadio"] > div {
+        div[data-testid="stRadio"] div[role="radiogroup"] {
             gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
         }
         div[data-testid="stRadio"] label[data-baseweb="radio"] {
             min-height: 46px;
             margin: 0 8px 0 0;
             padding: 0 18px;
-            border: 1px solid #d8d0c0;
+            min-width: 250px;
+            justify-content: center;
+            border: 1px solid #303947;
             border-radius: 999px;
-            background: #fffdf8;
-            box-shadow: 0 8px 18px rgba(49, 43, 32, 0.05);
+            background: #171c24;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
         }
         div[data-testid="stRadio"] label[data-baseweb="radio"] > div:first-child {
             display: none;
         }
         div[data-testid="stRadio"] label[data-baseweb="radio"]:has(input:checked) {
-            background: #2f5d7c !important;
-            border-color: #2f5d7c !important;
+            background: #315f7d !important;
+            border-color: #66b8e8 !important;
         }
         div[data-testid="stRadio"] label[data-baseweb="radio"] p {
-            color: #2f5d7c !important;
+            color: #66b8e8 !important;
             font-weight: 900 !important;
+            text-align: center !important;
+            width: 100%;
         }
         div[data-testid="stRadio"] label[data-baseweb="radio"]:has(input:checked) p {
             color: #ffffff !important;
         }
         div[data-testid="stCaptionContainer"] {
             padding: 8px 2px 16px;
-            color: #5c6462;
+            color: #aeb8c2;
             font-size: 1rem !important;
             font-weight: 700;
         }
