@@ -379,12 +379,37 @@ def correlation_table(df: pd.DataFrame, pairs: list[tuple[str, str]]) -> pd.Data
     return pd.DataFrame(rows).sort_values("abs_r", ascending=False).reset_index(drop=True)
 
 
+def section_header(title: str, eyebrow: str | None = None) -> None:
+    eyebrow_html = f'<div class="section-eyebrow">{eyebrow}</div>' if eyebrow else ""
+    st.markdown(
+        f"""
+        <div class="section-heading">
+            {eyebrow_html}
+            <h2>{title}</h2>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 def metric_row(df: pd.DataFrame) -> None:
-    c1, c2, c3, c4 = st.columns(4)
-    c1.metric("High-ST states", f"{len(df)}")
-    c2.metric("Mean ST literacy", f"{df['st_literacy_rate_pct'].mean():.1f}%")
-    c3.metric("Mean secondary dropout", f"{df['dropout_secondary_pct'].mean():.1f}%")
-    c4.metric("Mean MGNREG unmet demand", f"{df['mgnreg_sought_not_received_per_1000'].mean():.1f}")
+    cards = [
+        ("High-ST states", f"{len(df)}", "state cohort"),
+        ("Mean ST literacy", f"{df['st_literacy_rate_pct'].mean():.1f}%", "education baseline"),
+        ("Mean secondary dropout", f"{df['dropout_secondary_pct'].mean():.1f}%", "retention pressure"),
+        ("Mean MGNREG unmet demand", f"{df['mgnreg_sought_not_received_per_1000'].mean():.1f}", "livelihood stress"),
+    ]
+    card_html = "".join(
+        f"""
+        <div class="kpi-card">
+            <div class="kpi-label">{name}</div>
+            <div class="kpi-value">{value}</div>
+            <div class="kpi-note">{note}</div>
+        </div>
+        """
+        for name, value, note in cards
+    )
+    st.markdown(f'<div class="kpi-grid">{card_html}</div>', unsafe_allow_html=True)
 
 
 def state_profile(df: pd.DataFrame, state: str) -> None:
@@ -540,12 +565,18 @@ def render_overview(high_st: pd.DataFrame, all_states: pd.DataFrame) -> None:
     st.markdown(
         """
         <div class="hero-card">
-          <div class="eyebrow">DSM Final Project Dashboard</div>
+          <div class="eyebrow">DSM Final Project</div>
           <h1>Scheduled Tribe education and livelihood outcomes</h1>
           <p>
             Explore how ST schooling indicators relate to dropout, poverty, labour outcomes,
             MGNREG distress, and spatial concentration across high-ST states in India.
           </p>
+          <div class="hero-meta">
+            <span>State-level evidence</span>
+            <span>Education</span>
+            <span>Livelihoods</span>
+            <span>Policy prioritization</span>
+          </div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -554,7 +585,7 @@ def render_overview(high_st: pd.DataFrame, all_states: pd.DataFrame) -> None:
 
     map_options = map_metric_options(all_states)
     if map_options:
-        st.markdown("### India map explorer")
+        section_header("India Map Explorer", "Geography")
         overview_metric = st.selectbox(
             "Choose the indicator for the overall India map",
             map_options,
@@ -569,7 +600,7 @@ def render_overview(high_st: pd.DataFrame, all_states: pd.DataFrame) -> None:
             chart_key="overview_india_map",
         )
 
-        st.markdown("### Compare two India maps")
+        section_header("Compare Two India Maps", "Spatial comparison")
         default_left = "dropout_secondary_pct" if "dropout_secondary_pct" in map_options else map_options[0]
         default_right = "st_bpl_mean_pct" if "st_bpl_mean_pct" in map_options else map_options[min(1, len(map_options) - 1)]
         compare_left, compare_right = st.columns(2, gap="small")
@@ -641,7 +672,7 @@ def render_overview(high_st: pd.DataFrame, all_states: pd.DataFrame) -> None:
 
     left, right = st.columns([1.45, 1])
     with left:
-        st.markdown("### Build your own relationship graph")
+        section_header("Build Your Own Relationship Graph", "Interactive analysis")
         x = st.selectbox(
             "Choose the X-axis variable",
             variable_options,
@@ -659,10 +690,11 @@ def render_overview(high_st: pd.DataFrame, all_states: pd.DataFrame) -> None:
         scatter(high_st, x, y, "Custom relationship explorer", color_col=None, chart_key="overview_custom_scatter")
 
     with right:
+        section_header("State Profile", "Focused view")
         state = st.selectbox("State profile", sorted(high_st["state"].dropna().unique()))
         state_profile(high_st, state)
 
-    st.subheader("State comparison table")
+    section_header("State Comparison Table", "Ranked indicators")
     sort_col = st.selectbox(
         "Sort state table by",
         [
@@ -688,7 +720,7 @@ def render_overview(high_st: pd.DataFrame, all_states: pd.DataFrame) -> None:
     display = high_st[table_cols].sort_values(sort_col, ascending=False)
     st.dataframe(display.rename(columns={c: label(c) for c in table_cols}), use_container_width=True, hide_index=True)
 
-    st.subheader("All-state context")
+    section_header("All-State Context", "Benchmark")
     scatter(
         all_states,
         "st_share_state_population_pct",
@@ -934,9 +966,7 @@ def main() -> None:
             font-family: Inter, Segoe UI, sans-serif !important;
         }
         .stApp {
-            background:
-                linear-gradient(180deg, rgba(13,17,23,0.98), rgba(16,21,29,0.99)),
-                radial-gradient(circle at top left, rgba(102,184,232,0.16), transparent 35%);
+            background: linear-gradient(180deg, #0d1117 0%, #10151d 54%, #0d1117 100%);
             color: #f4f7fb;
         }
         .block-container {
@@ -962,14 +992,12 @@ def main() -> None:
             font-weight: 900 !important;
         }
         .hero-card {
-            padding: 30px 34px;
-            margin-bottom: 22px;
+            padding: 28px 32px;
+            margin-bottom: 18px;
             border: 1px solid #303947;
-            border-radius: 10px;
-            background:
-                linear-gradient(135deg, rgba(23,28,36,0.98), rgba(18,24,32,0.96)),
-                radial-gradient(circle at 92% 8%, rgba(216,180,92,0.18), transparent 30%);
-            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.32);
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(23,28,36,0.98), rgba(18,24,32,0.96));
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.30);
         }
         div[data-testid="column"] {
             padding: 0.08rem 0.12rem;
@@ -984,13 +1012,89 @@ def main() -> None:
         }
         .hero-card h1 {
             margin: 0 0 10px;
-            max-width: 980px;
+            max-width: 1060px;
         }
         .hero-card p {
             max-width: 1000px;
             margin: 0;
             color: #aeb8c2;
             font-size: 1.12rem !important;
+        }
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+        .hero-meta span {
+            padding: 6px 10px;
+            border: 1px solid #303947;
+            border-radius: 999px;
+            background: #11161d;
+            color: #cbd4dd;
+            font-size: 0.86rem !important;
+            font-weight: 800;
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+            margin: 14px 0 26px;
+        }
+        .kpi-card {
+            position: relative;
+            min-height: 132px;
+            padding: 20px 20px 18px;
+            border: 1px solid #303947;
+            border-radius: 8px;
+            background: #171c24;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+            overflow: hidden;
+        }
+        .kpi-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 3px;
+            background: linear-gradient(90deg, #66b8e8, #69c2aa, #d8b45c);
+        }
+        .kpi-label {
+            color: #aeb8c2;
+            font-size: 0.9rem !important;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        .kpi-value {
+            margin-top: 14px;
+            color: #f4f7fb;
+            font-size: 2.35rem !important;
+            line-height: 1;
+            font-weight: 900;
+        }
+        .kpi-note {
+            margin-top: 12px;
+            color: #66b8e8;
+            font-size: 0.88rem !important;
+            font-weight: 800;
+        }
+        .section-heading {
+            margin: 34px 0 14px;
+            padding-top: 4px;
+            border-top: 1px solid #303947;
+        }
+        .section-eyebrow {
+            color: #d8b45c;
+            font-size: 0.78rem !important;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .section-heading h2 {
+            margin: 0 !important;
+            color: #f4f7fb !important;
+            font-size: 1.85rem !important;
+            line-height: 1.2 !important;
         }
         h1 {
             font-size: 3rem !important;
@@ -1015,7 +1119,7 @@ def main() -> None:
             background: #171c24;
             border: 1px solid #303947;
             padding: 22px;
-            border-radius: 10px;
+            border-radius: 8px;
             min-height: 128px;
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
         }
@@ -1034,12 +1138,12 @@ def main() -> None:
         div[data-testid="stVerticalBlock"] > div:has(> div[data-testid="stPlotlyChart"]),
         div[data-testid="stDataFrame"],
         div[data-testid="stSelectbox"] > div {
-            border-radius: 10px;
+            border-radius: 8px;
         }
         div[data-testid="stPlotlyChart"] {
             padding: 8px;
             border: 1px solid #303947;
-            border-radius: 10px;
+            border-radius: 8px;
             background: #171c24;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.30);
         }
@@ -1084,14 +1188,14 @@ def main() -> None:
         }
         div[data-testid="stDataFrame"] {
             border: 1px solid #303947;
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
         }
         .profile-card {
             padding: 18px;
             border: 1px solid #303947;
-            border-radius: 10px;
+            border-radius: 8px;
             background: #171c24;
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
         }
@@ -1186,6 +1290,29 @@ def main() -> None:
             color: #aeb8c2;
             font-size: 1rem !important;
             font-weight: 700;
+        }
+        @media (max-width: 1200px) {
+            .kpi-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .block-container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+        @media (max-width: 720px) {
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-card {
+                padding: 22px;
+            }
+            h1 {
+                font-size: 2.25rem !important;
+            }
+            div[data-testid="stRadio"] label[data-baseweb="radio"] {
+                min-width: 190px;
+            }
         }
         </style>
         """,
