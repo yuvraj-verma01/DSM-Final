@@ -11,10 +11,15 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
-from dotenv import load_dotenv
 from openai import OpenAI
 from scipy import stats
 from shapely.geometry import mapping, shape
+
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    def load_dotenv() -> bool:
+        return False
 
 
 ROOT = Path(__file__).resolve().parents[1]
