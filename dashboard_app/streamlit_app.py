@@ -1,12 +1,18 @@
 from __future__ import annotations
 
 import json
+import os
+import re
+import sqlite3
 from pathlib import Path
+from typing import Any
 
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
+from dotenv import load_dotenv
+from openai import OpenAI
 from scipy import stats
 from shapely.geometry import mapping, shape
 
@@ -17,6 +23,19 @@ ANALYSIS = ROOT / "outputs" / "analysis"
 HIGH_ST_PATH = ANALYSIS / "state_analysis_dataset_high_st_states.csv"
 ALL_STATES_PATH = ANALYSIS / "state_analysis_dataset_all_states.csv"
 GEOJSON_PATH = ROOT / "dashboard_app" / "india_state.geojson"
+
+load_dotenv()
+
+DEFAULT_MODEL = os.getenv("LLM_DEFAULT_MODEL", "openai/gpt-oss-120b:free")
+DEFAULT_BASE_URL = os.getenv("LLM_BASE_URL", "https://openrouter.ai/api/v1")
+TABLES = {
+    "high_st_states": HIGH_ST_PATH,
+    "all_states": ALL_STATES_PATH,
+}
+TABLE_DESCRIPTIONS = {
+    "high_st_states": "High-ST states analysis dataset used by the dashboard.",
+    "all_states": "All-states analysis dataset used by the dashboard.",
+}
 
 THEME = {
     "blue": "#66b8e8",
@@ -104,6 +123,301 @@ def load_data() -> tuple[pd.DataFrame, pd.DataFrame]:
     high_st = pd.read_csv(HIGH_ST_PATH)
     all_states = pd.read_csv(ALL_STATES_PATH)
     return add_derived_columns(high_st), add_derived_columns(all_states)
+
+
+@st.cache_data(show_spinner=False)
+def load_analysis_tables() -> dict[str, pd.DataFrame]:
+    high_st, all_states = load_data()
+    return {
+        "high_st_states": high_st.copy(),
+        "all_states": all_states.copy(),
+    }
+
+
+def get_openai_client() -> OpenAI:
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise ValueError("Set OPENAI_API_KEY in your environment before using the analyst view.")
+
+    return OpenAI(api_key=api_key, base_url=DEFAULT_BASE_URL)
+
+
+@st.cache_resource(show_spinner=False)
+def get_sqlite_connection() -> sqlite3.Connection:
+    connection = sqlite3.connect(":memory:", check_same_thread=False)
+    for table_name, df in load_analysis_tables().items():
+        df.to_sql(table_name, connection, index=False, if_exists="replace")
+    return connection
+
+
+def test_data_connection() -> None:
+    connection = get_sqlite_connection()
+    connection.execute("SELECT 1")
+
+
+def list_analysis_tables() -> pd.DataFrame:
+    rows = []
+    for table_name, df in load_analysis_tables().items():
+        rows.append(
+            {
+                "table_name": table_name,
+                "rows": len(df),
+                "columns": len(df.columns),
+                "source_file": TABLES[table_name].name,
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def describe_analysis_table(table_name: str) -> pd.DataFrame:
+    df = load_analysis_tables()[table_name]
+    rows = []
+    for column_name, dtype in df.dtypes.items():
+        rows.append(
+            {
+                "column_name": column_name,
+                "data_type": str(dtype),
+                "is_nullable": "yes" if df[column_name].isna().any() else "no",
+                "sample_value": next(
+                    (str(value) for value in df[column_name].dropna().head(1).tolist()),
+                    "",
+                ),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+@st.cache_data(show_spinner=False)
+def build_schema_context() -> str:
+    sections = []
+    for table_name, df in load_analysis_tables().items():
+        column_lines = [
+            f"- {column_name} ({dtype})"
+            for column_name, dtype in df.dtypes.astype(str).items()
+        ]
+        sections.append(
+            f"Table: {table_name}\n"
+            f"Description: {TABLE_DESCRIPTIONS[table_name]}\n"
+            f"Rows: {len(df)}\n"
+            + "\n".join(column_lines)
+        )
+    return "\n\n".join(sections)
+
+
+def clean_sql(sql_text: str) -> str:
+    sql_text = sql_text.strip()
+    sql_text = re.sub(r"^```sql\s*|^```\s*|\s*```$", "", sql_text, flags=re.IGNORECASE)
+    return sql_text.strip()
+
+
+def is_safe_select_query(query: str) -> bool:
+    cleaned = clean_sql(query)
+    lowered = cleaned.lower()
+    lowered = re.sub(r"--.*?$", "", lowered, flags=re.MULTILINE)
+    lowered = re.sub(r"/\*.*?\*/", "", lowered, flags=re.DOTALL)
+    stripped = lowered.strip().rstrip(";")
+
+    if not stripped.startswith(("select", "with")):
+        return False
+
+    blocked_terms = [
+        "insert ",
+        "update ",
+        "delete ",
+        "drop ",
+        "alter ",
+        "truncate ",
+        "create ",
+        "replace ",
+        "grant ",
+        "revoke ",
+        "attach ",
+        "detach ",
+        "pragma ",
+    ]
+    return not any(term in stripped for term in blocked_terms)
+
+
+def safe_run_sql(query: str, row_limit: int = 200) -> pd.DataFrame:
+    cleaned = clean_sql(query).rstrip(";")
+    if not is_safe_select_query(cleaned):
+        raise ValueError("Only read-only SELECT queries are allowed.")
+
+    limited_query = f"SELECT * FROM ({cleaned}) AS analyst_query LIMIT {row_limit}"
+    return pd.read_sql_query(limited_query, get_sqlite_connection())
+
+
+def generate_sql(question: str, schema_context: str, model: str = DEFAULT_MODEL) -> str:
+    client = get_openai_client()
+    prompt = f"""
+You are a careful SQLite data analyst.
+
+Available datasets:
+{schema_context}
+
+User question:
+{question}
+
+Rules:
+- Return only SQL.
+- Use only the tables high_st_states and all_states.
+- Use only columns that exist in the schema shown above.
+- Produce a single read-only SQLite query.
+- Never use INSERT, UPDATE, DELETE, DROP, ALTER, CREATE, TRUNCATE, ATTACH, DETACH, or PRAGMA.
+- Prefer explicit column names instead of SELECT * unless it is necessary.
+- If aggregation is needed, include clear aliases.
+"""
+
+    response = client.responses.create(
+        model=model,
+        input=[
+            {
+                "role": "system",
+                "content": [{"type": "input_text", "text": "Return only valid SQLite SQL."}],
+            },
+            {
+                "role": "user",
+                "content": [{"type": "input_text", "text": prompt}],
+            },
+        ],
+    )
+    return clean_sql(response.output_text)
+
+
+def summarize_results(
+    question: str,
+    sql_query: str,
+    result_df: pd.DataFrame,
+    model: str = DEFAULT_MODEL,
+) -> str:
+    client = get_openai_client()
+    preview_csv = result_df.head(20).to_csv(index=False)
+
+    prompt = f"""
+You are summarizing the output of a SQL analysis.
+
+User question:
+{question}
+
+SQL used:
+{sql_query}
+
+Preview of result rows:
+{preview_csv}
+
+Write a concise answer grounded only in the result preview.
+If the preview is insufficient, say that more rows may be needed.
+"""
+
+    response = client.responses.create(
+        model=model,
+        input=prompt,
+    )
+    return response.output_text.strip()
+
+
+def ask_data(
+    question: str,
+    model: str = DEFAULT_MODEL,
+    row_limit: int = 200,
+    return_summary: bool = True,
+) -> dict[str, Any]:
+    schema_context = build_schema_context()
+    sql_query = generate_sql(question, schema_context, model=model)
+    result_df = safe_run_sql(sql_query, row_limit=row_limit)
+
+    response: dict[str, Any] = {
+        "question": question,
+        "sql_query": sql_query,
+        "rows_returned": len(result_df),
+        "data": result_df,
+    }
+
+    if return_summary:
+        response["summary"] = summarize_results(question, sql_query, result_df, model=model)
+
+    return response
+
+
+def render_sql_analyst() -> None:
+    st.subheader("DSM SQL Analyst")
+    st.caption("Ask natural-language questions over the same analysis datasets used by the dashboard.")
+
+    control_col, info_col = st.columns([1.2, 1], gap="large")
+
+    with control_col:
+        model = st.text_input("Model", value=DEFAULT_MODEL, key="sql_analyst_model")
+        row_limit = st.slider(
+            "Row limit",
+            min_value=10,
+            max_value=1000,
+            value=200,
+            step=10,
+            key="sql_analyst_row_limit",
+        )
+        return_summary = st.checkbox(
+            "Generate summary",
+            value=True,
+            key="sql_analyst_return_summary",
+        )
+
+    with info_col:
+        st.markdown("**Data Source**")
+        st.dataframe(list_analysis_tables(), use_container_width=True, hide_index=True)
+
+        preview_table = st.selectbox(
+            "Preview table schema",
+            options=list(TABLES.keys()),
+            format_func=lambda name: f"{name} ({TABLES[name].name})",
+            key="sql_analyst_preview_table",
+        )
+        st.dataframe(describe_analysis_table(preview_table), use_container_width=True, hide_index=True)
+
+    question = st.text_area(
+        "Ask a question about the dashboard data",
+        placeholder="Which high-ST states have the highest literacy gap and secondary dropout?",
+        height=120,
+        key="sql_analyst_question",
+    )
+
+    action_col1, action_col2 = st.columns([1, 1])
+    with action_col1:
+        if st.button("Test data connection", key="sql_analyst_test_connection"):
+            try:
+                test_data_connection()
+                st.success("Dashboard data connection successful.")
+            except Exception as exc:
+                st.error(f"Could not access the dashboard datasets: {exc}")
+    with action_col2:
+        with st.expander("Schema context used for SQL generation"):
+            st.code(build_schema_context())
+
+    if st.button("Run analysis", type="primary", key="sql_analyst_run"):
+        if not question.strip():
+            st.warning("Enter a question first.")
+            return
+
+        try:
+            with st.spinner("Generating SQL and querying the dashboard datasets..."):
+                result = ask_data(
+                    question=question.strip(),
+                    model=model,
+                    row_limit=row_limit,
+                    return_summary=return_summary,
+                )
+
+            if return_summary and result.get("summary"):
+                st.subheader("Summary")
+                st.write(result["summary"])
+
+            st.subheader("Generated SQL")
+            st.code(result["sql_query"], language="sql")
+
+            st.subheader(f"Results ({result['rows_returned']} rows)")
+            st.dataframe(result["data"], use_container_width=True)
+
+        except Exception as exc:
+            st.error(f"Analysis failed: {exc}")
 
 
 @st.cache_data
@@ -1333,6 +1647,10 @@ def main() -> None:
         render_overview(high_st, all_states)
     else:
         render_questions(high_st, all_states)
+
+    st.markdown("<div style='height: 1.5rem;'></div>", unsafe_allow_html=True)
+    section_header("Ask the Data", "Analyst")
+    render_sql_analyst()
 
 
 if __name__ == "__main__":
