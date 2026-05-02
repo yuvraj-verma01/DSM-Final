@@ -39,10 +39,22 @@ DEFAULT_MODEL = os.getenv("LLM_DEFAULT_MODEL", "tencent/hy3-preview:free")
 DEFAULT_BASE_URL = os.getenv("LLM_BASE_URL", "https://openrouter.ai/api/v1")
 
 
+def get_secret(name: str) -> str | None:
+    try:
+        value = st.secrets.get(name)
+    except Exception:
+        value = None
+
+    if value:
+        return str(value)
+
+    return os.getenv(name)
+
+
 def get_openai_client() -> OpenAI:
-    api_key = os.getenv("OPENAI_API_KEY")
+    api_key = get_secret("OPENAI_API_KEY")
     if not api_key:
-        raise ValueError("Set OPENAI_API_KEY in your .env file before running the agent.")
+        raise ValueError("Set OPENAI_API_KEY in Streamlit secrets or your local .env file before running the agent.")
 
     return OpenAI(api_key=api_key, base_url=DEFAULT_BASE_URL)
 

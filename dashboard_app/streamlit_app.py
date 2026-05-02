@@ -123,6 +123,18 @@ CHART_COLOR_SCALE = ["#66b8e8", "#69c2aa", "#d8b45c", "#d79b6b", "#f27d7d"]
 PLOT_CONFIG = {"displayModeBar": False, "responsive": True}
 
 
+def get_secret(name: str) -> str | None:
+    try:
+        value = st.secrets.get(name)
+    except Exception:
+        value = None
+
+    if value:
+        return str(value)
+
+    return os.getenv(name)
+
+
 @st.cache_data
 def load_data() -> tuple[pd.DataFrame, pd.DataFrame]:
     high_st = pd.read_csv(HIGH_ST_PATH)
@@ -140,9 +152,11 @@ def load_analysis_tables() -> dict[str, pd.DataFrame]:
 
 
 def get_openai_client() -> OpenAI:
-    api_key = os.getenv("OPENAI_API_KEY")
+    api_key = get_secret("OPENAI_API_KEY")
     if not api_key:
-        raise ValueError("Set OPENAI_API_KEY in your environment before using the analyst view.")
+        raise ValueError(
+            "Set OPENAI_API_KEY in Streamlit secrets or your local environment before using the analyst view."
+        )
 
     return OpenAI(api_key=api_key, base_url=DEFAULT_BASE_URL)
 
